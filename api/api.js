@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv/config');
 
 const app = express();
@@ -9,6 +10,7 @@ const PORT = 8080;
 
 const cardRoute = require('./routes/card');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/card', cardRoute);
 
