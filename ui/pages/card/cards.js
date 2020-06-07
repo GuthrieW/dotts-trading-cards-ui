@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import Header from '../../components/Header';
 
 export default class App extends React.Component {
 	constructor() {
@@ -44,6 +45,7 @@ export default class App extends React.Component {
 						crossOrigin='anonymous'
 					/>
 				</Head>
+				<Header />
 				<main>
 					<div className='container'>
 						{cards.map((card) => (

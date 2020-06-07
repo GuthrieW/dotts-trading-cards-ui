@@ -11,6 +11,7 @@ import {
 	Button,
 } from 'reactstrap';
 import swal from 'sweetalert';
+import Header from './Header';
 
 const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
 const CARD_WIDTH = 200;
@@ -139,6 +140,7 @@ export default class App extends React.Component {
 					/>
 				</Head>
 				<main>
+					<Header />
 					<div className='container'>
 						<Row>
 							<Col>

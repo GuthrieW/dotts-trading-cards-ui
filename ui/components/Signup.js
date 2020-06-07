@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Header from './Header';
 
 export default class App extends React.Component {
 	handleChange(changeEvent) {}
@@ -17,6 +18,7 @@ export default class App extends React.Component {
 					></link>
 				</Head>
 				<main>
+					<Header />
 					<div className='container'>
 						<h1>Signup Page</h1>
 					</div>
