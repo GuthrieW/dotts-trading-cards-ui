@@ -52,7 +52,7 @@ router.post('/', async (request, response) => {
 		const savedCard = await card.save();
 		response.json(savedCard);
 	} catch (error) {
-		console.log('POST ERROR: ', error);
+		console.error('POST ERROR: ', error);
 		response.json({ message: error });
 	}
 

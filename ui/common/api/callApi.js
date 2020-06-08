@@ -23,7 +23,7 @@ export const callApi = async (
 			return response.data;
 		})
 		.catch(function (error) {
-			console.log('AXIOS ERROR: ', error);
+			console.error('AXIOS ERROR: ', error);
 			if (error.response) {
 				return error.response.data;
 			}
