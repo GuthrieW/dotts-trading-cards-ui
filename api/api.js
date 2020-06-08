@@ -4,7 +4,8 @@ const Mongoose = require('mongoose');
 const Cors = require('cors');
 require('dotenv').config();
 const App = Express();
-const CardRoute = require('./routes/card');
+const CardRoute = require('/routes/card');
+// const SignupRoute = require('/routes/signup');
 
 const PORT = 8080;
 
@@ -20,6 +21,7 @@ App.use(function (request, response, next) {
 App.use(BodyParser.urlencoded({ extended: true }));
 App.use(BodyParser.json());
 App.use('/card', CardRoute);
+// App.use('/signup', SignupRoute);
 
 Mongoose.connect(
 	process.env.DB_CONNECTION,

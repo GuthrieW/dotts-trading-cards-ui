@@ -13,6 +13,7 @@ import {
 import Swal from 'sweetalert';
 import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
 import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
+import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
 import Header from './Header';
 
 const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
@@ -130,17 +131,24 @@ export default class App extends React.Component {
 
 		await callApi(url, options, data)
 			.then((data) => {
-				Swal({
-					title: 'Card Submitted',
-					text: 'Thank you for your submission!',
-					icon: 'success',
-				});
+				if (data.status === Status.OK) {
+					Swal({
+						title: 'Card Submitted',
+						text: 'Thank you for your submission!',
+						icon: 'success',
+					});
+				} else {
+					Swal({
+						title: 'Submission Error',
+						text:
+							'There was an error in your submission.\nIf you believe this is not error with your submission please contact the administrators.',
+						icon: 'error',
+					});
+				}
 			})
 			.catch((error) => {
 				Swal({
-					title: 'Submission Error',
-					text:
-						'There was an error in your submission.\nIf you believe this is not error with your submission please contact the admins.',
+					title: 'Internal Server Error',
 					icon: 'error',
 				});
 			});
@@ -181,6 +189,7 @@ export default class App extends React.Component {
 				<main>
 					<Header />
 					<div className='container'>
+						<h1>Submit a Card</h1>
 						<Row>
 							<Col>
 								<Form onSubmit={this.handleSubmit}>

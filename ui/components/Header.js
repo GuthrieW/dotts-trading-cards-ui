@@ -14,7 +14,7 @@ const Header = () => {
 						<NavLink href='/packs/get-packs'>Get Packs</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href='/submit-card'>Submit Cards</NavLink>
+						<NavLink href='/submit-card'>Submit a Card</NavLink>
 					</NavItem>
 				</Nav>
 			</Navbar>

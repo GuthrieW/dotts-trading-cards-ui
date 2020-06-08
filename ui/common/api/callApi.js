@@ -19,13 +19,13 @@ export const callApi = async (
 		url: url,
 		data: data,
 	})
-		.then(function (response) {
-			return response.data;
+		.then((response) => {
+			return response;
 		})
-		.catch(function (error) {
+		.catch((error) => {
 			console.error('AXIOS ERROR: ', error);
 			if (error.response) {
-				return error.response.data;
+				return error.response;
 			}
 		});
 };

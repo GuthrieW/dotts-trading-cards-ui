@@ -7,6 +7,8 @@ const SALT_ROUNDS = require('../common/security');
 const Router = Express.Router();
 
 Router.post('/signup', async (request, response) => {
+    console.log('Got in here');
+
     const signupInformation = request.body;
 
 	Bcrypt
@@ -33,3 +35,5 @@ Router.post('/signup', async (request, response) => {
 
     return;
 });
+
+module.exports = Router;

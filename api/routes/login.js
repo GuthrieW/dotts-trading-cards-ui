@@ -4,7 +4,6 @@ const Bcrypt = require('bcryptjs');
 const HttpStatusCodes = require('http-status-codes');
 const User = require('../models/User');
 const SALT_ROUNDS = require('../common/security');
-const Http
 
 const Router = Express.Router();
 
@@ -24,10 +23,14 @@ Router.post('/login', async (request, response) => {
 	Bcrypt.compare(loginInformation.password, possibleUser.password)
 		.then((result) => {
 			if (result) {
-				response.status(HttpStatusCodes.OK).json({ message: VALIDATION_SUCCESS });
+				response
+					.status(HttpStatusCodes.OK)
+					.json({ message: VALIDATION_SUCCESS });
 			} else {
 				console.log('Incorrect passsword');
-				response.status(HttpStatusCodes.UNAUTHORIZED).json({ message: VALIDATION_FAILURE });
+				response
+					.status(HttpStatusCodes.UNAUTHORIZED)
+					.json({ message: VALIDATION_FAILURE });
 			}
 		})
 		.catch((error) => {

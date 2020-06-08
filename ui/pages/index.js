@@ -2,11 +2,15 @@ import Head from 'next/head';
 import Header from './Header';
 
 export default class App extends React.Component {
+	constructor() {
+		super();
+	}
+
 	render() {
 		return (
 			<>
 				<Head>
-					<title>Create Next App</title>
+					<title>NSFL Trading Cards</title>
 					<link rel='icon' href='/favicon.ico' />
 					<link
 						rel='stylesheet'
@@ -18,7 +22,7 @@ export default class App extends React.Component {
 				<main>
 					<Header />
 					<div className='container'>
-						<h1>Login Page</h1>
+						<h1>NSFL Trading Cards</h1>
 					</div>
 				</main>
 			</>
