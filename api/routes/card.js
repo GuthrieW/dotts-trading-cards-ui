@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/', async (request, response) => {
 	try {
 		const cards = await Card.find();
-		response.send(cards);
+		response.json(cards);
 	} catch (error) {
 		response.json({ message: error });
 	}
@@ -26,7 +26,7 @@ router.get('/:cardId', async (request, response) => {
 
 	try {
 		const card = await Card.findById(cardId);
-		response.send(card);
+		response.json(card);
 	} catch (error) {
 		response.json({ message: error });
 	}
@@ -52,6 +52,7 @@ router.post('/', async (request, response) => {
 		const savedCard = await card.save();
 		response.json(savedCard);
 	} catch (error) {
+		console.log('POST ERROR: ', error);
 		response.json({ message: error });
 	}
 

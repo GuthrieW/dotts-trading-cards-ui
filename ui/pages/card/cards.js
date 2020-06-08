@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import React from 'react';
 import Header from '../../components/Header';
+import { API_URL } from '../../common/api/apiUrl';
+import { callApi, METHOD } from '/nsfl-trading-cards/ui/common/api/callApi';
 
 export default class App extends React.Component {
 	constructor() {
@@ -11,17 +13,18 @@ export default class App extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-		console.log('Mounted');
-		fetch('http://localhost:8080/card')
-			.then((response) => response.json())
-			.then((data) => {
-				this.setState({
-					cards: data,
-					isLoaded: true,
-				});
-			})
-			.catch(console.log);
+	async componentDidMount() {
+		const url = API_URL + '/card';
+		const options = {
+			method: METHOD.GET,
+		};
+
+		await callApi(url, options).then((data) => {
+			this.setState({
+				cards: data,
+				isLoaded: true,
+			});
+		});
 	}
 
 	render() {
@@ -30,8 +33,6 @@ export default class App extends React.Component {
 		if (!isLoaded) {
 			return <div>Loading...</div>;
 		}
-
-		console.log(cards);
 
 		return (
 			<>
@@ -48,10 +49,8 @@ export default class App extends React.Component {
 				<Header />
 				<main>
 					<div className='container'>
-						{cards.map((card) => (
-							<>
-								<img src={card.image_url} />
-							</>
+						{cards.map((card, index) => (
+							<img key={index} src={card.image_url} />
 						))}
 					</div>
 				</main>

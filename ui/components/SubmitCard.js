@@ -11,23 +11,24 @@ import {
 	Button,
 } from 'reactstrap';
 import swal from 'sweetalert';
+import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
+import { callApi, METHOD } from '/nsfl-trading-cards/ui/common/api/callApi';
 import Header from './Header';
 
 const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
-const CARD_WIDTH = 200;
-const CARD_HEIGHT = 500;
-
-function isValidImageUrl(imageUrl) {
-	return imageUrl.match(IMAGE_URL_REGEX) != null;
-}
-
-function isSubmissionLimitReached() {
-	return false;
-}
-
-function isEmptyString(string) {
-	return string === '';
-}
+const LABELS = {
+	cardRarity: 'Card Rarity',
+	playerName: 'Player Name',
+	nsflUsername: 'NSFL Username',
+	cardImageUrl: 'Card Image URL',
+};
+const RARITY_LEVELS = {
+	DEFAULT: 'Card Rarity',
+	BRONZE: 'Bronze',
+	SILVER: 'Silver',
+	GOLD: 'Gold',
+	PLATINUM: 'Platinum',
+};
 
 export default class App extends React.Component {
 	constructor() {
@@ -35,7 +36,7 @@ export default class App extends React.Component {
 		this.state = {
 			'nsfl-username': '',
 			'player-name': '',
-			'player-team': '',
+			'card-rarity': RARITY_LEVELS.DEFAULT,
 			'card-image-url': '',
 			'displayImage': false,
 		};
@@ -50,8 +51,8 @@ export default class App extends React.Component {
 
 		if (name === 'card-image-url') {
 			this.setState({
-				imageUrl: value,
-				displayImage: isValidImageUrl(value),
+				'card-image-url': value,
+				'displayImage': this.isValidImageUrl(value),
 			});
 		} else {
 			this.setState({
@@ -65,7 +66,7 @@ export default class App extends React.Component {
 	async handleSubmit(event) {
 		event.preventDefault();
 
-		if (isEmptyString(this.state['nsfl-username'])) {
+		if (this.isEmptyString(this.state['nsfl-username'])) {
 			swal({
 				title: 'Submission Rejected',
 				text: 'Please enter your NSFL username.',
@@ -75,7 +76,7 @@ export default class App extends React.Component {
 			return;
 		}
 
-		if (isEmptyString(this.state['player-name'])) {
+		if (this.isEmptyString(this.state['player-name'])) {
 			swal({
 				title: 'Submission Rejected',
 				text: "Please enter the player's name.",
@@ -85,17 +86,17 @@ export default class App extends React.Component {
 			return;
 		}
 
-		if (isEmptyString(this.state['player-team'])) {
+		if (this.state['card-rarity'] === RARITY_LEVELS.DEFAULT) {
 			swal({
 				title: 'Submission Rejected',
-				text: "Please enter the player's team",
+				text: "Please select the card's rarity level",
 				icon: 'error',
 			});
 
 			return;
 		}
 
-		if (isSubmissionLimitReached()) {
+		if (this.isSubmissionLimitReached()) {
 			swal({
 				title: 'Submission Rejected',
 				text: 'Your submission limit for the day has been reached.',
@@ -115,15 +116,53 @@ export default class App extends React.Component {
 			return;
 		}
 
-		// TODO: add call to API that adds submission to the queue of submissions to be approved
+		const url = API_URL + '/card';
+		const options = {
+			method: METHOD.POST,
+		};
+		const data = {
+			submission_username: this.state['nsfl-username'],
+			player_name: this.state['player-name'],
+			rarity: this.state['card-rarity'],
+			image_url: this.state['card-image-url'],
+			collection_ids: [],
+		};
 
-		swal({
-			title: 'Card Submitted',
-			text: 'Thank you for your submission!',
-			icon: 'success',
-		});
+		await callApi(url, options, data)
+			.then((data) => {
+				swal({
+					title: 'Card Submitted',
+					text: 'Thank you for your submission!',
+					icon: 'success',
+				});
+			})
+			.catch((error) => {
+				swal({
+					title: 'Submission Error',
+					text:
+						'There was an error in your submission.\nIf you believe this is not error with your submission please contact the admins.',
+					icon: 'error',
+				});
+			});
 
 		return;
+	}
+
+	isValidImageUrl(imageUrl) {
+		return imageUrl.match(IMAGE_URL_REGEX) != null;
+	}
+
+	isSubmissionLimitReached() {
+		return false;
+	}
+
+	async saveCard(url, options, body) {
+		const response = await callApi(url, options, body);
+		return response;
+	}
+
+	isEmptyString(string) {
+		return string === '';
 	}
 
 	render() {
@@ -146,38 +185,43 @@ export default class App extends React.Component {
 							<Col>
 								<Form onSubmit={this.handleSubmit}>
 									<FormGroup>
-										<Label>NSFL Username</Label>
+										<Label>{LABELS.nsflUsername}</Label>
 										<Input
 											type='text'
 											name='nsfl-username'
-											placeholder='NSFL Username'
+											placeholder={LABELS.nsflUsername}
 											onChange={this.handleChange}
 										/>
 									</FormGroup>
 									<FormGroup>
-										<Label>Player Name</Label>
+										<Label>{LABELS.playerName}</Label>
 										<Input
 											type='text'
 											name='player-name'
-											placeholder='Player Name'
+											placeholder={LABELS.playerName}
 											onChange={this.handleChange}
 										/>
 									</FormGroup>
 									<FormGroup>
-										<Label>Player Team</Label>
+										<Label>{LABELS.cardRarity}</Label>
 										<Input
-											type='text'
-											name='player-team'
-											placeholder='Player Team'
+											type='select'
+											name='card-rarity'
 											onChange={this.handleChange}
-										/>
+										>
+											<option>{RARITY_LEVELS.DEFAULT}</option>
+											<option>{RARITY_LEVELS.BRONZE}</option>
+											<option>{RARITY_LEVELS.SILVER}</option>
+											<option>{RARITY_LEVELS.GOLD}</option>
+											<option>{RARITY_LEVELS.PLATINUM}</option>
+										</Input>
 									</FormGroup>
 									<FormGroup>
-										<Label>Card Image URL</Label>
+										<Label>{LABELS.cardImageUrl}</Label>
 										<Input
 											type='text'
 											name='card-image-url'
-											placeholder='Card Image URL'
+											placeholder={LABELS.cardImageUrl}
 											onChange={this.handleChange}
 										/>
 									</FormGroup>
@@ -187,11 +231,7 @@ export default class App extends React.Component {
 							<Col>
 								<Container>
 									{this.state.displayImage && (
-										<img
-											src={this.state.imageUrl}
-											width={CARD_WIDTH}
-											height={CARD_HEIGHT}
-										/>
+										<img src={this.state['card-image-url']} />
 									)}
 								</Container>
 							</Col>
