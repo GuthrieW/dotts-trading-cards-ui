@@ -6,34 +6,44 @@ const User = require('../models/User');
 const SALT_ROUNDS = require('../common/security');
 const Router = Express.Router();
 
-Router.post('/signup', async (request, response) => {
-    console.log('Got in here');
+Router.get('/', async (request, response) => {
+	try {
+		response.status(HttpStatusCodes.OK).json({ message: 'HELLO WORLD!' });
+	} catch (error) {
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
 
-    const signupInformation = request.body;
-
-	Bcrypt
-		.hash(signupInformation.password, SALT_ROUNDS)
-		.then((hashedPassword) => {
-            const user = new User({
-                username: signupInformation.username,
-                password: hashedPassword,
-                completed_collections: signupInformation.completed_collections,
-                submission_date: Moment.tz('America/Chicago').format(),
-            });
-
-            try {
-                const newUser = await user.save();
-                response.status(HttpStatusCodes.OK).json(newUser);
-            } catch (error) {
-                console.error('POST ERROR', error);
-                response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
-            }
-        }).catch((error) => {
-            console.error('BCRYPT HASH ERROR', error);
-            response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json(newUser);
-        });
-
-    return;
+	return;
 });
 
-module.exports = Router;
+Router.post('/signup', async (request, response) => {
+	console.log('Got in here');
+
+	const signupInformation = request.body;
+	const hashedPassword = await Bcrypt.hash(
+		signupInformation.password,
+		SALT_ROUNDS
+	);
+	const user = new User({
+		username: signupInformation.username,
+		password: hashedPassword,
+		completed_collections: signupInformation.completed_collections,
+		creation_date: Moment.tz('America/Chicago').format(),
+	});
+
+	try {
+		const newUser = await user.save();
+		response.status(HttpStatusCodes.OK).json(newUser);
+	} catch (error) {
+		console.error('POST ERROR', error);
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
+
+	return;
+});
+
+module.exports = router;

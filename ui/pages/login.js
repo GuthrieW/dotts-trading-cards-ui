@@ -1,5 +1,12 @@
+import React from 'react';
 import Login from './../components/Login';
 
-export default function Home() {
-	return <Login />;
+export default class App extends React.Component {
+	constructor() {
+		super();
+	}
+
+	render() {
+		return <Login />;
+	}
 }

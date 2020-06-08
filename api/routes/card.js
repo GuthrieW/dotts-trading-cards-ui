@@ -44,6 +44,7 @@ Router.get('/:cardId', async (request, response) => {
  */
 Router.post('/', async (request, response) => {
 	const cardInformation = request.body;
+	console.log(cardInformation);
 	const card = new Card({
 		player_name: cardInformation.player_name,
 		rarity: cardInformation.rarity,
@@ -84,4 +85,4 @@ Router.delete('/:cardId', async (request, response) => {
 	return;
 });
 
-module.exports = Router;
+module.exports = router;

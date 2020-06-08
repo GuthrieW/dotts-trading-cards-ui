@@ -11,13 +11,12 @@ export const callApi = async (
 	url = throwIfMissing(url),
 	options = {
 		method: Method.GET,
-	},
-	data = null
+		data: null,
+	}
 ) => {
 	return Axios({
-		method: options.method,
-		url: url,
-		data: data,
+		url,
+		...options,
 	})
 		.then((response) => {
 			return response;

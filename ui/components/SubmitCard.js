@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import React from 'react';
 import {
 	Container,
@@ -14,7 +13,7 @@ import Swal from 'sweetalert';
 import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
 import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
 import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
-import Header from './Header';
+import Layout from './Layout';
 
 const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
 const LABELS = {
@@ -31,7 +30,7 @@ const RARITY_LEVELS = {
 	PLATINUM: 'Platinum',
 };
 
-export default class App extends React.Component {
+class SubmitCard extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -118,9 +117,6 @@ export default class App extends React.Component {
 		}
 
 		const url = API_URL + '/card';
-		const options = {
-			method: Method.POST,
-		};
 		const data = {
 			submission_username: this.state['nsfl-username'],
 			player_name: this.state['player-name'],
@@ -128,10 +124,14 @@ export default class App extends React.Component {
 			image_url: this.state['card-image-url'],
 			collection_ids: [],
 		};
+		const options = {
+			method: Method.POST,
+			data,
+		};
 
-		await callApi(url, options, data)
-			.then((data) => {
-				if (data.status === Status.OK) {
+		await callApi(url, options)
+			.then((response) => {
+				if (response.status === Status.OK) {
 					Swal({
 						title: 'Card Submitted',
 						text: 'Thank you for your submission!',
@@ -175,79 +175,66 @@ export default class App extends React.Component {
 
 	render() {
 		return (
-			<>
-				<Head>
-					<title>Submit New Card</title>
-					<link rel='icon' href='/favicon.ico' />
-					<link
-						rel='stylesheet'
-						href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
-						integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
-						crossOrigin='anonymous'
-					/>
-				</Head>
-				<main>
-					<Header />
-					<div className='container'>
-						<h1>Submit a Card</h1>
-						<Row>
-							<Col>
-								<Form onSubmit={this.handleSubmit}>
-									<FormGroup>
-										<Label>{LABELS.nsflUsername}</Label>
-										<Input
-											type='text'
-											name='nsfl-username'
-											placeholder={LABELS.nsflUsername}
-											onChange={this.handleChange}
-										/>
-									</FormGroup>
-									<FormGroup>
-										<Label>{LABELS.playerName}</Label>
-										<Input
-											type='text'
-											name='player-name'
-											placeholder={LABELS.playerName}
-											onChange={this.handleChange}
-										/>
-									</FormGroup>
-									<FormGroup>
-										<Label>{LABELS.cardRarity}</Label>
-										<Input
-											type='select'
-											name='card-rarity'
-											onChange={this.handleChange}
-										>
-											<option>{RARITY_LEVELS.DEFAULT}</option>
-											<option>{RARITY_LEVELS.BRONZE}</option>
-											<option>{RARITY_LEVELS.SILVER}</option>
-											<option>{RARITY_LEVELS.GOLD}</option>
-											<option>{RARITY_LEVELS.PLATINUM}</option>
-										</Input>
-									</FormGroup>
-									<FormGroup>
-										<Label>{LABELS.cardImageUrl}</Label>
-										<Input
-											type='text'
-											name='card-image-url'
-											placeholder={LABELS.cardImageUrl}
-											onChange={this.handleChange}
-										/>
-									</FormGroup>
-									<Button type='submit'>Submit</Button>
-								</Form>
-							</Col>
-							<Col>
-								<Container>
-									{this.state.displayImage && (
-										<img src={this.state['card-image-url']} />
-									)}
-								</Container>
-							</Col>
-						</Row>
-					</div>
-				</main>
-			</>
+			<Layout title='Submit a Card'>
+				<h1>Submit a Card</h1>
+				<Row>
+					<Col>
+						<Form onSubmit={this.handleSubmit}>
+							<FormGroup>
+								<Label>{LABELS.nsflUsername}</Label>
+								<Input
+									type='text'
+									name='nsfl-username'
+									placeholder={LABELS.nsflUsername}
+									onChange={this.handleChange}
+								/>
+							</FormGroup>
+							<FormGroup>
+								<Label>{LABELS.playerName}</Label>
+								<Input
+									type='text'
+									name='player-name'
+									placeholder={LABELS.playerName}
+									onChange={this.handleChange}
+								/>
+							</FormGroup>
+							<FormGroup>
+								<Label>{LABELS.cardRarity}</Label>
+								<Input
+									type='select'
+									name='card-rarity'
+									onChange={this.handleChange}
+								>
+									<option>{RARITY_LEVELS.DEFAULT}</option>
+									<option>{RARITY_LEVELS.BRONZE}</option>
+									<option>{RARITY_LEVELS.SILVER}</option>
+									<option>{RARITY_LEVELS.GOLD}</option>
+									<option>{RARITY_LEVELS.PLATINUM}</option>
+								</Input>
+							</FormGroup>
+							<FormGroup>
+								<Label>{LABELS.cardImageUrl}</Label>
+								<Input
+									type='text'
+									name='card-image-url'
+									placeholder={LABELS.cardImageUrl}
+									onChange={this.handleChange}
+								/>
+							</FormGroup>
+							<Button type='submit'>Submit</Button>
+						</Form>
+					</Col>
+					<Col>
+						<Container>
+							{this.state.displayImage && (
+								<img src={this.state['card-image-url']} />
+							)}
+						</Container>
+					</Col>
+				</Row>
+			</Layout>
 		);
 	}
 }
+
+export default SubmitCard;

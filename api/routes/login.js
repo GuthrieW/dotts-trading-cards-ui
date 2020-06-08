@@ -1,5 +1,4 @@
 const Express = require('express');
-const Moment = require('moment-timezone');
 const Bcrypt = require('bcryptjs');
 const HttpStatusCodes = require('http-status-codes');
 const User = require('../models/User');
