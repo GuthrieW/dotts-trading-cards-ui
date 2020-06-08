@@ -1,17 +1,18 @@
-const express = require('express');
-const moment = require('moment-timezone');
-const bcrypt = require('bcryptjs');
+const Express = require('express');
+const Moment = require('moment-timezone');
+const Bcrypt = require('bcryptjs');
+const HttpStatusCodes = require('http-status-codes');
 const User = require('../models/User');
 const SALT_ROUNDS = require('../common/security');
+const Http
 
-const router = express.Router();
+const Router = Express.Router();
 
 const VALIDATION_FAILURE = 'Incorrect username or password.';
 const VALIDATION_SUCCESS = 'Successfully logged in';
 
-router.post('/login', async (request, response) => {
+Router.post('/login', async (request, response) => {
 	const loginInformation = request.body;
-
 	const possibleUser = await User.findOne({
 		username: loginInformation.username,
 	}).exec();
@@ -20,21 +21,20 @@ router.post('/login', async (request, response) => {
 		console.log('Incorrect username');
 	}
 
-	bcrypt
-		.compare(loginInformation.password, possibleUser.password)
+	Bcrypt.compare(loginInformation.password, possibleUser.password)
 		.then((result) => {
 			if (result) {
-				response.status(200).json({ message: VALIDATION_SUCCESS });
+				response.status(HttpStatusCodes.OK).json({ message: VALIDATION_SUCCESS });
 			} else {
 				console.log('Incorrect passsword');
-				response.status(400).json({ message: VALIDATION_FAILURE });
+				response.status(HttpStatusCodes.UNAUTHORIZED).json({ message: VALIDATION_FAILURE });
 			}
 		})
 		.catch((error) => {
 			console.error('BCRYT COMPARE ERROR', error);
 		});
 
-	bcrypt.compare(loginInformation.password, SALT_ROUNDS);
+	Bcrypt.compare(loginInformation.password, SALT_ROUNDS);
 
 	return;
 });

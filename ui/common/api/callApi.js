@@ -1,6 +1,6 @@
-const axios = require('axios').default;
+const Axios = require('axios').default;
 
-export const METHOD = {
+export const Method = {
 	GET: 'GET',
 	POST: 'POST',
 	PATCH: 'PATCH',
@@ -10,11 +10,11 @@ export const METHOD = {
 export const callApi = async (
 	url = throwIfMissing(url),
 	options = {
-		method: METHOD.GET,
+		method: Method.GET,
 	},
 	data = null
 ) => {
-	return axios({
+	return Axios({
 		method: options.method,
 		url: url,
 		data: data,

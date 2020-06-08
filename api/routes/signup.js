@@ -7,7 +7,7 @@ const SALT_ROUNDS = require('../common/security');
 const Router = Express.Router();
 
 Router.post('/signup', async (request, response) => {
-	const signupInformation = request.body;
+    const signupInformation = request.body;
 
 	Bcrypt
 		.hash(signupInformation.password, SALT_ROUNDS)
@@ -24,12 +24,12 @@ Router.post('/signup', async (request, response) => {
                 response.status(HttpStatusCodes.OK).json(newUser);
             } catch (error) {
                 console.error('POST ERROR', error);
-                response.json({ message: error });
+                response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json({ message: error });
             }
         }).catch((error) => {
             console.error('BCRYPT HASH ERROR', error);
             response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json(newUser);
         });
 
-	return;
+    return;
 });

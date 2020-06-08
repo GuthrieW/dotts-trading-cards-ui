@@ -1,16 +1,15 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const Express = require('express');
+const BodyParser = require('body-parser');
+const Mongoose = require('mongoose');
+const Cors = require('cors');
 require('dotenv').config();
+const App = Express();
+const CardRoute = require('./routes/card');
 
-const app = express();
 const PORT = 8080;
 
-const cardRoute = require('./routes/card');
-
-app.use(cors());
-app.use(function (request, response, next) {
+App.use(Cors());
+App.use(function (request, response, next) {
 	response.header('Access-Control-Allow-Origin', '*');
 	response.header(
 		'Access-Control-Allow-Headers',
@@ -18,19 +17,11 @@ app.use(function (request, response, next) {
 	);
 	next();
 });
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use('/card', cardRoute);
+App.use(BodyParser.urlencoded({ extended: true }));
+App.use(BodyParser.json());
+App.use('/card', CardRoute);
 
-app.get('/', (request, response) => {
-	response.send('THINGS');
-});
-
-app.get('/card', (request, response) => {
-	response.send('THIS IS IT!');
-});
-
-mongoose.connect(
+Mongoose.connect(
 	process.env.DB_CONNECTION,
 	{ useNewUrlParser: true, useUnifiedTopology: true },
 	() => {
@@ -38,4 +29,4 @@ mongoose.connect(
 	}
 );
 
-app.listen(PORT);
+App.listen(PORT);

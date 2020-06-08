@@ -2,7 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import Header from '../../components/Header';
 import { API_URL } from '../../common/api/apiUrl';
-import { callApi, METHOD } from '/nsfl-trading-cards/ui/common/api/callApi';
+import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
 
 export default class App extends React.Component {
 	constructor() {
@@ -16,7 +16,7 @@ export default class App extends React.Component {
 	async componentDidMount() {
 		const url = API_URL + '/card';
 		const options = {
-			method: METHOD.GET,
+			method: Method.GET,
 		};
 
 		await callApi(url, options).then((data) => {

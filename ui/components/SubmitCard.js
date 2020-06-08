@@ -10,9 +10,9 @@ import {
 	Input,
 	Button,
 } from 'reactstrap';
-import swal from 'sweetalert';
+import Swal from 'sweetalert';
 import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
-import { callApi, METHOD } from '/nsfl-trading-cards/ui/common/api/callApi';
+import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
 import Header from './Header';
 
 const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
@@ -67,7 +67,7 @@ export default class App extends React.Component {
 		event.preventDefault();
 
 		if (this.isEmptyString(this.state['nsfl-username'])) {
-			swal({
+			Swal({
 				title: 'Submission Rejected',
 				text: 'Please enter your NSFL username.',
 				icon: 'error',
@@ -77,7 +77,7 @@ export default class App extends React.Component {
 		}
 
 		if (this.isEmptyString(this.state['player-name'])) {
-			swal({
+			Swal({
 				title: 'Submission Rejected',
 				text: "Please enter the player's name.",
 				icon: 'error',
@@ -87,7 +87,7 @@ export default class App extends React.Component {
 		}
 
 		if (this.state['card-rarity'] === RARITY_LEVELS.DEFAULT) {
-			swal({
+			Swal({
 				title: 'Submission Rejected',
 				text: "Please select the card's rarity level",
 				icon: 'error',
@@ -97,7 +97,7 @@ export default class App extends React.Component {
 		}
 
 		if (this.isSubmissionLimitReached()) {
-			swal({
+			Swal({
 				title: 'Submission Rejected',
 				text: 'Your submission limit for the day has been reached.',
 				icon: 'error',
@@ -107,7 +107,7 @@ export default class App extends React.Component {
 		}
 
 		if (!this.state.displayImage) {
-			swal({
+			Swal({
 				title: 'Submission Rejected',
 				text: 'Please enter a valid image URL.',
 				icon: 'error',
@@ -118,7 +118,7 @@ export default class App extends React.Component {
 
 		const url = API_URL + '/card';
 		const options = {
-			method: METHOD.POST,
+			method: Method.POST,
 		};
 		const data = {
 			submission_username: this.state['nsfl-username'],
@@ -130,14 +130,14 @@ export default class App extends React.Component {
 
 		await callApi(url, options, data)
 			.then((data) => {
-				swal({
+				Swal({
 					title: 'Card Submitted',
 					text: 'Thank you for your submission!',
 					icon: 'success',
 				});
 			})
 			.catch((error) => {
-				swal({
+				Swal({
 					title: 'Submission Error',
 					text:
 						'There was an error in your submission.\nIf you believe this is not error with your submission please contact the admins.',
