@@ -1,25 +1,25 @@
 const Express = require('express');
 const Router = Express.Router();
-// const Passport = require('passport');
 const PassportGoogle = require('../middleware/passport-setup');
 
 Router.get(
-	'/auth/google',
+	'/google',
 	PassportGoogle.authenticate('google', {
 		scope: 'profile',
 	})
 );
 
 Router.get(
-	'/auth/google/callback',
-	PassportGoogle.authenticate('google', {
-		failureRedirect: '/signin',
-	}),
+	'/google/callback/',
+	PassportGoogle.authenticate('google'),
 	(request, response) => {
-		response.json(request.user);
+		response.redirect('/profile');
 	}
 );
 
-Router.get('/signout');
+Router.get('/logout', (request, response) => {
+	request.logout();
+	response.redirect('/signin');
+});
 
 module.exports = Router;

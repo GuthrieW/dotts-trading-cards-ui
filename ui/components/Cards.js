@@ -19,6 +19,7 @@ export default class App extends React.Component {
 		};
 
 		await callApi(url, options).then((response) => {
+			console.log('Promise returned');
 			console.log(response);
 			this.setState({
 				cards: response.data,

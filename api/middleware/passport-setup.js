@@ -1,16 +1,16 @@
 const Passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy();
+const GoogleStrategy = require('passport-google-oauth20');
+const Moment = require('moment-timezone');
+const Mongoose = require('mongoose');
 const User = require('./../models/User');
-
-console.log(Passport);
 
 Passport.serializeUser((user, done) => {
 	done(null, user.id);
 });
 
-Passport.deserializeUser((id, done) => {
-	User.findById((id) => {
-		done(error, user);
+Passport.deserializeUser((_id, done) => {
+	User.findById(_id).then((user) => {
+		done(null, user);
 	});
 });
 
@@ -19,32 +19,26 @@ Passport.use(
 		{
 			clientID: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-			callbackURL: 'http://localhost:8080/signin/callback',
+			callbackURL: process.env.SERVER_URL + '/auth/google/callback',
 		},
 		function (accessToken, refreshToken, profile, done) {
-			console.log('Passport callback function fired');
-			console.log(profile);
+			User.findOne({ google_id: profile.id }).then((foundUser) => {
+				if (foundUser) {
+					done(null, foundUser);
+				} else {
+					const user = new User({
+						google_id: profile.id,
+						google_display_name: profile.displayName,
+						completed_collections: [],
+						creation_date: Moment.tz('America/Chicago').format(),
+					});
+					user.save().then((newUser) => {
+						done(null, newUser);
+					});
+				}
+			});
 		}
 	)
 );
 
-console.log(Passport);
-
 module.exports = Passport;
-
-// Passport.use(
-// 	new GoogleStrategy(
-// 		{
-// 			clientID: process.env.GOOGLE_CLIENT_ID,
-// 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-// 			callbackURL: 'http://localhost:8080/signin/callback',
-// 			// callbackURL: process.env.SERVER_URL + '/login/callback',
-// 		},
-// 		(accessToken, refreshToken, profile, done) => {
-// 			// use profile.id to check if the user is registered in the users in our DB
-// 			User.findOrCreate({ googleId: profile.id }, (error, user) => {
-// 				return done(error, user);
-// 			});
-// 		}
-// 	)
-// );
