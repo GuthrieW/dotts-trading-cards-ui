@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from './../components/Login';
+import Signin from './../components/Signin';
 
 export default class App extends React.Component {
 	constructor() {
@@ -7,6 +7,6 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		return <Login />;
+		return <Signin />;
 	}
 }

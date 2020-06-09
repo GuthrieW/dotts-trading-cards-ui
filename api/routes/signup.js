@@ -1,9 +1,7 @@
 const Express = require('express');
 const Moment = require('moment-timezone');
-const Bcrypt = require('bcryptjs');
 const HttpStatusCodes = require('http-status-codes');
 const User = require('../models/User');
-const SALT_ROUNDS = require('../common/security');
 const Router = Express.Router();
 
 Router.get('/', async (request, response) => {
@@ -19,16 +17,9 @@ Router.get('/', async (request, response) => {
 });
 
 Router.post('/signup', async (request, response) => {
-	console.log('Got in here');
-
 	const signupInformation = request.body;
-	const hashedPassword = await Bcrypt.hash(
-		signupInformation.password,
-		SALT_ROUNDS
-	);
 	const user = new User({
 		username: signupInformation.username,
-		password: hashedPassword,
 		completed_collections: signupInformation.completed_collections,
 		creation_date: Moment.tz('America/Chicago').format(),
 	});
@@ -46,4 +37,4 @@ Router.post('/signup', async (request, response) => {
 	return;
 });
 
-module.exports = router;
+module.exports = Router;

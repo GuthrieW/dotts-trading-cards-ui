@@ -14,6 +14,8 @@ export const callApi = async (
 		data: null,
 	}
 ) => {
+	console.log('url', url);
+	console.log('options', options);
 	return Axios({
 		url,
 		...options,

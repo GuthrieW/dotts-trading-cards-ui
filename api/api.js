@@ -1,27 +1,33 @@
 const Express = require('express');
+const ExpressSession = require('express-session');
 const BodyParser = require('body-parser');
 const Mongoose = require('mongoose');
+const Passport = require('passport');
 const Cors = require('cors');
 require('dotenv').config();
 const App = Express();
 const CardRoute = require('./routes/card');
-const SignupRoute = require('./routes/signup');
+const AuthRoute = require('./routes/auth');
 
 const PORT = 8080;
 
 App.use(Cors());
-App.use(function (request, response, next) {
-	response.header('Access-Control-Allow-Origin', '*');
-	response.header(
-		'Access-Control-Allow-Headers',
-		'Origin, X-Requested-With, Content-Type, Accept'
-	);
-	next();
-});
+
 App.use(BodyParser.urlencoded({ extended: true }));
 App.use(BodyParser.json());
-App.use('/card', CardRoute);
-App.use('/signup', SignupRoute);
+
+App.use(Passport.initialize());
+App.use(Passport.session);
+App.use(
+	ExpressSession({
+		secret: 'secret-key',
+		resave: false,
+		saveUninitialized: false,
+	})
+);
+
+// App.use('/card', CardRoute);
+App.use('/auth', AuthRoute);
 
 Mongoose.connect(
 	process.env.DB_CONNECTION,

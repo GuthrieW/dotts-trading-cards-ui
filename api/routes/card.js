@@ -2,7 +2,6 @@ const Express = require('express');
 const Moment = require('moment-timezone');
 const HttpStatusCodes = require('http-status-codes');
 const Card = require('../models/Card');
-
 const Router = Express.Router();
 
 /*
@@ -85,4 +84,4 @@ Router.delete('/:cardId', async (request, response) => {
 	return;
 });
 
-module.exports = router;
+module.exports = Router;

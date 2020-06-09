@@ -5,10 +5,6 @@ const User = Mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	password: {
-		type: String,
-		required: true,
-	},
 	completed_collections: {
 		type: [String],
 		required: true,
