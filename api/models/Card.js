@@ -1,6 +1,6 @@
-const Mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-const Card = Mongoose.Schema({
+const Card = mongoose.Schema({
 	player_name: {
 		type: String,
 		required: true,
@@ -26,4 +26,4 @@ const Card = Mongoose.Schema({
 	},
 });
 
-module.exports = Mongoose.model('Card', Card);
+module.exports = mongoose.model('Card', Card);
