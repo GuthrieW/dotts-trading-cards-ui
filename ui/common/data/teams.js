@@ -1,0 +1,88 @@
+export const NSFL_TEAMS = [
+	{
+		TEAM_NAME: 'Outlaws',
+		CITY_NAME: 'Arizona',
+		ABBREVIATION: 'AZ',
+		IMAGE_PATH: './../../images/team-banners/arizona-outlaws.png',
+		IMAGE_URL: 'https://i.imgur.com/hagb6L3.png',
+	},
+	{
+		TEAM_NAME: 'Copperheads',
+		CITY_NAME: 'Austin',
+		ABBREVIATION: 'AUS',
+		IMAGE_PATH: './../../images/team-banners/austin-copperheads.png',
+		IMAGE_URL: 'https://i.imgur.com/zNkQ0Gf.png',
+	},
+	{
+		TEAM_NAME: 'Baltimore',
+		CITY_NAME: 'Hawks',
+		ABBREVIATION: 'BAL',
+		IMAGE_PATH: './../../images/team-banners/baltimore-hawks.png',
+		IMAGE_URL: 'https://i.imgur.com/ZEuDUWh.png',
+	},
+	{
+		TEAM_NAME: 'Butchers',
+		CITY_NAME: 'Chicago',
+		ABBREVIATION: 'CHI',
+		IMAGE_PATH: './../../images/team-banners/chicago-butchers.png',
+		IMAGE_URL: 'https://i.imgur.com/iVFr4uc.png',
+	},
+	{
+		TEAM_NAME: 'Yei',
+		CITY_NAME: 'Colorado',
+		ABBREVIATION: 'COL',
+		IMAGE_PATH: './../../images/team-banners/coloardo-yeti.png',
+		IMAGE_URL: 'https://i.imgur.com/fWU19kH.png',
+	},
+	{
+		TEAM_NAME: 'Hahalua',
+		CITY_NAME: 'Honolulu',
+		ABBREVIATION: 'HON',
+		IMAGE_PATH: './../../images/team-banners/honolulu-hahalua.png',
+		IMAGE_URL:
+			'https://cdn.discordapp.com/attachments/691424711925563500/692401088829063168/HONbanner.png',
+	},
+	{
+		TEAM_NAME: 'Second Line',
+		CITY_NAME: 'New Orleans',
+		ABBREVIATION: 'NOLA',
+		IMAGE_PATH: './../../images/team-banners/new-orleans-second-line.png',
+		IMAGE_URL: 'https://i.imgur.com/IY7NW3K.png',
+	},
+	{
+		TEAM_NAME: 'Otters',
+		CITY_NAME: 'Orange County',
+		ABBREVIATION: 'OCO',
+		IMAGE_PATH: './../../images/team-banners/orange-county-otters.png',
+		IMAGE_URL: 'https://i.imgur.com/8kqUlpH.png',
+	},
+	{
+		TEAM_NAME: 'Liberty',
+		CITY_NAME: 'Philadelphia',
+		ABBREVIATION: 'PHI',
+		IMAGE_PATH: './../../images/team-banners/philadelphia-liberty.png',
+		IMAGE_URL: 'https://i.imgur.com/aYEmbEm.png',
+	},
+	{
+		TEAM_NAME: 'Sabercats',
+		CITY_NAME: 'San Jose',
+		ABBREVIATION: 'SJS',
+		IMAGE_PATH: './../../images/team-banners/san-jose-sabercats.png',
+		IMAGE_URL: 'https://i.imgur.com/YTe2q5A.png',
+	},
+	{
+		TEAM_NAME: 'Sailfish',
+		CITY_NAME: 'Sarasota',
+		ABBREVIATION: 'SAR',
+		IMAGE_PATH: './../../images/team-banners/sarasota-sailfish.png',
+		IMAGE_URL:
+			'https://cdn.discordapp.com/attachments/691424486926319616/692181074876563556/SARbanner.png',
+	},
+	{
+		TEAM_NAME: 'Wraiths',
+		CITY_NAME: 'Yellowknife',
+		ABBREVIATION: 'YKW',
+		IMAGE_PATH: './../../images/team-banners/yellowknife-wraiths.png',
+		IMAGE_URL: 'https://i.imgur.com/dJKYUhw.png',
+	},
+];

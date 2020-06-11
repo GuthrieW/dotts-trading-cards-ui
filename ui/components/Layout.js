@@ -49,6 +49,7 @@ export default class App extends React.Component {
 					</Head>
 					<Header />
 					<main>
+						<h1>{this.props.title}</h1>
 						<div className='container'>{this.props.children}</div>
 					</main>
 				</>
