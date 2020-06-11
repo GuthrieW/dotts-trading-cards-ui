@@ -1,6 +1,6 @@
-const axios = require('axios').default;
+const Axios = require('axios').default;
 
-export const METHOD = {
+export const Method = {
 	GET: 'GET',
 	POST: 'POST',
 	PATCH: 'PATCH',
@@ -8,24 +8,23 @@ export const METHOD = {
 };
 
 export const callApi = async (
-	url = throwIfMissing(url),
-	options = {
-		method: METHOD.GET,
-	},
-	data = null
+	url = throwIfMissing(),
+	method = Method.GET,
+	data = {}
 ) => {
-	return axios({
-		method: options.method,
+	Axios.defaults.withCredentials = true;
+	return Axios({
+		method: method,
 		url: url,
 		data: data,
 	})
-		.then(function (response) {
-			return response.data;
+		.then((response) => {
+			return response;
 		})
-		.catch(function (error) {
-			console.log('AXIOS ERROR: ', error);
+		.catch((error) => {
+			console.error('AXIOS ERROR: ', error);
 			if (error.response) {
-				return error.response.data;
+				return error.response;
 			}
 		});
 };

@@ -1,43 +1,41 @@
-const express = require('express');
-const moment = require('moment-timezone');
+const Express = require('express');
+const Moment = require('moment-timezone');
+const HttpStatusCodes = require('http-status-codes');
 const Card = require('../models/Card');
 
-const router = express.Router();
+const Router = Express.Router();
 
-/*
- * Get all cards
- */
-router.get('/', async (request, response) => {
+Router.get('/cards', async (request, response) => {
 	try {
 		const cards = await Card.find();
-		response.json(cards);
+		response.status(HttpStatusCodes.OK).json(cards);
 	} catch (error) {
-		response.json({ message: error });
+		console.error(error);
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
 	}
 
 	return;
 });
 
-/*
- * Get one card by id
- */
-router.get('/:cardId', async (request, response) => {
-	const cardId = request.params.cardId;
+Router.post('/card', async (request, response) => {
+	const cardInformation = request.body;
+	const cardId = cardInformation.cardId;
 
 	try {
 		const card = await Card.findById(cardId);
-		response.json(card);
+		response.status(HttpStatusCodes.OK).json(card);
 	} catch (error) {
-		response.json({ message: error });
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
 	}
 
 	return;
 });
 
-/*
- * Insert a card
- */
-router.post('/', async (request, response) => {
+Router.post('/', async (request, response) => {
 	const cardInformation = request.body;
 	const card = new Card({
 		player_name: cardInformation.player_name,
@@ -45,34 +43,35 @@ router.post('/', async (request, response) => {
 		image_url: cardInformation.image_url,
 		collections_ids: cardInformation.collections_ids,
 		submission_username: cardInformation.submission_username,
-		submission_date: moment.tz('America/Chicago').format(),
+		submission_date: Moment.tz('America/Chicago').format(),
 	});
 
 	try {
 		const savedCard = await card.save();
-		response.json(savedCard);
+		response.status(HttpStatusCodes.OK).json(savedCard);
 	} catch (error) {
-		console.log('POST ERROR: ', error);
-		response.json({ message: error });
+		console.error('POST ERROR: ', error);
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
 	}
 
 	return;
 });
 
-/*
- * Delete a card
- */
-router.delete('/:cardId', async (request, response) => {
+Router.delete('/:cardId', async (request, response) => {
 	const cardId = request.params.cardId;
 
 	try {
 		const removedCard = await Card.remove({ _id: cardId });
-		response.json(removedCard);
+		response.status(HttpStatusCodes.OK).json(removedCard);
 	} catch (error) {
-		response.json({ message: error });
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
 	}
 
 	return;
 });
 
-module.exports = router;
+module.exports = Router;

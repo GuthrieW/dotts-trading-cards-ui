@@ -1,5 +1,5 @@
 import React from 'react';
-import Cards from './../../components/Cards';
+import Card from './../../components/Card';
 
 export default class App extends React.Component {
 	constructor() {
@@ -7,6 +7,6 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		return <Cards />;
+		return <Card />;
 	}
 }
