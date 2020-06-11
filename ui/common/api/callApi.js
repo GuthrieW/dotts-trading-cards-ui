@@ -1,5 +1,3 @@
-import Swal from 'sweetalert';
-
 const Axios = require('axios').default;
 
 export const Method = {

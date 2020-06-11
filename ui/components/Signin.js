@@ -1,5 +1,5 @@
-import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
 import Head from 'next/head';
+import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
 import SigninButton from './../images/google_signin_buttons/signin.png';
 
 export default class Signin extends React.Component {

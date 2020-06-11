@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import Header from './Header';
 import React from 'react';
+import Router from 'next/router';
+import Header from './Header';
 import { API_URL } from '../common/api/apiUrl';
 import { callApi, Method } from '../common/api/callApi';
 import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
-import Router from 'next/router';
 
 export default class App extends React.Component {
 	constructor() {

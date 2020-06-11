@@ -1,7 +1,8 @@
 const Express = require('express');
-const Router = Express.Router();
 const HttpStatusCodes = require('http-status-codes');
 const PassportGoogle = require('../middleware/passport-setup');
+
+const Router = Express.Router();
 
 const AuthorizationCheck = (request, response, next) => {
 	if (request.user) {

@@ -1,10 +1,10 @@
 import React from 'react';
-import { API_URL } from '../common/api/apiUrl';
-import { callApi, Method } from '../common/api/callApi';
 import Layout from './Layout';
 import { withRouter } from 'next/router';
-import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
 import Swal from 'sweetalert';
+import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
+import { API_URL } from '../common/api/apiUrl';
+import { callApi, Method } from '../common/api/callApi';
 
 class Card extends React.Component {
 	constructor() {

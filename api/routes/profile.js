@@ -1,7 +1,8 @@
-const User = require('./../models/User');
 const Express = require('express');
-const Router = Express.Router();
 const HttpStatusCodes = require('http-status-codes');
+const User = require('./../models/User');
+
+const Router = Express.Router();
 
 /*
  * Get a user

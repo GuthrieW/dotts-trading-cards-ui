@@ -2,6 +2,7 @@ const Express = require('express');
 const Moment = require('moment-timezone');
 const HttpStatusCodes = require('http-status-codes');
 const Card = require('../models/Card');
+
 const Router = Express.Router();
 
 Router.get('/cards', async (request, response) => {
@@ -9,6 +10,7 @@ Router.get('/cards', async (request, response) => {
 		const cards = await Card.find();
 		response.status(HttpStatusCodes.OK).json(cards);
 	} catch (error) {
+		console.error(error);
 		response
 			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
 			.json({ message: error });
