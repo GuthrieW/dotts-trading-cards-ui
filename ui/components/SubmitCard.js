@@ -27,8 +27,6 @@ const RARITY_LEVELS = {
 	BRONZE: 'Bronze',
 	SILVER: 'Silver',
 	GOLD: 'Gold',
-	PLATINUM: 'Platinum',
-	HALL_OF_FAME: 'Hall of Fame',
 };
 
 class SubmitCard extends React.Component {
@@ -117,7 +115,7 @@ class SubmitCard extends React.Component {
 			return;
 		}
 
-		const url = API_URL + '/card';
+		const url = `${API_URL}/card`;
 		const method = Method.POST;
 		const data = {
 			submission_username: this.state['nsfl-username'],
@@ -137,16 +135,17 @@ class SubmitCard extends React.Component {
 					});
 				} else {
 					Swal({
-						title: 'Submission Error',
-						text:
-							'There was an error in your submission.\nIf you believe this is not error with your submission please contact the administrators.',
+						title: 'Server Error',
+						text: 'The server encountered an error',
 						icon: 'error',
 					});
 				}
 			})
 			.catch((error) => {
+				console.error(error);
 				Swal({
-					title: 'Internal Server Error',
+					title: 'Server Error',
+					text: 'The server encountered an error',
 					icon: 'error',
 				});
 			});
@@ -207,8 +206,6 @@ class SubmitCard extends React.Component {
 									<option>{RARITY_LEVELS.BRONZE}</option>
 									<option>{RARITY_LEVELS.SILVER}</option>
 									<option>{RARITY_LEVELS.GOLD}</option>
-									<option>{RARITY_LEVELS.PLATINUM}</option>
-									<option>{RARITY_LEVELS.HALL_OF_FAME}</option>
 								</Input>
 							</FormGroup>
 							<FormGroup>

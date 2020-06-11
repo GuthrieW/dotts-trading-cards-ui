@@ -44,6 +44,11 @@ export default class Cards extends React.Component {
 			})
 			.catch((error) => {
 				console.error(error);
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
 			});
 	}
 
@@ -52,6 +57,10 @@ export default class Cards extends React.Component {
 
 		if (!isLoaded) {
 			return <div>Loading...</div>;
+		}
+
+		if (!cards) {
+			return <div>API Failure...</div>;
 		}
 
 		return (

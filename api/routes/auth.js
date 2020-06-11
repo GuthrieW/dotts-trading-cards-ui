@@ -26,7 +26,7 @@ Router.get(
 	(request, response) => {
 		response
 			.status(HttpStatusCodes.OK)
-			.redirect('http://localhost:3000/card/cards');
+			.redirect(`${process.env.UI_URL}/card/cards`);
 	}
 );
 
@@ -35,9 +35,7 @@ Router.get('/check', AuthorizationCheck, (request, response) => {
 });
 
 Router.get('/logout', (request, response) => {
-	console.log('GOT HERE');
 	request.logout();
-	// response.redirect('/signin');
 	response.status(HttpStatusCodes.OK).json({ message: 'redirect' });
 });
 

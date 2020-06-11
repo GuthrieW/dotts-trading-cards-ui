@@ -1,4 +1,4 @@
-import { METHODS } from 'http';
+import Swal from 'sweetalert';
 
 const Axios = require('axios').default;
 
@@ -9,7 +9,11 @@ export const Method = {
 	DELETE: 'DELETE',
 };
 
-export const callApi = async (url, method, data) => {
+export const callApi = async (
+	url = throwIfMissing(),
+	method = Method.GET,
+	data = {}
+) => {
 	Axios.defaults.withCredentials = true;
 	return Axios({
 		method: method,

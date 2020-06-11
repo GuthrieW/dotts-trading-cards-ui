@@ -4,9 +4,6 @@ const HttpStatusCodes = require('http-status-codes');
 const Card = require('../models/Card');
 const Router = Express.Router();
 
-/*
- * Get all cards
- */
 Router.get('/cards', async (request, response) => {
 	try {
 		const cards = await Card.find();
@@ -20,9 +17,6 @@ Router.get('/cards', async (request, response) => {
 	return;
 });
 
-/*
- * Get one card by id
- */
 Router.post('/card', async (request, response) => {
 	const cardInformation = request.body;
 	const cardId = cardInformation.cardId;
@@ -39,9 +33,6 @@ Router.post('/card', async (request, response) => {
 	return;
 });
 
-/*
- * Insert a card
- */
 Router.post('/', async (request, response) => {
 	const cardInformation = request.body;
 	const card = new Card({
@@ -66,9 +57,6 @@ Router.post('/', async (request, response) => {
 	return;
 });
 
-/*
- * Delete a card
- */
 Router.delete('/:cardId', async (request, response) => {
 	const cardId = request.params.cardId;
 

@@ -16,7 +16,7 @@ export default class App extends React.Component {
 	}
 
 	async componentDidMount() {
-		const url = API_URL + '/auth/check';
+		const url = `${API_URL}/auth/check`;
 		const method = Method.GET;
 		await callApi(url, method).then((response) => {
 			if (response.status === Status.UNAUTHORIZED) {

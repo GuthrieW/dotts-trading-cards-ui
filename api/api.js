@@ -1,38 +1,27 @@
 const Express = require('express');
-// const ExpressSession = require('express-session');
 const BodyParser = require('body-parser');
 const Mongoose = require('mongoose');
 const Passport = require('passport');
 const CookieSession = require('cookie-session');
+const HttpStatusCodes = require('http-status-codes');
 const Cors = require('cors');
 require('dotenv').config();
 const App = Express();
 const CardRoute = require('./routes/card');
 const AuthRoute = require('./routes/auth');
 const ProfileRoute = require('./routes/profile');
-const HttpStatusCodes = require('http-status-codes');
 
 const DAY_IN_MILLISECONDS = 86400000;
 const MAX_COOKIE_AGE = DAY_IN_MILLISECONDS;
 const PORT = 8080;
 
 // CORS
-App.use(Cors({ credentials: true, origin: 'http://localhost:3000' }));
+App.use(Cors({ credentials: true, origin: process.env.UI_URL }));
 
 App.use((request, response, next) => {
-	// response.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-	// response.header(
-	// 	'Access-Control-Allow-Methods',
-	// 	'GET,PATCH,POST,DELETE,OPTIONS'
-	// );
-	// response.header('Access-Control-Allow-Headers', 'Content-Type');
-	// response.header('Access-Control-Allow-Credentials', 'true');
-
-	if ('OPTIONS' === 200) {
-		console.log('Got here');
-		response.send(200);
+	if ('OPTIONS' === HttpStatusCodes.OK) {
+		response.send(HttpStatusCodes.OK);
 	} else {
-		console.log('Got here instead');
 		next();
 	}
 });
