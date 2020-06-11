@@ -10,19 +10,31 @@ const App = Express();
 const CardRoute = require('./routes/card');
 const AuthRoute = require('./routes/auth');
 const ProfileRoute = require('./routes/profile');
+const HttpStatusCodes = require('http-status-codes');
 
 const DAY_IN_MILLISECONDS = 86400000;
 const MAX_COOKIE_AGE = DAY_IN_MILLISECONDS;
 const PORT = 8080;
 
 // CORS
-App.use(Cors());
+App.use(Cors({ credentials: true, origin: 'http://localhost:3000' }));
 
 App.use((request, response, next) => {
-	response.header('Access-Control-Allow-Origin', '*');
-	response.header('Access-Control-Allow-Methods', 'GET,PATCH,POST,DELETE');
-	response.header('Access-Control-Allow-Headers', 'Content-Type');
-	next();
+	// response.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+	// response.header(
+	// 	'Access-Control-Allow-Methods',
+	// 	'GET,PATCH,POST,DELETE,OPTIONS'
+	// );
+	// response.header('Access-Control-Allow-Headers', 'Content-Type');
+	// response.header('Access-Control-Allow-Credentials', 'true');
+
+	if ('OPTIONS' === 200) {
+		console.log('Got here');
+		response.send(200);
+	} else {
+		console.log('Got here instead');
+		next();
+	}
 });
 
 // Body Parser

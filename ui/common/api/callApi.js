@@ -1,3 +1,5 @@
+import { METHODS } from 'http';
+
 const Axios = require('axios').default;
 
 export const Method = {
@@ -7,18 +9,12 @@ export const Method = {
 	DELETE: 'DELETE',
 };
 
-export const callApi = async (
-	url = throwIfMissing(url),
-	options = {
-		method: Method.GET,
-		data: null,
-	}
-) => {
-	console.log('url', url);
-	console.log('options', options);
+export const callApi = async (url, method, data) => {
+	Axios.defaults.withCredentials = true;
 	return Axios({
-		url,
-		...options,
+		method: method,
+		url: url,
+		data: data,
 	})
 		.then((response) => {
 			return response;

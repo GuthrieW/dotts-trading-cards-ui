@@ -7,7 +7,7 @@ const Router = Express.Router();
 /*
  * Get all cards
  */
-Router.get('/', async (request, response) => {
+Router.get('/cards', async (request, response) => {
 	try {
 		const cards = await Card.find();
 		response.status(HttpStatusCodes.OK).json(cards);
@@ -23,8 +23,9 @@ Router.get('/', async (request, response) => {
 /*
  * Get one card by id
  */
-Router.get('/:cardId', async (request, response) => {
-	const cardId = request.params.cardId;
+Router.post('/card', async (request, response) => {
+	const cardInformation = request.body;
+	const cardId = cardInformation.cardId;
 
 	try {
 		const card = await Card.findById(cardId);
@@ -43,7 +44,6 @@ Router.get('/:cardId', async (request, response) => {
  */
 Router.post('/', async (request, response) => {
 	const cardInformation = request.body;
-	console.log(cardInformation);
 	const card = new Card({
 		player_name: cardInformation.player_name,
 		rarity: cardInformation.rarity,

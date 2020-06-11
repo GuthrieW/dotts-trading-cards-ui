@@ -1,7 +1,6 @@
 const Passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const Moment = require('moment-timezone');
-const Mongoose = require('mongoose');
 const User = require('./../models/User');
 
 Passport.serializeUser((user, done) => {
@@ -19,9 +18,9 @@ Passport.use(
 		{
 			clientID: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-			callbackURL: process.env.SERVER_URL + '/auth/google/callback',
+			callbackURL: process.env.API_URL + '/auth/google/callback',
 		},
-		function (accessToken, refreshToken, profile, done) {
+		(accessToken, refreshToken, profile, done) => {
 			User.findOne({ google_id: profile.id }).then((foundUser) => {
 				if (foundUser) {
 					done(null, foundUser);

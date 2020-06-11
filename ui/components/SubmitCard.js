@@ -28,6 +28,7 @@ const RARITY_LEVELS = {
 	SILVER: 'Silver',
 	GOLD: 'Gold',
 	PLATINUM: 'Platinum',
+	HALL_OF_FAME: 'Hall of Fame',
 };
 
 class SubmitCard extends React.Component {
@@ -117,6 +118,7 @@ class SubmitCard extends React.Component {
 		}
 
 		const url = API_URL + '/card';
+		const method = Method.POST;
 		const data = {
 			submission_username: this.state['nsfl-username'],
 			player_name: this.state['player-name'],
@@ -124,12 +126,8 @@ class SubmitCard extends React.Component {
 			image_url: this.state['card-image-url'],
 			collection_ids: [],
 		};
-		const options = {
-			method: Method.POST,
-			data,
-		};
 
-		await callApi(url, options)
+		await callApi(url, method, data)
 			.then((response) => {
 				if (response.status === Status.OK) {
 					Swal({
@@ -210,6 +208,7 @@ class SubmitCard extends React.Component {
 									<option>{RARITY_LEVELS.SILVER}</option>
 									<option>{RARITY_LEVELS.GOLD}</option>
 									<option>{RARITY_LEVELS.PLATINUM}</option>
+									<option>{RARITY_LEVELS.HALL_OF_FAME}</option>
 								</Input>
 							</FormGroup>
 							<FormGroup>
