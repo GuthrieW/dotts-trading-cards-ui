@@ -173,7 +173,6 @@ class SubmitCard extends React.Component {
 	render() {
 		return (
 			<Layout title='Submit a Card'>
-				<h1>Submit a Card</h1>
 				<Row>
 					<Col>
 						<Form onSubmit={this.handleSubmit}>

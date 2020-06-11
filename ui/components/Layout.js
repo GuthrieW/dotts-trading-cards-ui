@@ -46,11 +46,30 @@ export default class App extends React.Component {
 							integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T'
 							crossOrigin='anonymous'
 						/>
+						{/* TODO: Find a way to only import this for pages that use slick */}
+						<link
+							rel='stylesheet'
+							type='text/css'
+							charset='UTF-8'
+							href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css'
+						/>
+						<link
+							rel='stylesheet'
+							type='text/css'
+							href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css'
+						/>
+						<link
+							rel='stylesheet'
+							type='text/css'
+							href='./../stylesheets/style.css'
+						/>
 					</Head>
 					<Header />
 					<main>
-						<h1>{this.props.title}</h1>
-						<div className='container'>{this.props.children}</div>
+						<div className='container'>
+							<h1>{this.props.title}</h1>
+							{this.props.children}
+						</div>
 					</main>
 				</>
 			);
