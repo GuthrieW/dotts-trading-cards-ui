@@ -7,9 +7,9 @@ const HttpStatusCodes = require('http-status-codes');
 const Cors = require('cors');
 require('dotenv').config();
 const App = Express();
-const CardRoute = require('./routes/card');
-const AuthRoute = require('./routes/auth');
-const ProfileRoute = require('./routes/profile');
+const CardRoute = require('/nsfl-trading-cards/api/routes/card');
+const AuthRoute = require('/nsfl-trading-cards/api/routes/auth');
+const ProfileRoute = require('/nsfl-trading-cards/api/routes/profile');
 
 const DAY_IN_MILLISECONDS = 86400000;
 const MAX_COOKIE_AGE = DAY_IN_MILLISECONDS;

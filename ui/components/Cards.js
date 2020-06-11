@@ -2,9 +2,9 @@ import React from 'react';
 import Router from 'next/router';
 import Swal from 'sweetalert';
 import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
+import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
+import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
 import Layout from './Layout';
-import { API_URL } from '../common/api/apiUrl';
-import { callApi, Method } from '../common/api/callApi';
 
 export default class Cards extends React.Component {
 	constructor() {

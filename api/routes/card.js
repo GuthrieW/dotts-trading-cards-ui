@@ -1,7 +1,7 @@
 const Express = require('express');
 const Moment = require('moment-timezone');
 const HttpStatusCodes = require('http-status-codes');
-const Card = require('../models/Card');
+const Card = require('/nsfl-trading-cards/api/models/Card');
 
 const Router = Express.Router();
 

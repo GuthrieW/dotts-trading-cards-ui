@@ -1,6 +1,6 @@
 const Express = require('express');
 const HttpStatusCodes = require('http-status-codes');
-const User = require('./../models/User');
+const User = require('/nsfl-trading-cards/api/models/User');
 
 const Router = Express.Router();
 
