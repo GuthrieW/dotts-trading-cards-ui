@@ -5,6 +5,10 @@ const Card = Mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	player_team: {
+		type: String,
+		required: true,
+	},
 	rarity: {
 		type: String,
 		required: true,

@@ -35,10 +35,27 @@ Router.post('/card', async (request, response) => {
 	return;
 });
 
+Router.post('/team', async (request, response) => {
+	const cardInformation = request.body;
+	const teamName = cardInformation.teamName;
+
+	try {
+		const cards = await Card.find({ player_team: teamName });
+		response.status(HttpStatusCodes.OK).json(cards);
+	} catch (error) {
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
+
+	return;
+});
+
 Router.post('/', async (request, response) => {
 	const cardInformation = request.body;
 	const card = new Card({
 		player_name: cardInformation.player_name,
+		player_team: cardInformation.player_team,
 		rarity: cardInformation.rarity,
 		image_url: cardInformation.image_url,
 		collections_ids: cardInformation.collections_ids,

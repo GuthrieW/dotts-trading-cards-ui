@@ -1,8 +1,12 @@
 import React from 'react';
-import Layout from './Layout';
-import { NSFL_TEAMS } from './../common/data/teams';
-import { Card, Collapse, CardImg, CardBody, CardTitle } from 'reactstrap';
+import { Card, Collapse, CardImg, CardBody } from 'reactstrap';
 import Slider from 'react-slick';
+import Swal from 'sweetalert';
+import Layout from './Layout';
+import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
+import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
+import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
+import { NSFL_TEAMS } from './../common/data/teams';
 
 const slickSettings = {
 	lazyLoad: 'ondemand',
@@ -24,14 +28,6 @@ const examplesCards = [
 	{
 		card:
 			'https://media.discordapp.net/attachments/537644128066994197/587399505964564502/Michael_Fox_Hockey_Card_2.png',
-	},
-	{
-		card:
-			'https://media.discordapp.net/attachments/537644128066994197/587403805931339786/Jimmy_Slothface_Hockey_Card.png',
-	},
-	{
-		card:
-			'https://cdn.discordapp.com/attachments/572878492371255478/581971581669212161/image0.jpg',
 	},
 ];
 
@@ -62,13 +58,53 @@ function SamplePrevArrow(props) {
 export default class MyCollection extends React.Component {
 	constructor() {
 		super();
-		let teamStates = {};
+		let state = {};
 		for (const team of NSFL_TEAMS) {
-			teamStates[`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`] = false;
+			state[`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`] = false;
 		}
-		this.state = teamStates;
+
+		for (const team of NSFL_TEAMS) {
+			state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`] = [];
+			state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`] = false;
+		}
+
+		this.state = state;
 
 		this.handleOnClick = this.handleOnClick.bind(this);
+	}
+
+	async componentDidMount() {
+		for (const team of NSFL_TEAMS) {
+			const url = `${API_URL}/card/team`;
+			const method = Method.POST;
+			const data = {
+				teamName: `${team.CITY_NAME} ${team.TEAM_NAME}`,
+			};
+
+			await callApi(url, method, data)
+				.then((response) => {
+					if (response.status === Status.OK) {
+						this.setState({
+							[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`]: response.data,
+							[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`]: true,
+						});
+					} else {
+						Swal({
+							title: 'Server Error',
+							text: 'The server encountered an error',
+							icon: 'error',
+						});
+					}
+				})
+				.catch((error) => {
+					console.error(error);
+					Swal({
+						title: 'Server Error',
+						text: 'The server encountered an error',
+						icon: 'error',
+					});
+				});
+		}
 	}
 
 	handleOnClick(collapse) {
@@ -78,6 +114,18 @@ export default class MyCollection extends React.Component {
 	}
 
 	render() {
+		for (const team of NSFL_TEAMS) {
+			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`]) {
+				return <div>Loading...</div>;
+			}
+		}
+
+		for (const team of NSFL_TEAMS) {
+			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`]) {
+				return <div>API Failure...</div>;
+			}
+		}
+
 		return (
 			<Layout title='My Collection'>
 				{NSFL_TEAMS.map((team, index) => (
@@ -100,11 +148,13 @@ export default class MyCollection extends React.Component {
 								name={`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`}
 							>
 								<Slider {...slickSettings}>
-									{examplesCards.map((cardUrl, index) => (
-										<div key={index}>
-											<img src={cardUrl.card} />
-										</div>
-									))}
+									{this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`].map(
+										(card, index) => (
+											<div key={index}>
+												<img src={card.image_url} />
+											</div>
+										)
+									)}
 								</Slider>
 							</Collapse>
 						</CardBody>

@@ -13,12 +13,15 @@ import Swal from 'sweetalert';
 import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
 import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
 import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
+import { NSFL_TEAMS } from '/nsfl-trading-cards/ui/common/data/teams';
 import Layout from './Layout';
 
 const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
+const TEAM_DEFAULT = 'Player Team';
 const LABELS = {
 	cardRarity: 'Card Rarity',
 	playerName: 'Player Name',
+	playerTeam: 'Player Team',
 	nsflUsername: 'NSFL Username',
 	cardImageUrl: 'Card Image URL',
 };
@@ -35,6 +38,7 @@ class SubmitCard extends React.Component {
 		this.state = {
 			'nsfl-username': '',
 			'player-name': '',
+			'player-team': TEAM_DEFAULT,
 			'card-rarity': RARITY_LEVELS.DEFAULT,
 			'card-image-url': '',
 			'displayImage': false,
@@ -85,6 +89,16 @@ class SubmitCard extends React.Component {
 			return;
 		}
 
+		if (this.state['player-team'] === TEAM_DEFAULT) {
+			Swal({
+				title: 'Submission Rejected',
+				text: "Please select the card's team.",
+				icon: 'error',
+			});
+
+			return;
+		}
+
 		if (this.state['card-rarity'] === RARITY_LEVELS.DEFAULT) {
 			Swal({
 				title: 'Submission Rejected',
@@ -120,6 +134,7 @@ class SubmitCard extends React.Component {
 		const data = {
 			submission_username: this.state['nsfl-username'],
 			player_name: this.state['player-name'],
+			player_team: this.state['player-team'],
 			rarity: this.state['card-rarity'],
 			image_url: this.state['card-image-url'],
 			collection_ids: [],
@@ -195,6 +210,21 @@ class SubmitCard extends React.Component {
 								/>
 							</FormGroup>
 							<FormGroup>
+								<Label>{LABELS.playerTeam}</Label>
+								<Input
+									type='select'
+									name='player-team'
+									onChange={this.handleChange}
+								>
+									<option>{TEAM_DEFAULT}</option>
+									{NSFL_TEAMS.map((team, index) => (
+										<option
+											key={index}
+										>{`${team.CITY_NAME} ${team.TEAM_NAME}`}</option>
+									))}
+								</Input>
+							</FormGroup>
+							<FormGroup>
 								<Label>{LABELS.cardRarity}</Label>
 								<Input
 									type='select'
@@ -207,6 +237,7 @@ class SubmitCard extends React.Component {
 									<option>{RARITY_LEVELS.GOLD}</option>
 								</Input>
 							</FormGroup>
+
 							<FormGroup>
 								<Label>{LABELS.cardImageUrl}</Label>
 								<Input
