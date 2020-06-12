@@ -50,7 +50,7 @@ class Card extends React.Component {
 
 		return (
 			<Layout title='Card'>
-				<img src={card.image_url} />
+				<img src={this.state.card.image_url} />
 			</Layout>
 		);
 	}

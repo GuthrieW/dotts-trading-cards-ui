@@ -53,11 +53,13 @@ export default class Cards extends React.Component {
 	}
 
 	render() {
-		if (!this.state.isLoaded) {
+		const { cards, isLoaded } = this.state;
+
+		if (!isLoaded) {
 			return <div>Loading...</div>;
 		}
 
-		if (!this.state.cards) {
+		if (!cards) {
 			return <div>API Failure...</div>;
 		}
 
