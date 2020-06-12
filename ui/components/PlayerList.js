@@ -6,33 +6,33 @@ import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
 import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
 import Layout from './Layout';
 
-export default class Cards extends React.Component {
+export default class PlayerList extends React.Component {
 	constructor() {
 		super();
+
 		this.state = {
-			cards: [],
-			isLoaded: false,
+			userList: [],
 		};
 
-		this.handleOnClick = this.handleOnClick.bind(this);
+		this.handleOnClicK = this.handleOnClicK.bind(this);
 	}
 
-	handleOnClick(cardId) {
+	handleOnClicK(userId) {
 		Router.push({
-			pathname: `/card/card`,
-			query: { cardId: cardId },
+			pathname: `/collection/collection`,
+			query: { userId: userId },
 		});
 	}
 
 	async componentDidMount() {
-		const url = `${API_URL}/card/cards`;
+		const url = `${API_URL}/user`;
 		const method = Method.GET;
+
 		await callApi(url, method)
 			.then((response) => {
 				if (response.status === Status.OK) {
 					this.setState({
-						cards: response.data,
-						isLoaded: true,
+						userList: response.data,
 					});
 				} else {
 					Swal({
@@ -53,28 +53,19 @@ export default class Cards extends React.Component {
 	}
 
 	render() {
-		if (!this.state.isLoaded) {
-			return <div>Loading...</div>;
-		}
-
-		if (!this.state.cards) {
-			return <div>API Failure...</div>;
-		}
-
 		return (
-			<Layout title='Cards'>
-				{cards.map((card, index) => (
-					<img
+			<Layout title='Player List'>
+				{this.state.userList.map((user, index) => (
+					<a
 						key={index}
-						src={card.image_url}
 						onClick={() => {
-							this.handleOnClick(card._id);
+							this.handleOnClicK(user._id);
 						}}
-					/>
+					>
+						{user.google_display_name}
+					</a>
 				))}
 			</Layout>
 		);
 	}
 }
-
-// export default Cards;

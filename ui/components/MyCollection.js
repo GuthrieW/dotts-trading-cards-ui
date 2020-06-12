@@ -20,17 +20,6 @@ const slickSettings = {
 	speed: 500,
 };
 
-const examplesCards = [
-	{
-		card:
-			'https://cdn.discordapp.com/attachments/572797209087836172/574472629495529472/Cal_FOTL3.jpg',
-	},
-	{
-		card:
-			'https://media.discordapp.net/attachments/537644128066994197/587399505964564502/Michael_Fox_Hockey_Card_2.png',
-	},
-];
-
 function SampleNextArrow(props) {
 	const { className, style, onClick } = props;
 	return (
