@@ -18,9 +18,45 @@ Router.get('/', async (request, response) => {
 	return;
 });
 
-Router.get('/currentUser', async (request, response) => {
+Router.patch('/username', async (request, response) => {
+	const newUsername = request.body.nsfl_username;
+	console.log(typeof newUsername);
+	const userId = request.user._id;
+	console.log(userId);
 	try {
-		const user = await User.findById(request.user._id);
+		await User.update(
+			{ _id: userId },
+			{ $set: { nsfl_username: newUsername } }
+		);
+		response.status(HttpStatusCodes.OK).json({ message: 'success' });
+	} catch (error) {
+		console.error(error);
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
+});
+
+Router.post('/', async (request, response) => {
+	const userInformation = request.body;
+	const userId = userInformation.userId;
+
+	try {
+		const user = await User.findById(userId);
+		response.status(HttpStatusCodes.OK).json(user);
+	} catch (error) {
+		console.error(error);
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
+});
+
+Router.get('/currentUser', async (request, response) => {
+	const userId = request.user._id;
+
+	try {
+		const user = await User.findById(userId);
 		response.status(HttpStatusCodes.OK).json(user);
 	} catch (error) {
 		console.error(error);

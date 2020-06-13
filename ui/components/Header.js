@@ -46,6 +46,9 @@ export default class Header extends React.Component {
 							<NavLink href='/collection/my-collection'>My Collection</NavLink>
 						</NavItem>
 						<NavItem>
+							<NavLink href='/player-list'>Other Collections</NavLink>
+						</NavItem>
+						<NavItem>
 							<NavLink href='/packs/get-packs'>Get Packs</NavLink>
 						</NavItem>
 						<NavItem>

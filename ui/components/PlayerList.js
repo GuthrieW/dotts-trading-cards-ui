@@ -5,6 +5,7 @@ import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
 import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
 import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
 import Layout from './Layout';
+import _filter from 'lodash/filter';
 
 export default class PlayerList extends React.Component {
 	constructor() {
@@ -31,8 +32,12 @@ export default class PlayerList extends React.Component {
 		await callApi(url, method)
 			.then((response) => {
 				if (response.status === Status.OK) {
+					const filteredUsers = _filter(response.data, (user) => {
+						return user.nsfl_username !== '';
+					});
+
 					this.setState({
-						userList: response.data,
+						userList: filteredUsers,
 					});
 				} else {
 					Swal({
@@ -62,7 +67,7 @@ export default class PlayerList extends React.Component {
 							this.handleOnClicK(user._id);
 						}}
 					>
-						{user.google_display_name}
+						{user.nsfl_username}
 					</a>
 				))}
 			</Layout>

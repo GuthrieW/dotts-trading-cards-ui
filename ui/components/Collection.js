@@ -59,9 +59,10 @@ class Collection extends React.Component {
 
 		for (const team of NSFL_TEAMS) {
 			state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`] = [];
-			state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`] = false;
+			state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`] = false;
 		}
 		state['username'] = '';
+		state['username-isLoading'] = false;
 
 		this.state = state;
 
@@ -81,7 +82,7 @@ class Collection extends React.Component {
 			await callApi(nsflTeamUrl, nsflTeamMethod, nsflTeamData)
 				.then((response) => {
 					this.setState({
-						[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`]: true,
+						[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]: true,
 					});
 
 					if (response.status === Status.OK) {
@@ -106,12 +107,16 @@ class Collection extends React.Component {
 				});
 		}
 
-		const userUrl = `${API_URL}/user/currentUser`;
-		const userMethod = Method.GET;
-		await callApi(userUrl, userMethod)
+		const userUrl = `${API_URL}/user/`;
+		const userMethod = Method.POST;
+		const userData = {
+			userId: userId,
+		};
+		await callApi(userUrl, userMethod, userData)
 			.then((response) => {
 				this.setState({
 					['username']: response.data.nsfl_username,
+					['username-isLoading']: true,
 				});
 			})
 			.catch((error) => {
@@ -131,8 +136,12 @@ class Collection extends React.Component {
 	}
 
 	render() {
+		if (!this.state['username-isLoading']) {
+			return <div>Loading...</div>;
+		}
+
 		for (const team of NSFL_TEAMS) {
-			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`]) {
+			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]) {
 				return <div>Loading...</div>;
 			}
 		}
