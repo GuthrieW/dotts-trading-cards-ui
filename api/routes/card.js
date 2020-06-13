@@ -38,13 +38,14 @@ Router.post('/card', async (request, response) => {
 });
 
 Router.post('/team', async (request, response) => {
+	const userId = request.user._id;
 	const cardInformation = request.body;
 	const teamName = cardInformation.teamName;
 	let userCards = [];
 	let allCards = [];
 
 	try {
-		const user = await User.findById(request.user._id);
+		const user = await User.findById(userId);
 		userCards = user.owned_cards;
 	} catch (error) {
 		response
