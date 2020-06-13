@@ -70,7 +70,7 @@ Router.post('/team', async (request, response) => {
 });
 
 Router.post('/team/:userId', async (request, response) => {
-	const userId = request.params.cardId;
+	const userId = request.params.userId;
 	const cardInformation = request.body;
 	const teamName = cardInformation.teamName;
 	let userCards = [];

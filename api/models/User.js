@@ -5,6 +5,9 @@ const User = Mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	nsfl_username: {
+		type: String,
+	},
 	google_display_name: {
 		type: String,
 		required: true,

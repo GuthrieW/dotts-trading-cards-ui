@@ -18,4 +18,16 @@ Router.get('/', async (request, response) => {
 	return;
 });
 
+Router.get('/currentUser', async (request, response) => {
+	try {
+		const user = await User.findById(request.user._id);
+		response.status(HttpStatusCodes.OK).json(user);
+	} catch (error) {
+		console.error(error);
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
+});
+
 module.exports = Router;

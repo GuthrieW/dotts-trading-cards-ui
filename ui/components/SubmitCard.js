@@ -237,7 +237,6 @@ class SubmitCard extends React.Component {
 									<option>{RARITY_LEVELS.GOLD}</option>
 								</Input>
 							</FormGroup>
-
 							<FormGroup>
 								<Label>{LABELS.cardImageUrl}</Label>
 								<Input

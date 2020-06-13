@@ -45,6 +45,10 @@ function SamplePrevArrow(props) {
 	);
 }
 
+function stringEndsWith(string, endsWith) {
+	return string.charAt(string.length - 1) === endsWith;
+}
+
 class Collection extends React.Component {
 	constructor() {
 		super();
@@ -57,6 +61,7 @@ class Collection extends React.Component {
 			state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`] = [];
 			state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`] = false;
 		}
+		state['username'] = '';
 
 		this.state = state;
 
@@ -65,17 +70,15 @@ class Collection extends React.Component {
 
 	async componentDidMount() {
 		const userId = this.props.router.query.userId;
-		console.log(userId);
 
 		for (const team of NSFL_TEAMS) {
-			const url = `${API_URL}/card/team/${userId}`;
-			console.log(url);
-			const method = Method.POST;
-			const data = {
+			const nsflTeamUrl = `${API_URL}/card/team/${userId}`;
+			const nsflTeamMethod = Method.POST;
+			const nsflTeamData = {
 				teamName: `${team.CITY_NAME} ${team.TEAM_NAME}`,
 			};
 
-			await callApi(url, method, data)
+			await callApi(nsflTeamUrl, nsflTeamMethod, nsflTeamData)
 				.then((response) => {
 					this.setState({
 						[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`]: true,
@@ -95,7 +98,6 @@ class Collection extends React.Component {
 				})
 				.catch((error) => {
 					console.error(error);
-					Swal.isv;
 					Swal({
 						title: 'Server Error',
 						text: 'The server encountered an error',
@@ -103,6 +105,23 @@ class Collection extends React.Component {
 					});
 				});
 		}
+
+		const userUrl = `${API_URL}/user/currentUser`;
+		const userMethod = Method.GET;
+		await callApi(userUrl, userMethod)
+			.then((response) => {
+				this.setState({
+					['username']: response.data.nsfl_username,
+				});
+			})
+			.catch((error) => {
+				console.error(error);
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
+			});
 	}
 
 	handleOnClick(collapse) {
@@ -124,8 +143,15 @@ class Collection extends React.Component {
 			}
 		}
 
+		let displayUsername = '';
+		if (stringEndsWith(this.state.username, 's')) {
+			displayUsername = `${this.state.username}'`;
+		} else {
+			displayUsername = `${this.state.username}'s`;
+		}
+
 		return (
-			<Layout title={`${this.props.router.query.userId}'s Collection`}>
+			<Layout title={`${displayUsername} Collection`}>
 				{NSFL_TEAMS.map((team, index) => (
 					<Card style={{ border: 0 }} key={index}>
 						<CardImg
