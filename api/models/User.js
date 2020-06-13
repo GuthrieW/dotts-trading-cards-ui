@@ -1,6 +1,9 @@
 const Mongoose = require('mongoose');
 
 const User = Mongoose.Schema({
+	nsfl_username: {
+		type: String,
+	},
 	google_id: {
 		type: String,
 		required: true,

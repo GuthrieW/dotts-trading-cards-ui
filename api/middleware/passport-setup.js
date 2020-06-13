@@ -26,9 +26,11 @@ Passport.use(
 					done(null, foundUser);
 				} else {
 					const user = new User({
+						nsfl_username: '',
 						google_id: profile.id,
 						google_display_name: profile.displayName,
 						completed_collections: [],
+						owned_cards: [],
 						creation_date: Moment.tz('America/Chicago').format(),
 					});
 					user.save().then((newUser) => {

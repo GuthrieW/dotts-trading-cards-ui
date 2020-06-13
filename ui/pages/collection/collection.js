@@ -1,5 +1,5 @@
 import React from 'react';
-import MyCollection from './../../components/MyCollection';
+import Collection from '../../components/Collection';
 
 export default class App extends React.Component {
 	constructor() {
@@ -7,6 +7,6 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		return <MyCollection />;
+		return <Collection />;
 	}
 }

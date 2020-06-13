@@ -9,7 +9,8 @@ require('dotenv').config();
 const App = Express();
 const CardRoute = require('/nsfl-trading-cards/api/routes/card');
 const AuthRoute = require('/nsfl-trading-cards/api/routes/auth');
-const ProfileRoute = require('/nsfl-trading-cards/api/routes/profile');
+const UserRoute = require('/nsfl-trading-cards/api/routes/user');
+const TeamRoute = require('/nsfl-trading-cards/api/routes/team');
 
 const DAY_IN_MILLISECONDS = 86400000;
 const MAX_COOKIE_AGE = DAY_IN_MILLISECONDS;
@@ -45,7 +46,8 @@ App.use(Passport.session());
 // Routes
 App.use('/card', CardRoute);
 App.use('/auth', AuthRoute);
-App.use('/profile', ProfileRoute);
+App.use('/user', UserRoute);
+App.use('/team', TeamRoute);
 
 // MonogDB Connection
 Mongoose.connect(
