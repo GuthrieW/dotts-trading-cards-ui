@@ -33,6 +33,7 @@ Passport.use(
 						completed_collections: [],
 						owned_cards: [],
 						creation_date: Moment.tz('America/Chicago').format(),
+						can_purchase_pack: true,
 					});
 					user.save().then((newUser) => {
 						done(null, newUser);

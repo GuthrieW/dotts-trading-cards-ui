@@ -97,13 +97,17 @@ Router.post('/', async (request, response) => {
 	});
 
 	try {
-		const savedCard = await card.save();
-		saveAction(
-			userId,
-			'Submit Card',
-			`${savedCard._id} added to cards collection`
-		);
-		response.status(HttpStatusCodes.OK).json(savedCard);
+		if (request.user.is_admin) {
+			const savedCard = await card.save();
+			saveAction(
+				userId,
+				'Submit Card',
+				`${savedCard._id} added to cards collection`
+			);
+			response.status(HttpStatusCodes.OK).json(savedCard);
+		} else {
+			response.status(HttpStatusCodes.OK).json({ message: 'failure' });
+		}
 	} catch (error) {
 		console.error('POST ERROR: ', error);
 		response

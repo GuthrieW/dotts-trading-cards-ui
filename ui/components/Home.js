@@ -1,5 +1,4 @@
 import React from 'react';
-import Router from 'next/router';
 import { Row } from 'reactstrap';
 import Layout from './Layout';
 
