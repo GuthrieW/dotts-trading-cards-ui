@@ -40,9 +40,9 @@ class Card extends React.Component {
 	}
 
 	render() {
-		if (this.state.isLoading) {
-			return <div>Loading...</div>;
-		}
+		// if (this.state.isLoading) {
+		// 	return <Loading />;
+		// }
 
 		if (!this.state.card) {
 			return <div>API Failure...</div>;

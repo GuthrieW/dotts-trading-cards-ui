@@ -1,15 +1,6 @@
 import React from 'react';
 import Router from 'next/router';
-import {
-	NavbarBrand,
-	Navbar,
-	NavItem,
-	NavLink,
-	Nav,
-	Button,
-	Row,
-	Col,
-} from 'reactstrap';
+import { Row } from 'reactstrap';
 import Layout from './Layout';
 
 export default class Home extends React.Component {
@@ -31,7 +22,7 @@ export default class Home extends React.Component {
 					}}
 				>
 					<a className='btn btn-primary' href='/open-packs'>
-						Open Packs
+						<span style={{ color: 'white' }}>Open Packs</span>
 					</a>
 				</Row>
 				<Row
@@ -43,7 +34,7 @@ export default class Home extends React.Component {
 					}}
 				>
 					<a className='btn btn-primary' href='/collection/my-collection'>
-						View Your Collection
+						<span style={{ color: 'white' }}>View Your Collection</span>
 					</a>
 				</Row>
 				<Row
@@ -55,7 +46,9 @@ export default class Home extends React.Component {
 					}}
 				>
 					<a className='btn btn-primary' href='/player-list'>
-						View Other Members' Collections
+						<span style={{ color: 'white' }}>
+							View Other Members' Collections
+						</span>
 					</a>
 				</Row>
 				<Row
@@ -67,7 +60,7 @@ export default class Home extends React.Component {
 					}}
 				>
 					<a className='btn btn-primary' href='/submit-card'>
-						Submit a Card
+						<span style={{ color: 'white' }}>Submit a Card</span>
 					</a>
 				</Row>
 			</Layout>

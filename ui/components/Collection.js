@@ -136,15 +136,15 @@ class Collection extends React.Component {
 	}
 
 	render() {
-		if (this.state['username-isLoading']) {
-			return <div>Loading...</div>;
-		}
+		// if (this.state['username-isLoading']) {
+		// 	return <Loading />;
+		// }
 
-		for (const team of NSFL_TEAMS) {
-			if (this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]) {
-				return <div>Loading...</div>;
-			}
-		}
+		// for (const team of NSFL_TEAMS) {
+		// 	if (this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]) {
+		// 		return <Loading />;
+		// 	}
+		// }
 
 		for (const team of NSFL_TEAMS) {
 			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`]) {

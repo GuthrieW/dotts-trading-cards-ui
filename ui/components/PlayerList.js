@@ -62,12 +62,13 @@ export default class PlayerList extends React.Component {
 			<Layout title='Player List'>
 				{this.state.userList.map((user, index) => (
 					<a
+						className='btn btn-primary'
 						key={index}
 						onClick={() => {
 							this.handleOnClicK(user._id);
 						}}
 					>
-						{user.nsfl_username}
+						<span style={{ color: 'white' }}>{user.nsfl_username}</span>
 					</a>
 				))}
 			</Layout>

@@ -116,9 +116,9 @@ export default class OpenPacks extends React.Component {
 	}
 
 	render() {
-		if (this.state.isLoading) {
-			return <div>Loading...</div>;
-		}
+		// if (this.state.isLoading) {
+		// 	return <Loading />;
+		// }
 
 		if (!this.state.pulledCards.length) {
 			return (
@@ -148,7 +148,8 @@ export default class OpenPacks extends React.Component {
 									}}
 								>
 									<Button
-										className='btn btn-primary'
+										color='primary'
+										className='btn'
 										onClick={this.handleOnClick}
 										disabled={!this.state.canPurchasePack}
 									>

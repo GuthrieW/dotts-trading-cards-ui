@@ -5,6 +5,7 @@ import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
 import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
 import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
 import Layout from './Layout';
+import Loading from './Loading';
 
 export default class Cards extends React.Component {
 	constructor() {
@@ -55,9 +56,9 @@ export default class Cards extends React.Component {
 	render() {
 		const { cards, isLoading } = this.state;
 
-		if (isLoading) {
-			return <div>Loading...</div>;
-		}
+		// if (isLoading) {
+		// 	return <Loading />;
+		// }
 
 		if (!cards) {
 			return <div>API Failure...</div>;

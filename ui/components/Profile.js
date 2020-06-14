@@ -92,9 +92,9 @@ export default class Profile extends React.Component {
 	}
 
 	render() {
-		if (this.state.isLoading) {
-			return <div>Loading...</div>;
-		}
+		// if (this.state.isLoading) {
+		// 	return <Loading />;
+		// }
 
 		if (!this.state.username) {
 			return <div>API Failure...</div>;
@@ -114,7 +114,9 @@ export default class Profile extends React.Component {
 						></Input>
 					</FormGroup>
 
-					<Button type='submit'>Update Profile</Button>
+					<Button color='primary' type='submit'>
+						Update Profile
+					</Button>
 				</Form>
 			</Layout>
 		);
