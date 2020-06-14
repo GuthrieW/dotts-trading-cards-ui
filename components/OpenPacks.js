@@ -1,9 +1,9 @@
 import React from 'react';
 import Swal from 'sweetalert';
 import { Button, Row, Col } from 'reactstrap';
-import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
-import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
-import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
+import { Status } from '/dotts-trading-cards-ui/common/api/httpStatus';
+import { API_URL } from '/dotts-trading-cards-ui/common/api/apiUrl';
+import { callApi, Method } from '/dotts-trading-cards-ui/common/api/callApi';
 import Slider from 'react-slick';
 import Layout from './Layout';
 import _filter from 'lodash/filter';
@@ -169,7 +169,10 @@ export default class OpenPacks extends React.Component {
 					<Slider {...slickSettings}>
 						{this.state.pulledCards.map((card, index) => (
 							<div key={index}>
-								<img style={{ maxHeight: '504px' }} src={card.image_url} />
+								<img
+									style={{ maxHeight: '504px' }}
+									src={card.image_url}
+								/>
 							</div>
 						))}
 					</Slider>

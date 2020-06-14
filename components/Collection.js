@@ -4,9 +4,9 @@ import Slider from 'react-slick';
 import Swal from 'sweetalert';
 import { withRouter } from 'next/router';
 import Layout from './Layout';
-import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
-import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
-import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
+import { Status } from '/dotts-trading-cards-ui/common/api/httpStatus';
+import { callApi, Method } from '/dotts-trading-cards-ui/common/api/callApi';
+import { API_URL } from '/dotts-trading-cards-ui/common/api/apiUrl';
 import { NSFL_TEAMS } from './../common/data/teams';
 
 const slickSettings = {
@@ -177,7 +177,9 @@ class Collection extends React.Component {
 							<CardBody>
 								<Collapse
 									isOpen={
-										this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`]
+										this.state[
+											`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`
+										]
 									}
 									name={`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`}
 								>
@@ -187,7 +189,9 @@ class Collection extends React.Component {
 										].map((card, index) => (
 											<div key={index}>
 												<img
-													style={{ maxHeight: '504px' }}
+													style={{
+														maxHeight: '504px',
+													}}
 													src={card.image_url}
 												/>
 											</div>

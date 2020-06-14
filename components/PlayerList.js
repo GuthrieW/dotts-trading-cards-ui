@@ -1,9 +1,9 @@
 import React from 'react';
 import Router from 'next/router';
 import Swal from 'sweetalert';
-import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
-import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
-import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
+import { Status } from '/dotts-trading-cards-ui/common/api/httpStatus';
+import { API_URL } from '/dotts-trading-cards-ui/common/api/apiUrl';
+import { callApi, Method } from '/dotts-trading-cards-ui/common/api/callApi';
 import Layout from './Layout';
 import _filter from 'lodash/filter';
 
@@ -68,7 +68,9 @@ export default class PlayerList extends React.Component {
 							this.handleOnClicK(user._id);
 						}}
 					>
-						<span style={{ color: 'white' }}>{user.nsfl_username}</span>
+						<span style={{ color: 'white' }}>
+							{user.nsfl_username}
+						</span>
 					</a>
 				))}
 			</Layout>

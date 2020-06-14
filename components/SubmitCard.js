@@ -10,10 +10,10 @@ import {
 	Button,
 } from 'reactstrap';
 import Swal from 'sweetalert';
-import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
-import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
-import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
-import { NSFL_TEAMS } from '/nsfl-trading-cards/ui/common/data/teams';
+import { API_URL } from '/dotts-trading-cards-ui/common/api/apiUrl';
+import { callApi, Method } from '/dotts-trading-cards-ui/common/api/callApi';
+import { Status } from '/dotts-trading-cards-ui/common/api/httpStatus';
+import { NSFL_TEAMS } from '/dotts-trading-cards-ui/common/data/teams';
 import Layout from './Layout';
 
 const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;

@@ -3,9 +3,9 @@ import { NavbarBrand, Navbar, NavItem, NavLink, Nav, Button } from 'reactstrap';
 import Swal from 'sweetalert';
 import Router from 'next/router';
 import NsflLogo from './../public/favicon.ico';
-import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
-import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
-import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
+import { callApi, Method } from '/dotts-trading-cards-ui/common/api/callApi';
+import { API_URL } from '/dotts-trading-cards-ui/common/api/apiUrl';
+import { Status } from '/dotts-trading-cards-ui/common/api/httpStatus';
 
 export default class Header extends React.Component {
 	constructor() {
@@ -133,10 +133,14 @@ export default class Header extends React.Component {
 							<NavLink href='/open-packs'>Open Packs</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href='/collection/my-collection'>My Collection</NavLink>
+							<NavLink href='/collection/my-collection'>
+								My Collection
+							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href='/player-list'>Other Collections</NavLink>
+							<NavLink href='/player-list'>
+								Other Collections
+							</NavLink>
 						</NavItem>
 
 						<NavItem>
@@ -155,12 +159,18 @@ export default class Header extends React.Component {
 							</NavItem>
 						)}
 						<NavItem>
-							<Button className='ml-2' onClick={this.handleEditProfile}>
+							<Button
+								className='ml-2'
+								onClick={this.handleEditProfile}
+							>
 								Edit Profile
 							</Button>
 						</NavItem>
 						<NavItem>
-							<Button className='ml-2' onClick={this.handleLogout}>
+							<Button
+								className='ml-2'
+								onClick={this.handleLogout}
+							>
 								Logout
 							</Button>
 						</NavItem>

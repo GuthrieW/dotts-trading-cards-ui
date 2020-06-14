@@ -2,9 +2,9 @@ import React from 'react';
 import Layout from './Layout';
 import { withRouter } from 'next/router';
 import Swal from 'sweetalert';
-import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
-import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
-import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
+import { Status } from '/dotts-trading-cards-ui/common/api/httpStatus';
+import { API_URL } from '/dotts-trading-cards-ui/common/api/apiUrl';
+import { callApi, Method } from '/dotts-trading-cards-ui/common/api/callApi';
 
 class Card extends React.Component {
 	constructor() {
@@ -57,7 +57,10 @@ class Card extends React.Component {
 						alignItems: 'center',
 					}}
 				>
-					<img style={{ maxHeight: '504px' }} src={this.state.card.image_url} />
+					<img
+						style={{ maxHeight: '504px' }}
+						src={this.state.card.image_url}
+					/>
 				</div>
 			</Layout>
 		);
