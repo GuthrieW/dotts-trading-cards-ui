@@ -13,7 +13,7 @@ export default class Profile extends React.Component {
 
 		this.state = {
 			username: '',
-			isLoaded: false,
+			isLoading: true,
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +29,7 @@ export default class Profile extends React.Component {
 				if (response.status === Status.OK) {
 					this.setState({
 						username: response.data.nsfl_username,
-						isLoaded: true,
+						isLoading: false,
 					});
 				} else {
 					Swal({
@@ -92,9 +92,9 @@ export default class Profile extends React.Component {
 	}
 
 	render() {
-		if (!this.state.isLoaded) {
-			return <div>Loading...</div>;
-		}
+		// if (this.state.isLoading) {
+		// 	return <Loading />;
+		// }
 
 		if (!this.state.username) {
 			return <div>API Failure...</div>;
@@ -114,7 +114,9 @@ export default class Profile extends React.Component {
 						></Input>
 					</FormGroup>
 
-					<Button type='submit'>Update Profile</Button>
+					<Button color='primary' type='submit'>
+						Update Profile
+					</Button>
 				</Form>
 			</Layout>
 		);

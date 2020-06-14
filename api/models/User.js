@@ -4,6 +4,10 @@ const User = Mongoose.Schema({
 	nsfl_username: {
 		type: String,
 	},
+	is_admin: {
+		type: Boolean,
+		required: true,
+	},
 	google_id: {
 		type: String,
 		required: true,
@@ -18,10 +22,14 @@ const User = Mongoose.Schema({
 	},
 	owned_cards: {
 		type: [String],
-		requied: true,
+		required: true,
 	},
 	creation_date: {
 		type: Date,
+	},
+	can_purchase_pack: {
+		type: Boolean,
+		required: true,
 	},
 });
 

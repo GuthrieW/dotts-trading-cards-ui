@@ -5,13 +5,14 @@ import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
 import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
 import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
 import Layout from './Layout';
+import Loading from './Loading';
 
 export default class Cards extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 			cards: [],
-			isLoaded: false,
+			isLoading: true,
 		};
 
 		this.handleOnClick = this.handleOnClick.bind(this);
@@ -32,7 +33,7 @@ export default class Cards extends React.Component {
 				if (response.status === Status.OK) {
 					this.setState({
 						cards: response.data,
-						isLoaded: true,
+						isLoading: false,
 					});
 				} else {
 					Swal({
@@ -53,11 +54,11 @@ export default class Cards extends React.Component {
 	}
 
 	render() {
-		const { cards, isLoaded } = this.state;
+		const { cards, isLoading } = this.state;
 
-		if (!isLoaded) {
-			return <div>Loading...</div>;
-		}
+		// if (isLoading) {
+		// 	return <Loading />;
+		// }
 
 		if (!cards) {
 			return <div>API Failure...</div>;
@@ -67,6 +68,7 @@ export default class Cards extends React.Component {
 			<Layout title='Cards'>
 				{cards.map((card, index) => (
 					<img
+						style={{ maxHeight: '504px' }}
 						key={index}
 						src={card.image_url}
 						onClick={() => {
@@ -78,5 +80,3 @@ export default class Cards extends React.Component {
 		);
 	}
 }
-
-// export default Cards;

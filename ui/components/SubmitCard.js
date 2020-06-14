@@ -246,13 +246,18 @@ class SubmitCard extends React.Component {
 									onChange={this.handleChange}
 								/>
 							</FormGroup>
-							<Button type='submit'>Submit</Button>
+							<Button color='primary' type='submit'>
+								Submit
+							</Button>
 						</Form>
 					</Col>
 					<Col>
 						<Container>
 							{this.state.displayImage && (
-								<img src={this.state['card-image-url']} />
+								<img
+									style={{ maxHeight: '504px' }}
+									src={this.state['card-image-url']}
+								/>
 							)}
 						</Container>
 					</Col>

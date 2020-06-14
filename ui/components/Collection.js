@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Collapse, CardImg, CardBody, Col } from 'reactstrap';
+import { Card, Collapse, CardImg, CardBody, Row } from 'reactstrap';
 import Slider from 'react-slick';
 import Swal from 'sweetalert';
 import { withRouter } from 'next/router';
@@ -26,7 +26,7 @@ function SampleNextArrow(props) {
 	return (
 		<div className={className} style={{ ...style }} onClick={onClick}>
 			<img
-				style={{ width: 20, height: 20 }}
+				style={{ width: 20, maxH: 20 }}
 				src='https://image.flaticon.com/icons/svg/126/126490.svg'
 			/>
 		</div>
@@ -59,10 +59,10 @@ class Collection extends React.Component {
 
 		for (const team of NSFL_TEAMS) {
 			state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`] = [];
-			state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`] = false;
+			state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`] = true;
 		}
 		state['username'] = '';
-		state['username-isLoading'] = false;
+		state['username-isLoading'] = true;
 
 		this.state = state;
 
@@ -82,7 +82,7 @@ class Collection extends React.Component {
 			await callApi(nsflTeamUrl, nsflTeamMethod, nsflTeamData)
 				.then((response) => {
 					this.setState({
-						[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]: true,
+						[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]: false,
 					});
 
 					if (response.status === Status.OK) {
@@ -116,7 +116,7 @@ class Collection extends React.Component {
 			.then((response) => {
 				this.setState({
 					['username']: response.data.nsfl_username,
-					['username-isLoading']: true,
+					['username-isLoading']: false,
 				});
 			})
 			.catch((error) => {
@@ -136,15 +136,15 @@ class Collection extends React.Component {
 	}
 
 	render() {
-		if (!this.state['username-isLoading']) {
-			return <div>Loading...</div>;
-		}
+		// if (this.state['username-isLoading']) {
+		// 	return <Loading />;
+		// }
 
-		for (const team of NSFL_TEAMS) {
-			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]) {
-				return <div>Loading...</div>;
-			}
-		}
+		// for (const team of NSFL_TEAMS) {
+		// 	if (this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]) {
+		// 		return <Loading />;
+		// 	}
+		// }
 
 		for (const team of NSFL_TEAMS) {
 			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`]) {
@@ -162,36 +162,41 @@ class Collection extends React.Component {
 		return (
 			<Layout title={`${displayUsername} Collection`}>
 				{NSFL_TEAMS.map((team, index) => (
-					<Card style={{ border: 0 }} key={index}>
-						<CardImg
-							style={{ maxWidth: 500 }}
-							onClick={() => {
-								this.handleOnClick(
-									`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`
-								);
-							}}
-							src={team.IMAGE_URL}
-							alt={`${team.CITY_NAME} ${team.TEAM_NAME}`}
-						/>
-						<CardBody>
-							<Collapse
-								isOpen={
-									this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`]
-								}
-								name={`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`}
-							>
-								<Slider {...slickSettings}>
-									{this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`].map(
-										(card, index) => (
+					<Row>
+						<Card style={{ border: 0 }} key={index}>
+							<CardImg
+								style={{ maxWidth: 500 }}
+								onClick={() => {
+									this.handleOnClick(
+										`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`
+									);
+								}}
+								src={team.IMAGE_URL}
+								alt={`${team.CITY_NAME} ${team.TEAM_NAME}`}
+							/>
+							<CardBody>
+								<Collapse
+									isOpen={
+										this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`]
+									}
+									name={`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`}
+								>
+									<Slider {...slickSettings}>
+										{this.state[
+											`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
+										].map((card, index) => (
 											<div key={index}>
-												<img src={card.image_url} />
+												<img
+													style={{ maxHeight: '504px' }}
+													src={card.image_url}
+												/>
 											</div>
-										)
-									)}
-								</Slider>
-							</Collapse>
-						</CardBody>
-					</Card>
+										))}
+									</Slider>
+								</Collapse>
+							</CardBody>
+						</Card>
+					</Row>
 				))}
 			</Layout>
 		);

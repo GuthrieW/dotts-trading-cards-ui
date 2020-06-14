@@ -33,7 +33,8 @@ export default class App extends React.Component {
 
 	render() {
 		if (!this.state.authorized) {
-			return <div>Loading...</div>;
+			// return <Loading />;
+			return <div></div>;
 		} else {
 			return (
 				<>

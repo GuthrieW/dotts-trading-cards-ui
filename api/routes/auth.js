@@ -27,7 +27,7 @@ Router.get(
 	(request, response) => {
 		response
 			.status(HttpStatusCodes.OK)
-			.redirect(`${process.env.UI_URL}/card/cards`);
+			.redirect(`${process.env.UI_URL}/open-packs`);
 	}
 );
 

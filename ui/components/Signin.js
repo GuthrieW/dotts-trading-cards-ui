@@ -30,7 +30,11 @@ export default class Signin extends React.Component {
 				<main>
 					<div className='container'>
 						<h1>Sign In</h1>
-						<img src={SigninButton} onClick={this.handleOnClick} />
+						<img
+							style={{ maxHeight: '504px' }}
+							src={SigninButton}
+							onClick={this.handleOnClick}
+						/>
 					</div>
 				</main>
 			</>

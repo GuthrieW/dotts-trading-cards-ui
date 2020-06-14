@@ -11,7 +11,7 @@ class Card extends React.Component {
 		super();
 		this.state = {
 			card: null,
-			isLoaded: false,
+			isLoading: true,
 		};
 	}
 
@@ -27,7 +27,7 @@ class Card extends React.Component {
 			if (response.status === Status.OK) {
 				this.setState({
 					card: response.data,
-					isLoaded: true,
+					isLoading: false,
 				});
 			} else {
 				Swal({
@@ -40,9 +40,9 @@ class Card extends React.Component {
 	}
 
 	render() {
-		if (!this.state.isLoaded) {
-			return <div>Loading...</div>;
-		}
+		// if (this.state.isLoading) {
+		// 	return <Loading />;
+		// }
 
 		if (!this.state.card) {
 			return <div>API Failure...</div>;
@@ -50,7 +50,15 @@ class Card extends React.Component {
 
 		return (
 			<Layout title='Card'>
-				<img src={this.state.card.image_url} />
+				<div
+					style={{
+						display: 'grid',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}
+				>
+					<img style={{ maxHeight: '504px' }} src={this.state.card.image_url} />
+				</div>
 			</Layout>
 		);
 	}
