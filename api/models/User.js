@@ -4,6 +4,10 @@ const User = Mongoose.Schema({
 	nsfl_username: {
 		type: String,
 	},
+	is_admin: {
+		type: Boolean,
+		required: true,
+	},
 	google_id: {
 		type: String,
 		required: true,

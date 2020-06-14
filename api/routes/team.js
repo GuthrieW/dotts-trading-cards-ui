@@ -5,6 +5,7 @@ const Team = require('/nsfl-trading-cards/api/models/Team');
 
 const Router = Express.Router();
 
+// TODO: Use this to get rid of the file on the ui at ui/commom/data/teams.js
 Router.get('/team', async (request, response) => {
 	try {
 		const teams = await Team.find();

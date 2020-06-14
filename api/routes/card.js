@@ -4,6 +4,7 @@ const HttpStatusCodes = require('http-status-codes');
 const _filter = require('lodash/filter');
 const User = require('/nsfl-trading-cards/api/models/User');
 const Card = require('/nsfl-trading-cards/api/models/Card');
+const { saveAction } = require('/nsfl-trading-cards/api/common/saveAction');
 
 const Router = Express.Router();
 
@@ -19,6 +20,11 @@ Router.get('/cards', async (request, response) => {
 	}
 
 	return;
+});
+
+Router.get('/isAdmin', async (request, response) => {
+	const userIsAdmin = request.user.is_admin;
+	response.status(HttpStatusCodes.OK).json(userIsAdmin);
 });
 
 Router.post('/card', async (request, response) => {
@@ -39,6 +45,7 @@ Router.post('/card', async (request, response) => {
 
 Router.get('/purchasePack', async (request, response) => {
 	const userId = request.user._id;
+
 	let pulledCards = [];
 
 	try {
@@ -53,8 +60,6 @@ Router.get('/purchasePack', async (request, response) => {
 	for (const pulledCard of pulledCards) {
 		pulledCardIds.push(pulledCard._id);
 	}
-
-	console.log(pulledCardIds);
 
 	try {
 		await User.updateOne(
@@ -72,6 +77,12 @@ Router.get('/purchasePack', async (request, response) => {
 			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
 			.json({ message: error });
 	}
+
+	saveAction(
+		userId,
+		'Purchase Pack',
+		`${pulledCardIds} added to user's owned_cards array`
+	);
 
 	response.status(HttpStatusCodes.OK).json(pulledCards);
 
@@ -145,6 +156,8 @@ Router.post('/team/:userId', async (request, response) => {
 });
 
 Router.post('/', async (request, response) => {
+	const userId = request.user._id;
+
 	const cardInformation = request.body;
 	const card = new Card({
 		player_name: cardInformation.player_name,
@@ -158,6 +171,11 @@ Router.post('/', async (request, response) => {
 
 	try {
 		const savedCard = await card.save();
+		saveAction(
+			userId,
+			'Submit Card',
+			`${savedCard._id} added to cards collection`
+		);
 		response.status(HttpStatusCodes.OK).json(savedCard);
 	} catch (error) {
 		console.error('POST ERROR: ', error);
@@ -171,8 +189,16 @@ Router.post('/', async (request, response) => {
 
 Router.delete('/:cardId', async (request, response) => {
 	const cardId = request.params.cardId;
+	const userId = request.user._id;
 
 	try {
+		const cardToRemove = Card.findById(cardId);
+		saveAction(
+			userId,
+			'Delete Card',
+			`The following card was deleted from the database: ${cardToRemove}`
+		);
+
 		const removedCard = await Card.remove({ _id: cardId });
 		response.status(HttpStatusCodes.OK).json(removedCard);
 	} catch (error) {

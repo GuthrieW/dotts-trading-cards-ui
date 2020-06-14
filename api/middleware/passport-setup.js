@@ -27,6 +27,7 @@ Passport.use(
 				} else {
 					const user = new User({
 						nsfl_username: '',
+						is_admin: false,
 						google_id: profile.id,
 						google_display_name: profile.displayName,
 						completed_collections: [],

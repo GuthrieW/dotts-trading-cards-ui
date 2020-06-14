@@ -11,14 +11,75 @@ export default class Header extends React.Component {
 	constructor() {
 		super();
 
+		this.state = {
+			isAdmin = false,
+			isLoading = true
+		}
+
+		this.handleResetCanPurchasePacks = this.handleResetCanPurchasePacks.bind(this);
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleEditProfile = this.handleEditProfile.bind(this);
+	}
+
+	async componentDidMount() {
+		const url = `${API_URL}/user/isAdmin`;
+		const method = Method.GET;
+
+		await callApi(url, method).then((response) => {
+			if (response.status !== Status.OK) {
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
+			} else {
+				this.setState({
+					isAdmin: response.data,
+					isLoading: false
+				})
+			}
+		})			.catch((error) => {
+			console.error(error);
+			Swal({
+				title: 'Server Error',
+				text: 'The server encountered an error',
+				icon: 'error',
+			});
+		});;
 	}
 
 	async handleEditProfile() {
 		Router.push({
 			pathname: `/profile`,
 		});
+	}
+
+	async handleResetCanPurchasePacks() {
+		const url = `${API_URL}/user/resetCanPurchasePack`;
+		const method = Method.PATCH;
+
+		await callApi(url, method).then((response) => {
+			if (response.status === Status.OK) {
+				Swal({
+					title: 'Success',
+					text: 'Users may now purchaes packs again',
+					icon: 'success',
+				});
+			} else {
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
+			}
+		})			.catch((error) => {
+			console.error(error);
+			Swal({
+				title: 'Server Error',
+				text: 'The server encountered an error',
+				icon: 'error',
+			});
+		});;
 	}
 
 	async handleLogout() {
@@ -37,7 +98,14 @@ export default class Header extends React.Component {
 					pathname: `/signin`,
 				});
 			}
-		});
+		})			.catch((error) => {
+			console.error(error);
+			Swal({
+				title: 'Server Error',
+				text: 'The server encountered an error',
+				icon: 'error',
+			});
+		});;
 	}
 
 	render() {
@@ -63,6 +131,11 @@ export default class Header extends React.Component {
 						</NavItem>
 					</Nav>
 					<Nav>
+						{this.state.isAdmin && (
+							<NavItem>
+								<Button onClick={this.handleResetCanPurchasePacks}>Reset Pack Purchasing</Button>
+							</NavItem>
+						)}
 						<NavItem>
 							<Button onClick={this.handleEditProfile}>Edit Profile</Button>
 						</NavItem>

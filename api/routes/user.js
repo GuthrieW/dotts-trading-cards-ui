@@ -1,6 +1,7 @@
 const Express = require('express');
 const HttpStatusCodes = require('http-status-codes');
 const User = require('/nsfl-trading-cards/api/models/User');
+const { saveAction } = require('/nsfl-trading-cards/api/common/saveAction');
 
 const Router = Express.Router();
 
@@ -19,10 +20,15 @@ Router.get('/', async (request, response) => {
 });
 
 Router.patch('/username', async (request, response) => {
-	const newUsername = request.body.nsfl_username;
-	console.log(typeof newUsername);
 	const userId = request.user._id;
-	console.log(userId);
+	const oldUsername = request.user.nsfl_username;
+	const newUsername = request.body.nsfl_username;
+	saveAction(
+		userId,
+		'Change Username',
+		`NSFL username changed from ${oldUsername} to ${newUsername}`
+	);
+
 	try {
 		await User.updateOne(
 			{ _id: userId },
@@ -59,6 +65,33 @@ Router.get('/canPurchasePack', async (request, response) => {
 		const user = await User.findById(userId);
 		const canPurchasePack = user.canPurchasePack;
 		response.status(HttpStatusCodes.OK).json(canPurchasePack);
+	} catch (error) {
+		console.error(error);
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
+});
+
+Router.patch('/resetCanPurchasePack', async (request, response) => {
+	const userId = request.user._id;
+	saveAction(
+		userId,
+		'Reset Can Purchase Pack Username',
+		'can_purchase_pack set to true for all users'
+	);
+
+	const currentUser = await User.findById(userId);
+	try {
+		if (currentUser.is_admin) {
+			await User.update(
+				{ can_purchase_pack: false },
+				{ $set: { can_purchase_pack: true } }
+			);
+			response.status(HttpStatusCodes.OK).json({ message: 'success' });
+		} else {
+			response.status(HttpStatusCodes.OK).json({ message: 'failure' });
+		}
 	} catch (error) {
 		console.error(error);
 		response
