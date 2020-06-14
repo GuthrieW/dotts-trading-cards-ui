@@ -44,7 +44,6 @@ Router.get('/canPurchasePack', async (request, response) => {
 	try {
 		const user = await User.findById(userId);
 		const canPurchasePack = user.can_purchase_pack;
-		console.log(user);
 		response.status(HttpStatusCodes.OK).json(canPurchasePack);
 	} catch (error) {
 		console.error(error);

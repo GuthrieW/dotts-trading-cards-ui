@@ -148,6 +148,7 @@ export default class OpenPacks extends React.Component {
 									}}
 								>
 									<Button
+										className='btn btn-primary'
 										onClick={this.handleOnClick}
 										disabled={!this.state.canPurchasePack}
 									>
