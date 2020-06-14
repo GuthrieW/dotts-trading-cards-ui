@@ -140,7 +140,10 @@ export default class MyCollection extends React.Component {
 									{this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`].map(
 										(card, index) => (
 											<div key={index}>
-												<img src={card.image_url} />
+												<img
+													style={{ maxHeight: '504px' }}
+													src={card.image_url}
+												/>
 											</div>
 										)
 									)}

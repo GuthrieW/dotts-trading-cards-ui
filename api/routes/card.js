@@ -4,28 +4,9 @@ const HttpStatusCodes = require('http-status-codes');
 const _filter = require('lodash/filter');
 const User = require('/nsfl-trading-cards/api/models/User');
 const Card = require('/nsfl-trading-cards/api/models/Card');
-const { saveAction } = require('/nsfl-trading-cards/api/common/saveAction');
+const saveAction = require('/nsfl-trading-cards/api/common/saveAction');
 
 const Router = Express.Router();
-
-Router.get('/cards', async (request, response) => {
-	try {
-		const cards = await Card.find();
-		response.status(HttpStatusCodes.OK).json(cards);
-	} catch (error) {
-		console.error(error);
-		response
-			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
-			.json({ message: error });
-	}
-
-	return;
-});
-
-Router.get('/isAdmin', async (request, response) => {
-	const userIsAdmin = request.user.is_admin;
-	response.status(HttpStatusCodes.OK).json(userIsAdmin);
-});
 
 Router.post('/card', async (request, response) => {
 	const cardInformation = request.body;
@@ -35,6 +16,20 @@ Router.post('/card', async (request, response) => {
 		const card = await Card.findById(cardId);
 		response.status(HttpStatusCodes.OK).json(card);
 	} catch (error) {
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
+
+	return;
+});
+
+Router.get('/cards', async (request, response) => {
+	try {
+		const cards = await Card.find();
+		response.status(HttpStatusCodes.OK).json(cards);
+	} catch (error) {
+		console.error(error);
 		response
 			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
 			.json({ message: error });
@@ -66,12 +61,10 @@ Router.get('/purchasePack', async (request, response) => {
 			{ _id: userId },
 			{ $addToSet: { owned_cards: { $each: pulledCardIds } } }
 		);
-		// TODO: Once this goes live add this back in and
-		// find a way to reset it to true at midnight for all users
-		// await User.updateOne(
-		// 	{ _id: userId },
-		// 	{ $set: { can_purchase_pack: false } }
-		// );
+		await User.updateOne(
+			{ _id: userId },
+			{ $set: { can_purchase_pack: false } }
+		);
 	} catch (error) {
 		response
 			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
@@ -85,6 +78,38 @@ Router.get('/purchasePack', async (request, response) => {
 	);
 
 	response.status(HttpStatusCodes.OK).json(pulledCards);
+
+	return;
+});
+
+Router.post('/', async (request, response) => {
+	const userId = request.user._id;
+
+	const cardInformation = request.body;
+	const card = new Card({
+		player_name: cardInformation.player_name,
+		player_team: cardInformation.player_team,
+		rarity: cardInformation.rarity,
+		image_url: cardInformation.image_url,
+		collections_ids: cardInformation.collections_ids,
+		submission_username: cardInformation.submission_username,
+		submission_date: Moment.tz('America/Chicago').format(),
+	});
+
+	try {
+		const savedCard = await card.save();
+		saveAction(
+			userId,
+			'Submit Card',
+			`${savedCard._id} added to cards collection`
+		);
+		response.status(HttpStatusCodes.OK).json(savedCard);
+	} catch (error) {
+		console.error('POST ERROR: ', error);
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
 
 	return;
 });
@@ -151,38 +176,6 @@ Router.post('/team/:userId', async (request, response) => {
 	});
 
 	response.status(HttpStatusCodes.OK).json(filteredCards);
-
-	return;
-});
-
-Router.post('/', async (request, response) => {
-	const userId = request.user._id;
-
-	const cardInformation = request.body;
-	const card = new Card({
-		player_name: cardInformation.player_name,
-		player_team: cardInformation.player_team,
-		rarity: cardInformation.rarity,
-		image_url: cardInformation.image_url,
-		collections_ids: cardInformation.collections_ids,
-		submission_username: cardInformation.submission_username,
-		submission_date: Moment.tz('America/Chicago').format(),
-	});
-
-	try {
-		const savedCard = await card.save();
-		saveAction(
-			userId,
-			'Submit Card',
-			`${savedCard._id} added to cards collection`
-		);
-		response.status(HttpStatusCodes.OK).json(savedCard);
-	} catch (error) {
-		console.error('POST ERROR: ', error);
-		response
-			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
-			.json({ message: error });
-	}
 
 	return;
 });

@@ -67,6 +67,7 @@ export default class Cards extends React.Component {
 			<Layout title='Cards'>
 				{cards.map((card, index) => (
 					<img
+						style={{ maxHeight: '504px' }}
 						key={index}
 						src={card.image_url}
 						onClick={() => {

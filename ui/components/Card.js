@@ -50,7 +50,15 @@ class Card extends React.Component {
 
 		return (
 			<Layout title='Card'>
-				<img src={this.state.card.image_url} />
+				<div
+					style={{
+						display: 'grid',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}
+				>
+					<img style={{ maxHeight: '504px' }} src={this.state.card.image_url} />
+				</div>
 			</Layout>
 		);
 	}

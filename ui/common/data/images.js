@@ -1,2 +1,1 @@
-export const CARD_WIDTH = '';
-export const CARD_HEIGHT = '';
+export const MAX_CARD_HEIGHT = '504';

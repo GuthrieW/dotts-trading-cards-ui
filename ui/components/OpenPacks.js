@@ -1,6 +1,6 @@
 import React from 'react';
 import Swal from 'sweetalert';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Button, Row, Col } from 'reactstrap';
 import { Status } from '/nsfl-trading-cards/ui/common/api/httpStatus';
 import { API_URL } from '/nsfl-trading-cards/ui/common/api/apiUrl';
 import { callApi, Method } from '/nsfl-trading-cards/ui/common/api/callApi';
@@ -63,10 +63,9 @@ export default class OpenPacks extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
-				console.log(response);
 				if (response.status === Status.OK) {
 					this.setState({
-						canOpenAPack: response.data.canPurchasePack,
+						canPurchasePack: response.data,
 						isLoading: false,
 					});
 				} else {
@@ -93,10 +92,10 @@ export default class OpenPacks extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
-				console.log(response);
 				if (response.status === Status.OK) {
 					this.setState({
 						pulledCards: response.data,
+						canPurchasePack: false,
 					});
 				} else {
 					Swal({
@@ -124,13 +123,40 @@ export default class OpenPacks extends React.Component {
 		if (!this.state.pulledCards.length) {
 			return (
 				<Layout title='Open Packs'>
-					<img src='https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/180740/259845/nfl13opk__21846.1516121876.jpg'></img>
-					<Button
-						onClick={this.handleOnClick}
-						disabled={this.state.canPurchasePack}
+					<div
+						style={{
+							display: 'grid',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
 					>
-						Open Pack
-					</Button>
+						<Row>
+							<Col>
+								<img
+									style={{ maxHeight: '504px' }}
+									src='https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/180740/259845/nfl13opk__21846.1516121876.jpg'
+								/>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<div
+									style={{
+										display: 'grid',
+										justifyContent: 'center',
+										alignItems: 'center',
+									}}
+								>
+									<Button
+										onClick={this.handleOnClick}
+										disabled={!this.state.canPurchasePack}
+									>
+										Open Pack
+									</Button>
+								</div>
+							</Col>
+						</Row>
+					</div>
 				</Layout>
 			);
 		}
@@ -141,7 +167,7 @@ export default class OpenPacks extends React.Component {
 					<Slider {...slickSettings}>
 						{this.state.pulledCards.map((card, index) => (
 							<div key={index}>
-								<img src={card.image_url} />
+								<img style={{ maxHeight: '504px' }} src={card.image_url} />
 							</div>
 						))}
 					</Slider>
