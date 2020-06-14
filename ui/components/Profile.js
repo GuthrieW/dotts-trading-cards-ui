@@ -13,7 +13,7 @@ export default class Profile extends React.Component {
 
 		this.state = {
 			username: '',
-			isLoaded: false,
+			isLoading: true,
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +29,7 @@ export default class Profile extends React.Component {
 				if (response.status === Status.OK) {
 					this.setState({
 						username: response.data.nsfl_username,
-						isLoaded: true,
+						isLoading: false,
 					});
 				} else {
 					Swal({
@@ -92,7 +92,7 @@ export default class Profile extends React.Component {
 	}
 
 	render() {
-		if (!this.state.isLoaded) {
+		if (this.state.isLoading) {
 			return <div>Loading...</div>;
 		}
 

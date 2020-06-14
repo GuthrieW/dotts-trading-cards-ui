@@ -18,10 +18,14 @@ const User = Mongoose.Schema({
 	},
 	owned_cards: {
 		type: [String],
-		requied: true,
+		required: true,
 	},
 	creation_date: {
 		type: Date,
+	},
+	can_purchase_pack: {
+		type: Boolean,
+		required: true,
 	},
 });
 

@@ -11,7 +11,7 @@ class Card extends React.Component {
 		super();
 		this.state = {
 			card: null,
-			isLoaded: false,
+			isLoading: true,
 		};
 	}
 
@@ -27,7 +27,7 @@ class Card extends React.Component {
 			if (response.status === Status.OK) {
 				this.setState({
 					card: response.data,
-					isLoaded: true,
+					isLoading: false,
 				});
 			} else {
 				Swal({
@@ -40,7 +40,7 @@ class Card extends React.Component {
 	}
 
 	render() {
-		if (!this.state.isLoaded) {
+		if (this.state.isLoading) {
 			return <div>Loading...</div>;
 		}
 

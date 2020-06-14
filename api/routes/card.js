@@ -37,6 +37,47 @@ Router.post('/card', async (request, response) => {
 	return;
 });
 
+Router.get('/purchasePack', async (request, response) => {
+	const userId = request.user._id;
+	let pulledCards = [];
+
+	try {
+		pulledCards = await Card.aggregate([{ $sample: { size: 6 } }]);
+	} catch (error) {
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
+
+	let pulledCardIds = [];
+	for (const pulledCard of pulledCards) {
+		pulledCardIds.push(pulledCard._id);
+	}
+
+	console.log(pulledCardIds);
+
+	try {
+		await User.updateOne(
+			{ _id: userId },
+			{ $addToSet: { owned_cards: { $each: pulledCardIds } } }
+		);
+		// TODO: Once this goes live add this back in and
+		// find a way to reset it to true at midnight for all users
+		// await User.updateOne(
+		// 	{ _id: userId },
+		// 	{ $set: { can_purchase_pack: false } }
+		// );
+	} catch (error) {
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
+
+	response.status(HttpStatusCodes.OK).json(pulledCards);
+
+	return;
+});
+
 Router.post('/team', async (request, response) => {
 	const userId = request.user._id;
 	const cardInformation = request.body;

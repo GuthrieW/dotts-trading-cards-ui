@@ -18,3 +18,5 @@ Router.get('/team', async (request, response) => {
 
 	return;
 });
+
+module.exports = Router;

@@ -54,7 +54,7 @@ export default class MyCollection extends React.Component {
 
 		for (const team of NSFL_TEAMS) {
 			state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`] = [];
-			state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`] = false;
+			state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`] = true;
 		}
 
 		this.state = state;
@@ -75,7 +75,7 @@ export default class MyCollection extends React.Component {
 					if (response.status === Status.OK) {
 						this.setState({
 							[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`]: response.data,
-							[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`]: true,
+							[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]: false,
 						});
 					} else {
 						Swal({
@@ -104,7 +104,7 @@ export default class MyCollection extends React.Component {
 
 	render() {
 		for (const team of NSFL_TEAMS) {
-			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoaded`]) {
+			if (this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]) {
 				return <div>Loading...</div>;
 			}
 		}

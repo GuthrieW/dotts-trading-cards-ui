@@ -11,10 +11,17 @@ export default class Header extends React.Component {
 	constructor() {
 		super();
 
-		this.handleOnClick = this.handleOnClick.bind(this);
+		this.handleLogout = this.handleLogout.bind(this);
+		this.handleEditProfile = this.handleEditProfile.bind(this);
 	}
 
-	async handleOnClick() {
+	async handleEditProfile() {
+		Router.push({
+			pathname: `/profile`,
+		});
+	}
+
+	async handleLogout() {
 		const url = `${API_URL}/auth/logout`;
 		const method = Method.GET;
 
@@ -49,7 +56,7 @@ export default class Header extends React.Component {
 							<NavLink href='/player-list'>Other Collections</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href='/packs/get-packs'>Get Packs</NavLink>
+							<NavLink href='/open-packs'>Open Packs</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink href='/submit-card'>Submit a Card</NavLink>
@@ -57,7 +64,10 @@ export default class Header extends React.Component {
 					</Nav>
 					<Nav>
 						<NavItem>
-							<Button onClick={this.handleOnClick}>Logout</Button>
+							<Button onClick={this.handleEditProfile}>Edit Profile</Button>
+						</NavItem>
+						<NavItem>
+							<Button onClick={this.handleLogout}>Logout</Button>
 						</NavItem>
 					</Nav>
 				</Navbar>

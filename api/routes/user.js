@@ -24,7 +24,7 @@ Router.patch('/username', async (request, response) => {
 	const userId = request.user._id;
 	console.log(userId);
 	try {
-		await User.update(
+		await User.updateOne(
 			{ _id: userId },
 			{ $set: { nsfl_username: newUsername } }
 		);
@@ -44,6 +44,21 @@ Router.post('/', async (request, response) => {
 	try {
 		const user = await User.findById(userId);
 		response.status(HttpStatusCodes.OK).json(user);
+	} catch (error) {
+		console.error(error);
+		response
+			.status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+			.json({ message: error });
+	}
+});
+
+Router.get('/canPurchasePack', async (request, response) => {
+	const userId = request.user._id;
+
+	try {
+		const user = await User.findById(userId);
+		const canPurchasePack = user.canPurchasePack;
+		response.status(HttpStatusCodes.OK).json(canPurchasePack);
 	} catch (error) {
 		console.error(error);
 		response

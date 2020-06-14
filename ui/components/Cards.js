@@ -11,7 +11,7 @@ export default class Cards extends React.Component {
 		super();
 		this.state = {
 			cards: [],
-			isLoaded: false,
+			isLoading: true,
 		};
 
 		this.handleOnClick = this.handleOnClick.bind(this);
@@ -32,7 +32,7 @@ export default class Cards extends React.Component {
 				if (response.status === Status.OK) {
 					this.setState({
 						cards: response.data,
-						isLoaded: true,
+						isLoading: false,
 					});
 				} else {
 					Swal({
@@ -53,9 +53,9 @@ export default class Cards extends React.Component {
 	}
 
 	render() {
-		const { cards, isLoaded } = this.state;
+		const { cards, isLoading } = this.state;
 
-		if (!isLoaded) {
+		if (isLoading) {
 			return <div>Loading...</div>;
 		}
 
@@ -78,5 +78,3 @@ export default class Cards extends React.Component {
 		);
 	}
 }
-
-// export default Cards;
