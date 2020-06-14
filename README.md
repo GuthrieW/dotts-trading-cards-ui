@@ -1,2 +1,1 @@
-# nsfl-trading-cards
-A trading card system for the National Simulation Football League.
+This is a starter template for [Learn Next.js](https://nextjs.org/learn).
