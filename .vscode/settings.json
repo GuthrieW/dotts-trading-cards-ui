@@ -1,8 +1,0 @@
-{
-	"prettier.endOfLine": "crlf",
-	"prettier.jsxSingleQuote": true,
-	"prettier.quoteProps": "consistent",
-	"prettier.singleQuote": true,
-	"prettier.useTabs": true,
-	"prettier.vueIndentScriptAndStyle": true
-}
