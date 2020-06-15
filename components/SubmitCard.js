@@ -27,9 +27,11 @@ const LABELS = {
 };
 const RARITY_LEVELS = {
 	DEFAULT: 'Card Rarity',
-	BRONZE: 'Bronze',
-	SILVER: 'Silver',
-	GOLD: 'Gold',
+	LEGEND: 'Legend',
+	ALL_PRO: 'All-Pro',
+	STAR: 'Star',
+	STARTER: 'Starter',
+	BACKUP: 'Backup',
 };
 
 class SubmitCard extends React.Component {
@@ -232,9 +234,11 @@ class SubmitCard extends React.Component {
 									onChange={this.handleChange}
 								>
 									<option>{RARITY_LEVELS.DEFAULT}</option>
-									<option>{RARITY_LEVELS.BRONZE}</option>
-									<option>{RARITY_LEVELS.SILVER}</option>
-									<option>{RARITY_LEVELS.GOLD}</option>
+									<option>{RARITY_LEVELS.LEGEND}</option>
+									<option>{RARITY_LEVELS.ALL_PRO}</option>
+									<option>{RARITY_LEVELS.STAR}</option>
+									<option>{RARITY_LEVELS.STARTER}</option>
+									<option>{RARITY_LEVELS.BACKUP}</option>
 								</Input>
 							</FormGroup>
 							<FormGroup>

@@ -14,16 +14,15 @@ export const NSFL_TEAMS = [
 		IMAGE_URL: 'https://i.imgur.com/zNkQ0Gf.png',
 	},
 	{
-		CITY_NAME: 'Hawks',
-		TEAM_NAME: 'Baltimore',
+		CITY_NAME: 'Baltimore',
+		TEAM_NAME: 'Hawks',
 		ABBREVIATION: 'BAL',
 		IMAGE_PATH: './../../images/team-banners/baltimore-hawks.png',
 		IMAGE_URL: 'https://i.imgur.com/ZEuDUWh.png',
 	},
 	{
-		TEAM_NAME: 'Butchers',
 		CITY_NAME: 'Chicago',
-
+		TEAM_NAME: 'Butchers',
 		ABBREVIATION: 'CHI',
 		IMAGE_PATH: './../../images/team-banners/chicago-butchers.png',
 		IMAGE_URL: 'https://i.imgur.com/iVFr4uc.png',
