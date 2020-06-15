@@ -30,11 +30,26 @@ export default class Signin extends React.Component {
 				<main>
 					<div className='container'>
 						<h1>Sign In</h1>
-						<img
-							style={{ maxHeight: '504px' }}
-							src={SigninButton}
-							onClick={this.handleOnClick}
-						/>
+
+						<div
+							style={{
+								display: 'block',
+								justifyContent: 'center',
+								alignItems: 'center',
+							}}
+						>
+							<img
+								style={{
+									maxHeight: '500px',
+								}}
+								src='https://cdn.discordapp.com/attachments/719409500292907029/720056809951461416/Dotts-Logo-red-black.png'
+							/>
+							<br />
+							<img
+								src={SigninButton}
+								onClick={this.handleOnClick}
+							/>
+						</div>
 					</div>
 				</main>
 			</>
