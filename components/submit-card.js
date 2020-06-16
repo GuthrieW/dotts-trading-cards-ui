@@ -10,9 +10,9 @@ import {
 	Button,
 } from 'reactstrap';
 import Swal from 'sweetalert';
-import { API_URL } from '/dotts-trading-cards-ui/common/api/apiUrl';
-import { callApi, Method } from '/dotts-trading-cards-ui/common/api/callApi';
-import { Status } from '/dotts-trading-cards-ui/common/api/httpStatus';
+import { API_URL } from '/dotts-trading-cards-ui/common/api/api-url';
+import { callApi, Method } from '/dotts-trading-cards-ui/common/api/call-api';
+import { Status } from '/dotts-trading-cards-ui/common/api/http-status';
 import { NSFL_TEAMS } from '/dotts-trading-cards-ui/common/data/teams';
 import Layout from './Layout';
 

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import React from 'react';
-import SubmitCard from './../components/SubmitCard';
+import SubmitCard from './../components/submit-card';
 
 export default class App extends React.Component {
 	constructor() {

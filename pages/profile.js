@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from './../components/Profile';
+import Profile from './../components/profile';
 
 export default class App extends React.Component {
 	constructor() {
