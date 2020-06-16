@@ -1,9 +1,9 @@
 import React from 'react';
 import Router from 'next/router';
 import Swal from 'sweetalert';
-import { Status } from '/dotts-trading-cards-ui/common/api/http-status';
-import { API_URL } from '/dotts-trading-cards-ui/common/api/api-url';
-import { callApi, Method } from '/dotts-trading-cards-ui/common/api/call-api';
+import { Status } from './../common/api/http-status';
+import { API_URL } from './../common/api/api-url';
+import { callApi, Method } from './../common/api/call-api';
 import Layout from './layout';
 
 export default class Cards extends React.Component {
