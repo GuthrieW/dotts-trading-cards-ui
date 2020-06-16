@@ -4,7 +4,7 @@ import Router from 'next/router';
 import { API_URL } from '/dotts-trading-cards-ui/common/api/api-url';
 import { callApi, Method } from '/dotts-trading-cards-ui/common/api/call-api';
 import { Status } from '/dotts-trading-cards-ui/common/api/http-status';
-import Header from './Header';
+import Header from './header';
 
 export default class App extends React.Component {
 	constructor() {

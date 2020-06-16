@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row } from 'reactstrap';
-import Layout from './Layout';
+import Layout from './layout';
 
 export default class Home extends React.Component {
 	constructor() {
@@ -32,8 +32,13 @@ export default class Home extends React.Component {
 						marginBottom: '5px',
 					}}
 				>
-					<a className='btn btn-primary' href='/collection/my-collection'>
-						<span style={{ color: 'white' }}>View Your Collection</span>
+					<a
+						className='btn btn-primary'
+						href='/collection/my-collection'
+					>
+						<span style={{ color: 'white' }}>
+							View Your Collection
+						</span>
 					</a>
 				</Row>
 				<Row

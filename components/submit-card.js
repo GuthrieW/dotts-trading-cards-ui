@@ -14,7 +14,7 @@ import { API_URL } from '/dotts-trading-cards-ui/common/api/api-url';
 import { callApi, Method } from '/dotts-trading-cards-ui/common/api/call-api';
 import { Status } from '/dotts-trading-cards-ui/common/api/http-status';
 import { NSFL_TEAMS } from '/dotts-trading-cards-ui/common/data/teams';
-import Layout from './Layout';
+import Layout from './layout';
 
 const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
 const TEAM_DEFAULT = 'Player Team';

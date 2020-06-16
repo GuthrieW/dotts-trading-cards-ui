@@ -4,7 +4,7 @@ import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { Status } from '/dotts-trading-cards-ui/common/api/http-status';
 import { API_URL } from '/dotts-trading-cards-ui/common/api/api-url';
 import { callApi, Method } from '/dotts-trading-cards-ui/common/api/call-api';
-import Layout from './Layout';
+import Layout from './layout';
 import _filter from 'lodash/filter';
 
 export default class Profile extends React.Component {

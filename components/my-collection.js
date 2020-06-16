@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Collapse, CardImg, CardBody } from 'reactstrap';
 import Slider from 'react-slick';
 import Swal from 'sweetalert';
-import Layout from './Layout';
+import Layout from './layout';
 import { Status } from '/dotts-trading-cards-ui/common/api/http-status';
 import { callApi, Method } from '/dotts-trading-cards-ui/common/api/call-api';
 import { API_URL } from '/dotts-trading-cards-ui/common/api/api-url';
