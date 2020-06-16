@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from './Layout';
+import Layout from './layout';
 import { withRouter } from 'next/router';
 import Swal from 'sweetalert';
 import { Status } from '/dotts-trading-cards-ui/common/api/http-status';
