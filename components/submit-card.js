@@ -13,7 +13,7 @@ import Swal from 'sweetalert';
 import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
-import { NSFL_TEAMS } from '/dotts-trading-cards-ui/common/data/teams';
+import { NSFL_TEAMS } from './../common/data/teams';
 import Layout from './layout';
 
 const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
