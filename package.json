@@ -8,7 +8,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"start": "next start",
+		"start": "next build && next start",
 		"pretest": "eslint --ignore-path .gitignore .",
 		"server": "nodemon ../api/api.js",
 		"conc": "concurrently --kill-others \"npm run dev\" \"npm run server\""
