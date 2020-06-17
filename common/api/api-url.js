@@ -7,4 +7,4 @@
 // export const API_URL = '';
 
 /* production */
-export const API_URL = 'https://dotts-trading-cards-api.herokuapp.com';
+export const API_URL = 'http://dotts-trading-cards-api.herokuapp.com';

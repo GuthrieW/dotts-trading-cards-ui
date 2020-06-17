@@ -40,7 +40,7 @@ export default class App extends React.Component {
 				<>
 					<Head>
 						<title>{this.props.title}</title>
-						<link rel='icon' href='/favicon.ico' />
+						<link rel='icon' href='./..public/favicon.ico' />
 						<link
 							rel='stylesheet'
 							href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
