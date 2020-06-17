@@ -6,14 +6,13 @@
 	},
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
+		"dev": "next dev -p 8000",
 		"build": "next build",
-		"start": "next build && next start",
+		"start": "next start -p process.env.PORT",
 		"pretest": "eslint --ignore-path .gitignore .",
 		"server": "nodemon ../api/api.js",
 		"conc": "concurrently --kill-others \"npm run dev\" \"npm run server\""
 	},
-	"proxy": "http://localhost:8080",
 	"dependencies": {
 		"axios": "^0.19.2",
 		"bootstrap": "^4.5.0",
