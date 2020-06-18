@@ -1,6 +1,7 @@
 import React from 'react';
 import Router from 'next/router';
 import Swal from 'sweetalert';
+import ReactLoading from 'react-loading';
 import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
@@ -55,9 +56,9 @@ export default class Cards extends React.Component {
 	render() {
 		const { cards, isLoading } = this.state;
 
-		// if (isLoading) {
-		// 	return <Loading />;
-		// }
+		if (this.state.isLoading) {
+			return <ReactLoading type={'bars'} height={'20%'} width={'20%'} />;
+		}
 
 		if (!cards) {
 			return <div>API Failure...</div>;

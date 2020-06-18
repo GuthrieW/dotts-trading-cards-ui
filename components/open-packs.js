@@ -1,6 +1,7 @@
 import React from 'react';
 import Swal from 'sweetalert';
 import { Button, Row, Col } from 'reactstrap';
+import ReactLoading from 'react-loading';
 import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
@@ -116,9 +117,9 @@ export default class OpenPacks extends React.Component {
 	}
 
 	render() {
-		// if (this.state.isLoading) {
-		// 	return <Loading />;
-		// }
+		if (this.state.isLoading) {
+			return <ReactLoading type={'bars'} height={'20%'} width={'20%'} />;
+		}
 
 		if (!this.state.pulledCards.length) {
 			return (

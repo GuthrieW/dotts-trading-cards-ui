@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Collapse, CardImg, CardBody, Row } from 'reactstrap';
 import Slider from 'react-slick';
 import Swal from 'sweetalert';
+import ReactLoading from 'react-loading';
 import { withRouter } from 'next/router';
 import Layout from './layout';
 import { Status } from './../common/api/http-status';
@@ -136,15 +137,17 @@ class Collection extends React.Component {
 	}
 
 	render() {
-		// if (this.state['username-isLoading']) {
-		// 	return <Loading />;
-		// }
+		if (this.state['username-isLoading']) {
+			return <ReactLoading type={'bars'} height={'20%'} width={'20%'} />;
+		}
 
-		// for (const team of NSFL_TEAMS) {
-		// 	if (this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]) {
-		// 		return <Loading />;
-		// 	}
-		// }
+		for (const team of NSFL_TEAMS) {
+			if (this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]) {
+				return (
+					<ReactLoading type={'bars'} height={'20%'} width={'20%'} />
+				);
+			}
+		}
 
 		for (const team of NSFL_TEAMS) {
 			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`]) {
