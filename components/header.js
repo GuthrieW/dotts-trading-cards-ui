@@ -21,6 +21,7 @@ export default class Header extends React.Component {
 		);
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleEditProfile = this.handleEditProfile.bind(this);
+		this.handleSubmitCard = this.handleSubmitCard.bind(this);
 	}
 
 	async componentDidMount() {
@@ -55,6 +56,12 @@ export default class Header extends React.Component {
 	async handleEditProfile() {
 		Router.push({
 			pathname: `/profile`,
+		});
+	}
+
+	async handleSubmitCard() {
+		Router.push({
+			pathname: `/submit-card`,
 		});
 	}
 
@@ -122,11 +129,15 @@ export default class Header extends React.Component {
 				<Navbar color='light' light expand='md'>
 					<NavbarBrand href='/'>
 						<img
-							style={{ maxHeight: '504px' }}
+							style={{
+								maxHeight: '55px',
+							}}
 							className='mr-2'
-							src={NsflLogo}
+							src={
+								'https://cdn.discordapp.com/attachments/719409500292907029/720056809951461416/Dotts-Logo-red-black.png'
+							}
 						/>
-						NSFL Trading Cards
+						Trading Cards
 					</NavbarBrand>
 					<Nav className='mr-auto' navbar>
 						<NavItem>
@@ -147,12 +158,12 @@ export default class Header extends React.Component {
 						{this.state.isAdmin && (
 							<>
 								<NavItem>
-									<NavLink
+									<Button
 										className='ml-2'
-										href='/submit-card'
+										onClick={this.handleSubmitCard}
 									>
 										Submit a Card
-									</NavLink>
+									</Button>
 								</NavItem>
 								<NavItem>
 									<Button
