@@ -150,6 +150,12 @@ class SubmitCard extends React.Component {
 						text: 'Thank you for your submission!',
 						icon: 'success',
 					});
+				} else if (response.status === Status.UNAUTHORIZED) {
+					Swal({
+						title: 'Unauthorized',
+						text: 'Only admins are authorized to submit cards',
+						icon: 'error',
+					});
 				} else {
 					Swal({
 						title: 'Server Error',

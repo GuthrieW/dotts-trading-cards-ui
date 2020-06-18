@@ -142,22 +142,31 @@ export default class Header extends React.Component {
 								Other Collections
 							</NavLink>
 						</NavItem>
-
-						<NavItem>
-							<NavLink href='/submit-card'>Submit a Card</NavLink>
-						</NavItem>
 					</Nav>
 					<Nav>
 						{this.state.isAdmin && (
-							<NavItem>
-								<Button
-									className='ml-2'
-									onClick={this.handleResetCanPurchasePacks}
-								>
-									Reset Pack Purchasing
-								</Button>
-							</NavItem>
+							<>
+								<NavItem>
+									<NavLink
+										className='ml-2'
+										href='/submit-card'
+									>
+										Submit a Card
+									</NavLink>
+								</NavItem>
+								<NavItem>
+									<Button
+										className='ml-2'
+										onClick={
+											this.handleResetCanPurchasePacks
+										}
+									>
+										Reset Pack Purchasing
+									</Button>
+								</NavItem>
+							</>
 						)}
+
 						<NavItem>
 							<Button
 								className='ml-2'

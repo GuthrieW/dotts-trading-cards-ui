@@ -55,18 +55,6 @@ export default class Home extends React.Component {
 						</span>
 					</a>
 				</Row>
-				<Row
-					style={{
-						display: 'grid',
-						justifyContent: 'center',
-						alignItems: 'center',
-						marginBottom: '5px',
-					}}
-				>
-					<a className='btn btn-primary' href='/submit-card'>
-						<span style={{ color: 'white' }}>Submit a Card</span>
-					</a>
-				</Row>
 			</Layout>
 		);
 	}
