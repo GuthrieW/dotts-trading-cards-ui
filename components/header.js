@@ -122,11 +122,15 @@ export default class Header extends React.Component {
 				<Navbar color='light' light expand='md'>
 					<NavbarBrand href='/'>
 						<img
-							style={{ maxHeight: '504px' }}
+							style={{
+								maxHeight: '55px',
+							}}
 							className='mr-2'
-							src={NsflLogo}
+							src={
+								'https://cdn.discordapp.com/attachments/719409500292907029/720056809951461416/Dotts-Logo-red-black.png'
+							}
 						/>
-						NSFL Trading Cards
+						Trading Cards
 					</NavbarBrand>
 					<Nav className='mr-auto' navbar>
 						<NavItem>
