@@ -123,8 +123,7 @@ export default class Header extends React.Component {
 					<NavbarBrand href='/'>
 						<img
 							style={{
-								maxHeight: '400px',
-								maxWidth: '400px',
+								maxHeight: '55px',
 							}}
 							className='mr-2'
 							src={
