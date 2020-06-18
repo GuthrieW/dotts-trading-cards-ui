@@ -130,7 +130,7 @@ export default class Header extends React.Component {
 								'https://cdn.discordapp.com/attachments/719409500292907029/720056809951461416/Dotts-Logo-red-black.png'
 							}
 						/>
-						Dotts Trading Cards
+						Trading Cards
 					</NavbarBrand>
 					<Nav className='mr-auto' navbar>
 						<NavItem>
