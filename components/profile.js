@@ -98,7 +98,7 @@ export default class Profile extends React.Component {
 			return <ReactLoading type={'bars'} height={'20%'} width={'20%'} />;
 		}
 
-		if (!this.state.username) {
+		if (!this.state.username && this.state.username !== '') {
 			return <div>API Failure...</div>;
 		}
 
