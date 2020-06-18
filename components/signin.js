@@ -15,8 +15,6 @@ export default class Signin extends React.Component {
 	}
 
 	render() {
-		console.log('signin page');
-
 		return (
 			<>
 				<Head>

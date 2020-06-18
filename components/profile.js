@@ -28,7 +28,6 @@ export default class Profile extends React.Component {
 		await callApi(url, method)
 			.then((response) => {
 				if (response.status === Status.OK) {
-					console.log(response.data);
 					this.setState({
 						username: response.data.nsfl_username,
 						isLoading: false,
