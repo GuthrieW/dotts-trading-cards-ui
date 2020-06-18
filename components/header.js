@@ -21,6 +21,7 @@ export default class Header extends React.Component {
 		);
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleEditProfile = this.handleEditProfile.bind(this);
+		this.handleSubmitCard = this.handleSubmitCard.bind(this);
 	}
 
 	async componentDidMount() {
@@ -55,6 +56,12 @@ export default class Header extends React.Component {
 	async handleEditProfile() {
 		Router.push({
 			pathname: `/profile`,
+		});
+	}
+
+	async handleSubmitCard() {
+		Router.push({
+			pathname: `/submit-card`,
 		});
 	}
 
@@ -147,12 +154,12 @@ export default class Header extends React.Component {
 						{this.state.isAdmin && (
 							<>
 								<NavItem>
-									<NavLink
+									<Button
 										className='ml-2'
-										href='/submit-card'
+										onClick={this.handleSubmitCard}
 									>
 										Submit a Card
-									</NavLink>
+									</Button>
 								</NavItem>
 								<NavItem>
 									<Button
