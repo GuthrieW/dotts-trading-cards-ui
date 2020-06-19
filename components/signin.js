@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Navbar, NavbarBrand, Container, Row, Col } from 'reactstrap';
 import { API_URL } from './../common/api/api-url';
 import SigninButton from './../public/google-signin-buttons/signin.png';
 
@@ -27,24 +28,24 @@ export default class Signin extends React.Component {
 						crossOrigin='anonymous'
 					/>
 				</Head>
-				<main>
-					<div className='container'>
-						<h1>Sign In</h1>
-
-						<div
+				<Navbar color='light' light expand='md'>
+					<NavbarBrand>
+						<img
 							style={{
-								display: 'block',
-								justifyContent: 'center',
-								alignItems: 'center',
+								maxHeight: '55px',
 							}}
-						>
-							<img
-								style={{
-									maxHeight: '500px',
-								}}
-								src='https://cdn.discordapp.com/attachments/719409500292907029/720056809951461416/Dotts-Logo-red-black.png'
-							/>
-							<br />
+							className='mr-2'
+							src={
+								'https://cdn.discordapp.com/attachments/719409500292907029/720056809951461416/Dotts-Logo-red-black.png'
+							}
+						/>
+						Trading Cards
+					</NavbarBrand>
+				</Navbar>
+				<main>
+					<img width='100%' src='https://i.imgur.com/SyAWYRe.png' />
+					<div className='container'>
+						<div className='center'>
 							<img
 								src={SigninButton}
 								onClick={this.handleOnClick}
