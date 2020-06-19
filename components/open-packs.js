@@ -135,7 +135,7 @@ export default class OpenPacks extends React.Component {
 							<Col>
 								<img
 									style={{ maxHeight: '504px' }}
-									src='https://cdn11.bigcommerce.com/s-0kvv9/images/stencil/1280x1280/products/180740/259845/nfl13opk__21846.1516121876.jpg'
+									src='https://cdn.discordapp.com/attachments/719408889141133352/723585746107236402/Pack_w_swap.png'
 								/>
 							</Col>
 						</Row>
@@ -150,7 +150,7 @@ export default class OpenPacks extends React.Component {
 								>
 									<Button
 										color='primary'
-										className='btn'
+										className='btn mt-2'
 										onClick={this.handleOnClick}
 										disabled={!this.state.canPurchasePack}
 									>

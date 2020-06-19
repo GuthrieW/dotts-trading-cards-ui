@@ -2,7 +2,6 @@ import React from 'react';
 import { NavbarBrand, Navbar, NavItem, NavLink, Nav, Button } from 'reactstrap';
 import Swal from 'sweetalert';
 import Router from 'next/router';
-import NsflLogo from './../public/favicon.ico';
 import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
