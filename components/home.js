@@ -33,7 +33,7 @@ export default class Home extends React.Component {
 							<Card className='ml-1 mr-1'>
 								<CardImg
 									onClick={() => {
-										this.handleOnClick(`/open-pack`);
+										this.handleOnClick(`/open-packs`);
 									}}
 									src='https://i.imgur.com/e2wFkJp.png'
 								/>
