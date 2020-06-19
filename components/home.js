@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row } from 'reactstrap';
+import { Row, Col, Container } from 'reactstrap';
 import Layout from './layout';
 
 export default class Home extends React.Component {
