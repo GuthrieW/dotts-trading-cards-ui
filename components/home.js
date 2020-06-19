@@ -12,7 +12,27 @@ export default class Home extends React.Component {
 	render() {
 		return (
 			<Layout title='Home'>
-				<Row
+				<Container>
+					<Row>
+						<a href='/open-packs'>
+							<img src='https://i.imgur.com/e2wFkJp.png' />
+						</a>
+					</Row>
+					<Row>
+						<Col>
+							<a href='/collection/my-collection'>
+								<img src='https://i.imgur.com/JRQQptU.png' />
+							</a>
+						</Col>
+						<Col>
+							<a href='/player-list'>
+								<img src='https://i.imgur.com/Y7PQ3sj.png' />
+							</a>
+						</Col>
+					</Row>
+				</Container>
+
+				{/* <Row
 					style={{
 						display: 'grid',
 						justifyContent: 'center',
@@ -54,7 +74,7 @@ export default class Home extends React.Component {
 							View Other Members' Collections
 						</span>
 					</a>
-				</Row>
+				</Row> */}
 			</Layout>
 		);
 	}
