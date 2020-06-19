@@ -29,41 +29,47 @@ export default class Home extends React.Component {
 			<Layout title='Home'>
 				<Container>
 					<Row>
-						<Card>
-							<CardImg
-								onClick={() => {
-									this.handleOnClick(`/open-pack`);
-								}}
-								src='https://i.imgur.com/e2wFkJp.png'
-							/>
-							<CardBody>
-								<CardTitle>Open Packs</CardTitle>
-							</CardBody>
-						</Card>
-						<Card>
-							<CardImg
-								onClick={() => {
-									this.handleOnClick(
-										`/collection/my-collection`
-									);
-								}}
-								src='https://i.imgur.com/JRQQptU.png'
-							/>
-							<CardBody>
-								<CardTitle>My Collection</CardTitle>
-							</CardBody>
-						</Card>
-						<Card>
-							<CardImg
-								onClick={() => {
-									this.handleOnClick(`/player-list`);
-								}}
-								src='https://i.imgur.com/Y7PQ3sj.png'
-							/>
-							<CardBody>
-								<CardTitle>Other Collections</CardTitle>
-							</CardBody>
-						</Card>
+						<Col>
+							<Card className='ml-1 mr-1'>
+								<CardImg
+									onClick={() => {
+										this.handleOnClick(`/open-pack`);
+									}}
+									src='https://i.imgur.com/e2wFkJp.png'
+								/>
+								<CardBody>
+									<CardTitle>Open Packs</CardTitle>
+								</CardBody>
+							</Card>
+						</Col>
+						<Col>
+							<Card className='ml-1 mr-1'>
+								<CardImg
+									onClick={() => {
+										this.handleOnClick(
+											`/collection/my-collection`
+										);
+									}}
+									src='https://i.imgur.com/JRQQptU.png'
+								/>
+								<CardBody>
+									<CardTitle>My Collection</CardTitle>
+								</CardBody>
+							</Card>
+						</Col>
+						<Col>
+							<Card className='ml-1 mr-1'>
+								<CardImg
+									onClick={() => {
+										this.handleOnClick(`/player-list`);
+									}}
+									src='https://i.imgur.com/Y7PQ3sj.png'
+								/>
+								<CardBody>
+									<CardTitle>Other Collections</CardTitle>
+								</CardBody>
+							</Card>
+						</Col>
 					</Row>
 				</Container>
 			</Layout>
