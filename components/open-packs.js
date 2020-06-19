@@ -135,7 +135,7 @@ export default class OpenPacks extends React.Component {
 							<Col>
 								<img
 									style={{ maxHeight: '504px' }}
-									src='https://cdn.discordapp.com/attachments/719408889141133352/723428786976063518/Pack_Basic.png'
+									src='https://cdn.discordapp.com/attachments/719408889141133352/723585746107236402/Pack_w_swap.png'
 								/>
 							</Col>
 						</Row>
