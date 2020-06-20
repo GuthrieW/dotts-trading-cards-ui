@@ -32,11 +32,10 @@ export default class Home extends React.Component {
 						<CardDeck>
 							<Card className='ml-1 mr-1'>
 								<CardImg
-									style={{ maxHeight: '185px' }}
 									onClick={() => {
 										this.handleOnClick(`/open-packs`);
 									}}
-									src='https://i.imgur.com/e2wFkJp.png'
+									src='https://i.imgur.com/rCe0RYr.png'
 								/>
 								<CardBody>
 									<CardTitle>Open Packs</CardTitle>
@@ -50,7 +49,7 @@ export default class Home extends React.Component {
 											`/collection/my-collection`
 										);
 									}}
-									src='https://i.imgur.com/JRQQptU.png'
+									src='https://i.imgur.com/SNBNA1c.png'
 								/>
 								<CardBody>
 									<CardTitle>My Collection</CardTitle>
@@ -62,7 +61,7 @@ export default class Home extends React.Component {
 									onClick={() => {
 										this.handleOnClick(`/player-list`);
 									}}
-									src='https://i.imgur.com/Y7PQ3sj.png'
+									src='https://i.imgur.com/rNE5Sgv.png'
 								/>
 								<CardBody>
 									<CardTitle>Other Collections</CardTitle>
