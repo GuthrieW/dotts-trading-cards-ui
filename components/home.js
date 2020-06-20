@@ -43,7 +43,6 @@ export default class Home extends React.Component {
 							</Card>
 							<Card className='ml-1 mr-1'>
 								<CardImg
-									style={{ maxHeight: '185px' }}
 									onClick={() => {
 										this.handleOnClick(
 											`/collection/my-collection`
@@ -57,7 +56,6 @@ export default class Home extends React.Component {
 							</Card>
 							<Card className='ml-1 mr-1'>
 								<CardImg
-									style={{ maxHeight: '185px' }}
 									onClick={() => {
 										this.handleOnClick(`/player-list`);
 									}}
