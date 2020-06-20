@@ -1,5 +1,13 @@
 import Head from 'next/head';
-import { Navbar, NavbarBrand, Container, Row, Col } from 'reactstrap';
+import {
+	Navbar,
+	NavbarBrand,
+	Container,
+	Row,
+	Col,
+	Nav,
+	NavItem,
+} from 'reactstrap';
 import { API_URL } from './../common/api/api-url';
 import SigninButton from './../public/google-signin-buttons/signin.png';
 
@@ -41,20 +49,20 @@ export default class Signin extends React.Component {
 						/>
 						Trading Cards
 					</NavbarBrand>
+					<Nav className='ml-auto' navbar>
+						<NavItem>
+							<img
+								src={SigninButton}
+								onClick={this.handleOnClick}
+							/>
+						</NavItem>
+					</Nav>
 				</Navbar>
 				<main>
 					<img
 						width='100%'
 						src='https://media.discordapp.net/attachments/651254967847616542/723740105084239892/banner.png'
 					/>
-					<div className='container'>
-						<div className='center'>
-							<img
-								src={SigninButton}
-								onClick={this.handleOnClick}
-							/>
-						</div>
-					</div>
 				</main>
 			</>
 		);
