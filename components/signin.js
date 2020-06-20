@@ -43,7 +43,10 @@ export default class Signin extends React.Component {
 					</NavbarBrand>
 				</Navbar>
 				<main>
-					<img width='100%' src='https://i.imgur.com/SyAWYRe.png' />
+					<img
+						width='100%'
+						src='https://media.discordapp.net/attachments/651254967847616542/723740105084239892/banner.png'
+					/>
 					<div className='container'>
 						<div className='center'>
 							<img

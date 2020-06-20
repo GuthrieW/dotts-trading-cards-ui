@@ -29,9 +29,10 @@ export default class Home extends React.Component {
 			<Layout title='Home'>
 				<Container>
 					<Row>
-						<Col>
+						<CardDeck>
 							<Card className='ml-1 mr-1'>
 								<CardImg
+									style={{ maxHeight: '185px' }}
 									onClick={() => {
 										this.handleOnClick(`/open-packs`);
 									}}
@@ -41,10 +42,9 @@ export default class Home extends React.Component {
 									<CardTitle>Open Packs</CardTitle>
 								</CardBody>
 							</Card>
-						</Col>
-						<Col>
 							<Card className='ml-1 mr-1'>
 								<CardImg
+									style={{ maxHeight: '185px' }}
 									onClick={() => {
 										this.handleOnClick(
 											`/collection/my-collection`
@@ -56,10 +56,9 @@ export default class Home extends React.Component {
 									<CardTitle>My Collection</CardTitle>
 								</CardBody>
 							</Card>
-						</Col>
-						<Col>
 							<Card className='ml-1 mr-1'>
 								<CardImg
+									style={{ maxHeight: '185px' }}
 									onClick={() => {
 										this.handleOnClick(`/player-list`);
 									}}
@@ -69,7 +68,7 @@ export default class Home extends React.Component {
 									<CardTitle>Other Collections</CardTitle>
 								</CardBody>
 							</Card>
-						</Col>
+						</CardDeck>
 					</Row>
 				</Container>
 			</Layout>
