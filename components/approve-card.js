@@ -33,7 +33,50 @@ class ApproveCard extends React.Component {
 
 	async componentDidMount() {}
 
-	async handleSubmit(event) {
+	async approveCard(event) {
+		event.preventDefault();
+
+		const url = `${API_URL}/card/approve`;
+		const method = Method.POST;
+		const data = {
+			_id: this.state['_id'],
+		};
+
+		await callApi(url, method, data)
+			.then((response) => {
+				if (response.status === Status.OK) {
+					Swal({
+						title: 'Card Approved',
+						text: 'Thank you for approving the card!',
+						icon: 'success',
+					});
+				} else if (response.status === Status.UNAUTHORIZED) {
+					Swal({
+						title: 'Unauthorized',
+						text: 'Only admins are authorized to approve cards',
+						icon: 'error',
+					});
+				} else {
+					Swal({
+						title: 'Server Error',
+						text: 'The server encountered an error',
+						icon: 'error',
+					});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
+			});
+
+		return;
+	}
+
+	async deleteCard(event) {
 		event.preventDefault();
 
 		const url = `${API_URL}/card/approve`;
