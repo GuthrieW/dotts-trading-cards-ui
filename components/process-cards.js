@@ -36,7 +36,7 @@ class ProcessCards extends React.Component {
 			'can-process-card': false,
 		};
 
-		this.getUnapprovedCard = this.getUnapprovedCard(this);
+		this.getUnapprovedCard = this.getUnapprovedCard.bind(this);
 		this.approveCard = this.approveCard.bind(this);
 		this.deleteCard = this.deleteCard.bind(this);
 	}
