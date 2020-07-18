@@ -21,6 +21,7 @@ export default class Header extends React.Component {
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleEditProfile = this.handleEditProfile.bind(this);
 		this.handleSubmitCard = this.handleSubmitCard.bind(this);
+		this.handleProcessCards = this.handleProcessCards.bind(this);
 	}
 
 	async componentDidMount() {
@@ -61,6 +62,12 @@ export default class Header extends React.Component {
 	async handleSubmitCard() {
 		Router.push({
 			pathname: `/submit-card`,
+		});
+	}
+
+	async handleProcessCards() {
+		Router.push({
+			pathname: `/process-cards`,
 		});
 	}
 
@@ -154,27 +161,35 @@ export default class Header extends React.Component {
 						</NavItem>
 					</Nav>
 					<Nav>
+						{(this.state.isAdmin || this.state.isProcessor) && (
+							<NavItem>
+								<Button
+									className='ml-2'
+									onClick={this.handleProcessCards}
+								>
+									Process Cards
+								</Button>
+							</NavItem>
+						)}
+						{(this.state.isAdmin || this.state.isSubmitter) && (
+							<NavItem>
+								<Button
+									className='ml-2'
+									onClick={this.handleSubmitCard}
+								>
+									Submit a Card
+								</Button>
+							</NavItem>
+						)}
 						{this.state.isAdmin && (
-							<>
-								<NavItem>
-									<Button
-										className='ml-2'
-										onClick={this.handleSubmitCard}
-									>
-										Submit a Card
-									</Button>
-								</NavItem>
-								<NavItem>
-									<Button
-										className='ml-2'
-										onClick={
-											this.handleResetCanPurchasePacks
-										}
-									>
-										Reset Pack Purchasing
-									</Button>
-								</NavItem>
-							</>
+							<NavItem>
+								<Button
+									className='ml-2'
+									onClick={this.handleResetCanPurchasePacks}
+								>
+									Reset Pack Purchasing
+								</Button>
+							</NavItem>
 						)}
 
 						<NavItem>
