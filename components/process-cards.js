@@ -21,8 +21,8 @@ class ProcessCards extends React.Component {
 			'_id': '',
 			'nsfl-username': '',
 			'player-name': '',
-			'player-team': TEAM_DEFAULT,
-			'card-rarity': RARITY_LEVELS.DEFAULT,
+			'player-team': '',
+			'card-rarity': '',
 			'card-image-url': '',
 			'can-process-card': false,
 		};
