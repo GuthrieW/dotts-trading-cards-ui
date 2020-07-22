@@ -41,12 +41,6 @@ class ProcessCards extends React.Component {
 		this.deleteCard = this.deleteCard.bind(this);
 	}
 
-	// async handleSubmit(event) {
-	// 	event.preventDefault();
-
-	// 	if
-	// }
-
 	async componentDidMount() {
 		this.getUnapprovedCard();
 	}
@@ -228,7 +222,10 @@ class ProcessCards extends React.Component {
 									color='success'
 									className='btn m-2'
 									disabled={!this.state['can-process-card']}
-									onclick={this.approveCard}
+									onclick={() => {
+										console.log('clicked approve');
+										this.approveCard();
+									}}
 								>
 									Approve Card
 								</Button>
@@ -239,8 +236,10 @@ class ProcessCards extends React.Component {
 									color='danger'
 									className='btn m-2'
 									disabled={!this.state['can-process-card']}
-									// onclick={this.handleSubmit('delete')}
-									onclick={this.deleteCard}
+									onclick={() => {
+										console.log('clicked delete');
+										this.deleteCard();
+									}}
 								>
 									Delete Card
 								</Button>
