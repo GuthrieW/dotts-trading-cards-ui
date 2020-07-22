@@ -50,6 +50,7 @@ class ProcessCards extends React.Component {
 		const method = Method.GET;
 
 		await callApi(url, method).then((response) => {
+			console.log(response);
 			if (response.status === Status.OK) {
 				this.setState({
 					'_id': response.data._id,
