@@ -39,11 +39,22 @@ class ProcessCards extends React.Component {
 		this.getUnapprovedCard = this.getUnapprovedCard.bind(this);
 		this.approveCard = this.approveCard.bind(this);
 		this.deleteCard = this.deleteCard.bind(this);
+		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	async componentDidMount() {
 		this.getUnapprovedCard();
 	}
+
+	// async handleSubmit(action) {
+	// 	event.preventDefault();
+
+	// 	if (action === 'approve') {
+	// 		this.approveCard();
+	// 	} else {
+	// 		this.deleteCard();
+	// 	}
+	// }
 
 	async getUnapprovedCard() {
 		const url = `${API_URL}/card/getUnapprovedCard`;
@@ -59,6 +70,7 @@ class ProcessCards extends React.Component {
 					'player-team': response.data.playerTeam,
 					'card-rarity': response.data.cardRarity,
 					'card-image-url': response.data.cardImageUrl,
+					'can-process-card': true,
 				});
 			} else {
 				Swal({
@@ -69,9 +81,6 @@ class ProcessCards extends React.Component {
 			}
 		});
 
-		this.setState({
-			'can-process-card': true,
-		});
 		return;
 	}
 
@@ -168,11 +177,11 @@ class ProcessCards extends React.Component {
 				<Row>
 					<Col>
 						<Form>
+							{/* <Form onSubmit={this.handleSubmit}> */}
 							<FormGroup>
 								<Label>{LABELS.nsflUsername}</Label>
 								<Input
 									type='text'
-									value={this.state['nsfl-username']}
 									name='nsfl-username'
 									disabled={true}
 								/>
@@ -181,7 +190,6 @@ class ProcessCards extends React.Component {
 								<Label>{LABELS.playerName}</Label>
 								<Input
 									type='text'
-									value={this.state['player-name']}
 									name='player-name'
 									disabled={true}
 								/>
@@ -190,7 +198,6 @@ class ProcessCards extends React.Component {
 								<Label>{LABELS.playerTeam}</Label>
 								<Input
 									type='text'
-									value={this.state['player-team']}
 									name='player-team'
 									disabled={true}
 								></Input>
@@ -199,7 +206,6 @@ class ProcessCards extends React.Component {
 								<Label>{LABELS.cardRarity}</Label>
 								<Input
 									type='text'
-									value={this.state['card-rarity']}
 									name='card-rarity'
 									disabled={true}
 								></Input>
@@ -208,7 +214,6 @@ class ProcessCards extends React.Component {
 								<Label>{LABELS.cardImageUrl}</Label>
 								<Input
 									type='text'
-									value={this.state['card-image-url']}
 									name='card-image-url'
 									disabled={true}
 								/>
@@ -239,7 +244,7 @@ class ProcessCards extends React.Component {
 					</Col>
 					<Col>
 						<Container>
-							{this.state['card-image-url'] && (
+							{this.state['can-process-card'] && (
 								<img
 									style={{ maxHeight: '504px' }}
 									src={this.state['card-image-url']}
