@@ -177,7 +177,6 @@ class ProcessCards extends React.Component {
 				<Row>
 					<Col>
 						<Form>
-							{/* <Form onSubmit={this.handleSubmit}> */}
 							<FormGroup>
 								<Label>{LABELS.nsflUsername}</Label>
 								<Input
@@ -191,6 +190,7 @@ class ProcessCards extends React.Component {
 								<Label>{LABELS.playerName}</Label>
 								<Input
 									type='text'
+									value={this.state['player-name']}
 									name='player-name'
 									disabled={true}
 								/>
@@ -199,6 +199,7 @@ class ProcessCards extends React.Component {
 								<Label>{LABELS.playerTeam}</Label>
 								<Input
 									type='text'
+									value={this.state['player-team']}
 									name='player-team'
 									disabled={true}
 								></Input>
@@ -207,6 +208,7 @@ class ProcessCards extends React.Component {
 								<Label>{LABELS.cardRarity}</Label>
 								<Input
 									type='text'
+									value={this.state['card-rarity']}
 									name='card-rarity'
 									disabled={true}
 								></Input>
@@ -215,6 +217,7 @@ class ProcessCards extends React.Component {
 								<Label>{LABELS.cardImageUrl}</Label>
 								<Input
 									type='text'
+									value={this.state['card-image-url']}
 									name='card-image-url'
 									disabled={true}
 								/>
