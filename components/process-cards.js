@@ -182,6 +182,7 @@ class ProcessCards extends React.Component {
 								<Label>{LABELS.nsflUsername}</Label>
 								<Input
 									type='text'
+									value={this.state['nsfl-username']}
 									name='nsfl-username'
 									disabled={true}
 								/>
