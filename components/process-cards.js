@@ -39,22 +39,17 @@ class ProcessCards extends React.Component {
 		this.getUnapprovedCard = this.getUnapprovedCard.bind(this);
 		this.approveCard = this.approveCard.bind(this);
 		this.deleteCard = this.deleteCard.bind(this);
-		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
+
+	// async handleSubmit(event) {
+	// 	event.preventDefault();
+
+	// 	if
+	// }
 
 	async componentDidMount() {
 		this.getUnapprovedCard();
 	}
-
-	// async handleSubmit(action) {
-	// 	event.preventDefault();
-
-	// 	if (action === 'approve') {
-	// 		this.approveCard();
-	// 	} else {
-	// 		this.deleteCard();
-	// 	}
-	// }
 
 	async getUnapprovedCard() {
 		const url = `${API_URL}/card/getUnapprovedCard`;
@@ -133,7 +128,6 @@ class ProcessCards extends React.Component {
 
 	async deleteCard() {
 		console.log('Delete the card');
-
 		this.setState({
 			'can-process-card': false,
 		});
@@ -230,6 +224,7 @@ class ProcessCards extends React.Component {
 							</FormGroup>
 							<FormGroup>
 								<Button
+									type='button'
 									color='success'
 									className='btn m-2'
 									disabled={!this.state['can-process-card']}
@@ -240,9 +235,11 @@ class ProcessCards extends React.Component {
 							</FormGroup>
 							<FormGroup>
 								<Button
+									type='button'
 									color='danger'
 									className='btn m-2'
 									disabled={!this.state['can-process-card']}
+									// onclick={this.handleSubmit('delete')}
 									onclick={this.deleteCard}
 								>
 									Delete Card
