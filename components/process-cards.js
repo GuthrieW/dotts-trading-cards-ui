@@ -65,11 +65,11 @@ class ProcessCards extends React.Component {
 			if (response.status === Status.OK) {
 				this.setState({
 					'_id': response.data._id,
-					'nsfl-username': response.data.nsflUsername,
-					'player-name': response.data.playerName,
-					'player-team': response.data.playerTeam,
-					'card-rarity': response.data.cardRarity,
-					'card-image-url': response.data.cardImageUrl,
+					'nsfl-username': response.data.submission_username,
+					'player-name': response.data.player_name,
+					'player-team': response.data.player_team,
+					'card-rarity': response.data.rarity,
+					'card-image-url': response.data.image_url,
 					'can-process-card': true,
 				});
 			} else {
