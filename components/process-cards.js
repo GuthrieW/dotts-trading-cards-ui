@@ -85,6 +85,7 @@ class ProcessCards extends React.Component {
 	}
 
 	async approveCard() {
+		console.log('Approve the card');
 		this.setState({
 			'can-process-card': false,
 		});
@@ -97,6 +98,7 @@ class ProcessCards extends React.Component {
 
 		await callApi(url, method, data)
 			.then((response) => {
+				console.log('Approve response: ', response);
 				if (response.status === Status.OK) {
 					Swal({
 						title: 'Card Approved',
@@ -130,6 +132,8 @@ class ProcessCards extends React.Component {
 	}
 
 	async deleteCard() {
+		console.log('Delete the card');
+
 		this.setState({
 			'can-process-card': false,
 		});
@@ -139,6 +143,8 @@ class ProcessCards extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
+				console.log('Delete response: ', response);
+
 				if (response.status === Status.OK) {
 					Swal({
 						title: 'Card Deleted',
@@ -226,7 +232,6 @@ class ProcessCards extends React.Component {
 								<Button
 									color='success'
 									className='btn m-2'
-									ref={this.approvedCardRef}
 									disabled={!this.state['can-process-card']}
 									onclick={this.approveCard}
 								>
@@ -237,7 +242,6 @@ class ProcessCards extends React.Component {
 								<Button
 									color='danger'
 									className='btn m-2'
-									ref={this.deleteCardRef}
 									disabled={!this.state['can-process-card']}
 									onclick={this.deleteCard}
 								>
