@@ -56,6 +56,8 @@ class ProcessCards extends React.Component {
 					text: 'All cards have been processed, thank you!',
 					icon: 'success',
 				});
+
+				return;
 			}
 
 			if (response.status === Status.OK) {

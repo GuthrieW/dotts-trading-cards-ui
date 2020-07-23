@@ -59,6 +59,13 @@ export default class OpenPacks extends React.Component {
 	}
 
 	async componentDidMount() {
+		Swal({
+			title: 'We are closed',
+			text:
+				'The DOTTS trading cards platform is currently closed. Wait for us to open before purchasing packs!',
+			icon: 'success',
+		});
+
 		const url = `${API_URL}/user/canPurchasePack`;
 		const method = Method.GET;
 
@@ -152,7 +159,8 @@ export default class OpenPacks extends React.Component {
 										color='primary'
 										className='btn mt-2'
 										onClick={this.handleOnClick}
-										disabled={!this.state.canPurchasePack}
+										disabled={true}
+										// disabled={!this.state.canPurchasePack}
 									>
 										Open Pack
 									</Button>
