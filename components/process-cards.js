@@ -50,7 +50,14 @@ class ProcessCards extends React.Component {
 		const method = Method.GET;
 
 		await callApi(url, method).then((response) => {
-			console.log(response);
+			if (response.data == null) {
+				Swal({
+					title: 'No cards',
+					text: 'All cards have been processed, thank you!',
+					icon: 'success',
+				});
+			}
+
 			if (response.status === Status.OK) {
 				this.setState({
 					'_id': response.data._id,
@@ -74,7 +81,6 @@ class ProcessCards extends React.Component {
 	}
 
 	async approveCard() {
-		console.log('Approve the card');
 		this.setState({
 			'can-process-card': false,
 		});
@@ -87,7 +93,6 @@ class ProcessCards extends React.Component {
 
 		await callApi(url, method, data)
 			.then((response) => {
-				console.log('Approve response: ', response);
 				if (response.status === Status.OK) {
 					Swal({
 						title: 'Card Approved',
@@ -121,7 +126,6 @@ class ProcessCards extends React.Component {
 	}
 
 	async deleteCard() {
-		console.log('Delete the card');
 		this.setState({
 			'can-process-card': false,
 		});
@@ -131,8 +135,6 @@ class ProcessCards extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
-				console.log('Delete response: ', response);
-
 				if (response.status === Status.OK) {
 					Swal({
 						title: 'Card Deleted',
