@@ -57,6 +57,16 @@ class ProcessCards extends React.Component {
 					icon: 'success',
 				});
 
+				this.setState({
+					'_id': '',
+					'nsfl-username': '',
+					'player-name': '',
+					'player-team': '',
+					'card-rarity': '',
+					'card-image-url': '',
+					'can-process-card': false,
+				});
+
 				return;
 			}
 
