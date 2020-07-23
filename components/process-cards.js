@@ -88,7 +88,7 @@ class ProcessCards extends React.Component {
 		});
 
 		const url = `${API_URL}/card/approveCard`;
-		const method = Method.PATCH;
+		const method = Method.POST;
 		const data = {
 			_id: this.state['_id'],
 		};
