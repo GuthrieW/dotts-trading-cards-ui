@@ -90,7 +90,7 @@ class ProcessCards extends React.Component {
 		const url = `${API_URL}/card/approveCard`;
 		const method = Method.POST;
 		const data = {
-			_id: this.state['_id'],
+			cardId: this.state['_id'],
 		};
 
 		await callApi(url, method, data)
