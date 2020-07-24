@@ -138,12 +138,13 @@ export default class MyCollection extends React.Component {
 											`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
 										].map((card, index) => (
 											<div
-												style={{ width: '33%' }}
+												style={{ maxWidth: '33%' }}
 												key={index}
 											>
 												<img
 													style={{
 														maxHeight: '504px',
+														margin: '2px',
 													}}
 													src={card.image_url}
 												/>
