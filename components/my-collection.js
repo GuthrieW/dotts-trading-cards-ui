@@ -11,7 +11,7 @@ import { NSFL_TEAMS } from '../common/data/teams';
 const slickSettings = {
 	lazyLoad: 'ondemand',
 	slidesToShow: 3,
-	slidesToScroll: 3,
+	slidesToScroll: 1,
 	nextArrow: <SampleNextArrow />,
 	prevArrow: <SamplePrevArrow />,
 	className: 'center',
