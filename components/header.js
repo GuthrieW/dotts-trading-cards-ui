@@ -25,7 +25,7 @@ export default class Header extends React.Component {
 	}
 
 	async componentDidMount() {
-		const url = `${API_URL}/user/isAdmin`;
+		const url = `${API_URL}/user/permissions`;
 		const method = Method.GET;
 
 		await callApi(url, method)
@@ -38,7 +38,9 @@ export default class Header extends React.Component {
 					});
 				} else {
 					this.setState({
-						isAdmin: response.data,
+						isAdmin: response.data.is_admin,
+						isProcessor: response.data.is_processor,
+						isSubmitter: response.data.is_submitter,
 						isLoading: false,
 					});
 				}
