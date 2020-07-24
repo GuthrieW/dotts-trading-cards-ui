@@ -193,7 +193,10 @@ class Collection extends React.Component {
 										{this.state[
 											`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
 										].map((card, index) => (
-											<div key={index}>
+											<div
+												style={{ width: '100%' }}
+												key={index}
+											>
 												<img
 													style={{
 														maxHeight: '504px',
