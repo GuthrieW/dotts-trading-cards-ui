@@ -169,7 +169,7 @@ class Collection extends React.Component {
 			>
 				{NSFL_TEAMS.map((team, index) => (
 					<Row>
-						<Card style={{ border: 0 }} key={index}>
+						<Card style={{ width: '100%', border: 0 }} key={index}>
 							<CardImg
 								style={{ maxWidth: 500 }}
 								onClick={() => {
@@ -180,7 +180,7 @@ class Collection extends React.Component {
 								src={team.IMAGE_URL}
 								alt={`${team.CITY_NAME} ${team.TEAM_NAME}`}
 							/>
-							<CardBody>
+							<CardBody style={{ width: '100%' }}>
 								<Collapse
 									isOpen={
 										this.state[
