@@ -194,7 +194,7 @@ class Collection extends React.Component {
 											`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
 										].map((card, index) => (
 											<div
-												style={{ width: '100%' }}
+												style={{ width: '33%' }}
 												key={index}
 											>
 												<img
