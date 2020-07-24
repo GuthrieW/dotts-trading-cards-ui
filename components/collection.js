@@ -197,7 +197,7 @@ class Collection extends React.Component {
 												<img
 													style={{
 														maxHeight: '504px',
-														height: '25%',
+														width: '25%',
 													}}
 													src={card.image_url}
 												/>
