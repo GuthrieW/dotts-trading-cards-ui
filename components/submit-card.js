@@ -22,11 +22,13 @@ const LABELS = {
 	cardRarity: 'Card Rarity',
 	playerName: 'Player Name',
 	playerTeam: 'Player Team',
-	nsflUsername: 'NSFL Username',
+	nsflUsername: "Card Creator's NSFL Username",
 	cardImageUrl: 'Card Image URL',
 };
 const RARITY_LEVELS = {
 	DEFAULT: 'Card Rarity',
+	HALL_OF_FAME: 'Hall of Fame',
+	AWARD: 'Award',
 	LEGEND: 'Legend',
 	ALL_PRO: 'All-Pro',
 	STAR: 'Star',
@@ -240,6 +242,10 @@ class SubmitCard extends React.Component {
 									onChange={this.handleChange}
 								>
 									<option>{RARITY_LEVELS.DEFAULT}</option>
+									<option>
+										{RARITY_LEVELS.HALL_OF_FAME}
+									</option>
+									<option>{RARITY_LEVELS.AWARD}</option>
 									<option>{RARITY_LEVELS.LEGEND}</option>
 									<option>{RARITY_LEVELS.ALL_PRO}</option>
 									<option>{RARITY_LEVELS.STAR}</option>
