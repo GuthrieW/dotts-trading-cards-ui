@@ -103,12 +103,6 @@ export default class MyCollection extends React.Component {
 	}
 
 	render() {
-		// for (const team of NSFL_TEAMS) {
-		// 	if (this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]) {
-		// 		return <Loading />;
-		// 	}
-		// }
-
 		for (const team of NSFL_TEAMS) {
 			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`]) {
 				return <div>API Failure...</div>;
@@ -144,7 +138,10 @@ export default class MyCollection extends React.Component {
 									].map((card, index) => (
 										<div key={index}>
 											<img
-												style={{ maxHeight: '504px' }}
+												style={{
+													maxHeight: '504px',
+													height: '25%',
+												}}
 												src={card.image_url}
 											/>
 										</div>

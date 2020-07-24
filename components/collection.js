@@ -163,7 +163,10 @@ class Collection extends React.Component {
 		}
 
 		return (
-			<Layout title={`${displayUsername} Collection`}>
+			<Layout
+				style={{ width: '100%' }}
+				title={`${displayUsername} Collection`}
+			>
 				{NSFL_TEAMS.map((team, index) => (
 					<Row>
 						<Card style={{ border: 0 }} key={index}>
@@ -194,6 +197,7 @@ class Collection extends React.Component {
 												<img
 													style={{
 														maxHeight: '504px',
+														height: '25%',
 													}}
 													src={card.image_url}
 												/>

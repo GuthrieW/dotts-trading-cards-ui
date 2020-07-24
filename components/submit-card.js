@@ -271,7 +271,9 @@ class SubmitCard extends React.Component {
 						<Container>
 							{this.state.displayImage && (
 								<img
-									style={{ maxHeight: '504px' }}
+									style={{
+										maxHeight: '504px',
+									}}
 									src={this.state['card-image-url']}
 								/>
 							)}
