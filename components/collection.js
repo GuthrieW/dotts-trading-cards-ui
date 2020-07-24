@@ -27,7 +27,7 @@ function SampleNextArrow(props) {
 	return (
 		<div className={className} style={{ ...style }} onClick={onClick}>
 			<img
-				style={{ width: 20, maxH: 20 }}
+				style={{ width: 20, height: 20 }}
 				src='https://image.flaticon.com/icons/svg/126/126490.svg'
 			/>
 		</div>

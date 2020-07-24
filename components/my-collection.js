@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Collapse, CardImg, CardBody } from 'reactstrap';
+import { Card, Collapse, CardImg, CardBody, Row } from 'reactstrap';
 import Slider from 'react-slick';
 import Swal from 'sweetalert';
 import Layout from './layout';
@@ -110,47 +110,49 @@ export default class MyCollection extends React.Component {
 		}
 
 		return (
-			<Layout title='My Collection'>
-				{NSFL_TEAMS.map((team, index) => (
-					<Card style={{ border: 0 }} key={index}>
-						<CardImg
-							style={{ maxWidth: 500 }}
-							onClick={() => {
-								this.handleOnClick(
-									`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`
-								);
-							}}
-							src={team.IMAGE_URL}
-							alt={`${team.CITY_NAME} ${team.TEAM_NAME}`}
-						/>
-						<CardBody>
-							<Collapse
-								isOpen={
-									this.state[
+			<Layout style={{ width: '100%' }} title='My Collection'>
+				<Row>
+					{NSFL_TEAMS.map((team, index) => (
+						<Card style={{ width: '100%', border: 0 }} key={index}>
+							<CardImg
+								style={{ maxWidth: 500 }}
+								onClick={() => {
+									this.handleOnClick(
 										`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`
-									]
-								}
-								name={`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`}
-							>
-								<Slider {...slickSettings}>
-									{this.state[
-										`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
-									].map((card, index) => (
-										<div key={index}>
-											<img
-												style={{
-													maxHeight: '504px',
-													height: '25%',
-												}}
-												src={card.image_url}
-											/>
-										</div>
-									))}
-								</Slider>
-							</Collapse>
-						</CardBody>
-					</Card>
-				))}
+									);
+								}}
+								src={team.IMAGE_URL}
+								alt={`${team.CITY_NAME} ${team.TEAM_NAME}`}
+							/>
+							<CardBody style={{ width: '100%' }}>
+								<Collapse
+									isOpen={
+										this.state[
+											`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`
+										]
+									}
+									name={`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`}
+								>
+									<Slider {...slickSettings}>
+										{this.state[
+											`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
+										].map((card, index) => (
+											<div key={index}>
+												<img
+													style={{
+														maxHeight: '504px',
+														height: '25%',
+													}}
+													src={card.image_url}
+												/>
+											</div>
+										))}
+									</Slider>
+								</Collapse>
+							</CardBody>
+						</Card>
+					))}
+				</Row>
 			</Layout>
 		);
 	}
