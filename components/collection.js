@@ -10,24 +10,12 @@ import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 import { NSFL_TEAMS } from './../common/data/teams';
 
-const slickSettings = {
-	lazyLoad: 'ondemand',
-	slidesToShow: 3,
-	slidesToScroll: 3,
-	nextArrow: <SampleNextArrow />,
-	prevArrow: <SamplePrevArrow />,
-	className: 'center',
-	centerPadding: '20px',
-	infinite: true,
-	speed: 500,
-};
-
 function SampleNextArrow(props) {
 	const { className, style, onClick } = props;
 	return (
 		<div className={className} style={{ ...style }} onClick={onClick}>
 			<img
-				style={{ width: 20, maxH: 20 }}
+				style={{ width: 20, height: 20 }}
 				src='https://image.flaticon.com/icons/svg/126/126490.svg'
 			/>
 		</div>
@@ -163,10 +151,13 @@ class Collection extends React.Component {
 		}
 
 		return (
-			<Layout title={`${displayUsername} Collection`}>
+			<Layout
+				style={{ width: '100%' }}
+				title={`${displayUsername} Collection`}
+			>
 				{NSFL_TEAMS.map((team, index) => (
 					<Row>
-						<Card style={{ border: 0 }} key={index}>
+						<Card style={{ width: '100%', border: 0 }} key={index}>
 							<CardImg
 								style={{ maxWidth: 500 }}
 								onClick={() => {
@@ -177,7 +168,7 @@ class Collection extends React.Component {
 								src={team.IMAGE_URL}
 								alt={`${team.CITY_NAME} ${team.TEAM_NAME}`}
 							/>
-							<CardBody>
+							<CardBody style={{ width: '100%' }}>
 								<Collapse
 									isOpen={
 										this.state[
@@ -186,14 +177,43 @@ class Collection extends React.Component {
 									}
 									name={`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`}
 								>
-									<Slider {...slickSettings}>
+									<Slider
+										{...{
+											lazyLoad: 'ondemand',
+											slidesToShow: 3,
+											slidesToScroll: 1,
+											nextArrow: <SampleNextArrow />,
+											prevArrow: <SamplePrevArrow />,
+											className: 'center',
+											infinite: team.length < 3,
+											speed: 500,
+											responsive: [
+												{
+													breakpoint: 1512,
+													settings: {
+														slidesToShow: 2,
+													},
+												},
+												{
+													breakpoint: 1008,
+													settings: {
+														slidesToShow: 1,
+													},
+												},
+											],
+										}}
+									>
 										{this.state[
 											`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
 										].map((card, index) => (
-											<div key={index}>
+											<div
+												style={{ maxWidth: '33%' }}
+												key={index}
+											>
 												<img
 													style={{
 														maxHeight: '504px',
+														margin: '2px',
 													}}
 													src={card.image_url}
 												/>

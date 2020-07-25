@@ -62,7 +62,7 @@ export default class App extends React.Component {
 					</Head>
 					<Header />
 					<main>
-						<div className='container'>
+						<div className='container' style={{ width: '100%' }}>
 							<h1>{this.props.title}</h1>
 							{this.props.children}
 						</div>
