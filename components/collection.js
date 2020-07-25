@@ -185,7 +185,6 @@ class Collection extends React.Component {
 											nextArrow: <SampleNextArrow />,
 											prevArrow: <SamplePrevArrow />,
 											className: 'center',
-											centerPadding: '20px',
 											infinite: team.length < 3,
 											speed: 500,
 											responsive: [
