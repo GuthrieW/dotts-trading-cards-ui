@@ -10,7 +10,7 @@ import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 import { NSFL_TEAMS } from './../common/data/teams';
 
-const slickSettings = {
+let slickSettings = {
 	lazyLoad: 'ondemand',
 	slidesToShow: 3,
 	slidesToScroll: 1,
@@ -160,6 +160,14 @@ class Collection extends React.Component {
 			displayUsername = `${this.state.username}'`;
 		} else {
 			displayUsername = `${this.state.username}'s`;
+		}
+
+		if (
+			this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`].length < 3
+		) {
+			slickSettings.slidesToShow = this.state[
+				`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
+			].length;
 		}
 
 		return (

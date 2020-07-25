@@ -8,7 +8,7 @@ import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 import { NSFL_TEAMS } from '../common/data/teams';
 
-const slickSettings = {
+let slickSettings = {
 	lazyLoad: 'ondemand',
 	slidesToShow: 3,
 	slidesToScroll: 1,
@@ -107,6 +107,14 @@ export default class MyCollection extends React.Component {
 			if (!this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`]) {
 				return <div>API Failure...</div>;
 			}
+		}
+
+		if (
+			this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`].length < 3
+		) {
+			slickSettings.slidesToShow = this.state[
+				`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
+			].length;
 		}
 
 		return (
