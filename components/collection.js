@@ -16,7 +16,7 @@ function SampleNextArrow(props) {
 		<div className={className} style={{ ...style }} onClick={onClick}>
 			<img
 				style={{ width: 20, height: 20 }}
-				src='https://image.flaticon.com/icons/svg/126/126490.svg'
+				src='https://image.flaticon.com/icons/svg/271/271228.svg'
 			/>
 		</div>
 	);
@@ -28,7 +28,7 @@ function SamplePrevArrow(props) {
 		<div className={className} style={{ ...style }} onClick={onClick}>
 			<img
 				style={{ width: 20, height: 20 }}
-				src='https://image.flaticon.com/icons/svg/126/126492.svg'
+				src='https://image.flaticon.com/icons/svg/271/271220.svg'
 			/>
 		</div>
 	);
