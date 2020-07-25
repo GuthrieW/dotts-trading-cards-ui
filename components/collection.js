@@ -10,7 +10,6 @@ import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 import { NSFL_TEAMS } from './../common/data/teams';
 
-let slickSettings = {
 function SampleNextArrow(props) {
 	const { className, style, onClick } = props;
 	return (
