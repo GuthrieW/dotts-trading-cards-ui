@@ -11,17 +11,6 @@ import { callApi, Method } from './../common/api/call-api';
 import { NSFL_TEAMS } from './../common/data/teams';
 
 let slickSettings = {
-	lazyLoad: 'ondemand',
-	slidesToShow: 3,
-	slidesToScroll: 1,
-	nextArrow: <SampleNextArrow />,
-	prevArrow: <SamplePrevArrow />,
-	className: 'center',
-	centerPadding: '20px',
-	infinite: true,
-	speed: 500,
-};
-
 function SampleNextArrow(props) {
 	const { className, style, onClick } = props;
 	return (
@@ -162,14 +151,6 @@ class Collection extends React.Component {
 			displayUsername = `${this.state.username}'s`;
 		}
 
-		if (
-			this.state[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`].length < 3
-		) {
-			slickSettings.slidesToShow = this.state[
-				`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
-			].length;
-		}
-
 		return (
 			<Layout
 				style={{ width: '100%' }}
@@ -197,7 +178,19 @@ class Collection extends React.Component {
 									}
 									name={`${team.CITY_NAME}-${team.TEAM_NAME}-collapse`}
 								>
-									<Slider {...slickSettings}>
+									<Slider
+										{...{
+											lazyLoad: 'ondemand',
+											slidesToShow: 3,
+											slidesToScroll: 1,
+											nextArrow: <SampleNextArrow />,
+											prevArrow: <SamplePrevArrow />,
+											className: 'center',
+											centerPadding: '20px',
+											infinite: team.length < 3,
+											speed: 500,
+										}}
+									>
 										{this.state[
 											`${team.CITY_NAME}-${team.TEAM_NAME}-cards`
 										].map((card, index) => (
