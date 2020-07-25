@@ -188,6 +188,20 @@ class Collection extends React.Component {
 											centerPadding: '20px',
 											infinite: team.length < 3,
 											speed: 500,
+											responsive: [
+												{
+													breakpoint: 1008,
+													settings: {
+														slidesToShow: 2,
+													},
+												},
+												{
+													breakpoint: 504,
+													settings: {
+														slidesToShow: 1,
+													},
+												},
+											],
 										}}
 									>
 										{this.state[
