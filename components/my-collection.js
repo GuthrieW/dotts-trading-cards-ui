@@ -134,13 +134,13 @@ export default class MyCollection extends React.Component {
 											speed: 500,
 											responsive: [
 												{
-													breakpoint: 1008,
+													breakpoint: 1512,
 													settings: {
 														slidesToShow: 2,
 													},
 												},
 												{
-													breakpoint: 504,
+													breakpoint: 1008,
 													settings: {
 														slidesToShow: 1,
 													},
