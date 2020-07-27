@@ -52,7 +52,7 @@ export default class CardSearch extends React.Component {
 			return;
 		}
 
-		const url = `${API_URL}/card/search/:playerName`;
+		const url = `${API_URL}/card/search/${this.state['player-name']}`;
 		const method = Method.GET;
 
 		await callApi(url, method)
