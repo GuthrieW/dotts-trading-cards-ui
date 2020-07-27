@@ -44,6 +44,7 @@ export default class CardSearch extends React.Component {
 
 	async handleSubmit(event) {
 		event.preventDefault();
+		console.log('player-name: ', this.state['player-name']);
 
 		if (this.state['player-name'] === '') {
 			Swal({
