@@ -40,6 +40,18 @@ export default class CardSearch extends React.Component {
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	async handleChange(event) {
+		const name = event.target.name;
+		const value = event.target.value;
+
+		this.setState({
+			[name]: value,
+		});
+
+		return;
 	}
 
 	async handleSubmit(event) {
@@ -94,6 +106,7 @@ export default class CardSearch extends React.Component {
 									type='text'
 									name='player-name'
 									placeholder='Player Name'
+									onChange={this.handleChange}
 								/>
 							</FormGroup>
 							<Button color='primary' type='submit'>
