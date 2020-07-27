@@ -97,6 +97,8 @@ export default class CardSearch extends React.Component {
 	}
 
 	render() {
+		console.log('Cards', this.state['cards']);
+
 		return (
 			<Layout title='Card Search'>
 				<Row>
