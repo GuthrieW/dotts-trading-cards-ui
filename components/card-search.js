@@ -3,6 +3,7 @@ import Layout from './layout';
 import Swal from 'sweetalert';
 import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { API_URL } from './../common/api/api-url';
+import { Status } from './../common/api/http-status';
 import { callApi, Method } from './../common/api/call-api';
 import Slider from 'react-slick';
 
