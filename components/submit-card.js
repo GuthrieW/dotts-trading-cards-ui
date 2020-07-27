@@ -113,16 +113,6 @@ class SubmitCard extends React.Component {
 			return;
 		}
 
-		if (this.isSubmissionLimitReached()) {
-			Swal({
-				title: 'Submission Rejected',
-				text: 'Your submission limit for the day has been reached.',
-				icon: 'error',
-			});
-
-			return;
-		}
-
 		if (!this.state.displayImage) {
 			Swal({
 				title: 'Submission Rejected',
@@ -180,10 +170,6 @@ class SubmitCard extends React.Component {
 
 	isValidImageUrl(imageUrl) {
 		return imageUrl.match(IMAGE_URL_REGEX) != null;
-	}
-
-	isSubmissionLimitReached() {
-		return false;
 	}
 
 	async saveCard(url, options, body) {
