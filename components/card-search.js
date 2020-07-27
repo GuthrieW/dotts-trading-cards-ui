@@ -38,6 +38,8 @@ export default class CardSearch extends React.Component {
 			'cards': [],
 			'display-images': false,
 		};
+
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	async handleSubmit(event) {
