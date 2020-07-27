@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from './layout';
 import Swal from 'sweetalert';
+import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 import { FormGroup } from 'reactstrap';
