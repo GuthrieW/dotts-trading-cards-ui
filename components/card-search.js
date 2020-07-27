@@ -73,6 +73,7 @@ export default class CardSearch extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
+				console.log('response', response);
 				if (response.status === Status.OK) {
 					this.setState({
 						cards: response.data.cards,
