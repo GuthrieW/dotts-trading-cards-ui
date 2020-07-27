@@ -122,7 +122,7 @@ export default class CardSearch extends React.Component {
 								nextArrow: <SampleNextArrow />,
 								prevArrow: <SamplePrevArrow />,
 								className: 'center',
-								infinite: this.state.cards.length < 3,
+								infinite: this.state['cards'].length < 3,
 								speed: 500,
 								responsive: [
 									{
@@ -140,7 +140,7 @@ export default class CardSearch extends React.Component {
 								],
 							}}
 						>
-							{this.state.cards.map((card, index) => {
+							{this.state['cards'].map((card, index) => {
 								<div style={{ maxWidth: '33%' }} key={index}>
 									<img
 										style={{
