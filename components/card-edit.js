@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from './layout';
 import { withRouter } from 'next/router';
+import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import Swal from 'sweetalert';
 import { RARITY_LEVELS, TEAM_DEFAULT } from './../common/data/cards';
 import { Status } from './../common/api/http-status';
