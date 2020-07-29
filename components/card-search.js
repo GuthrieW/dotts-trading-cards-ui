@@ -43,6 +43,7 @@ export default class CardSearch extends React.Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.redirectToEditCard = this.redirectToEditCard.bind(this);
 	}
 
 	async handleChange(event) {
@@ -155,7 +156,7 @@ export default class CardSearch extends React.Component {
 											margin: '2px',
 										}}
 										src={card.image_url}
-										onClick={this.}
+										onClick={this.redirectToEditCard}
 									/>
 								</div>
 							))}
