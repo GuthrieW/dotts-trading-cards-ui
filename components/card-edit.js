@@ -10,6 +10,7 @@ import {
 	Label,
 	Input,
 	Button,
+	CustomInput,
 } from 'reactstrap';
 import Swal from 'sweetalert';
 import { RARITY_LEVELS, TEAM_DEFAULT } from './../common/data/cards';
@@ -24,6 +25,8 @@ const LABELS = {
 	playerTeam: 'Player Team',
 	nsflUsername: "Card Creator's NSFL Username",
 	cardImageUrl: 'Card Image URL',
+	approved: 'Approved',
+	currentRotation: 'Current Rotation',
 };
 
 class CardEdit extends React.Component {
@@ -79,7 +82,7 @@ class CardEdit extends React.Component {
 
 	render() {
 		return (
-			<Layout title='Submit a Card'>
+			<Layout title='Edit a Card'>
 				<Row>
 					<Col>
 						<Form onSubmit={this.handleSubmit}>
@@ -142,6 +145,17 @@ class CardEdit extends React.Component {
 									name='card-image-url'
 									placeholder={LABELS.cardImageUrl}
 									onChange={this.handleChange}
+								/>
+							</FormGroup>
+							<FormGroup>
+								<Label>{LABELS.approved}</Label>
+								<CustomInput type='switch' name='approved' />
+							</FormGroup>
+							<FormGroup>
+								<Label>{LABELS.currentRotation}</Label>
+								<CustomInput
+									type='switch'
+									name='current-rotation'
 								/>
 							</FormGroup>
 							<Button color='primary' type='submit'>
