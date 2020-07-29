@@ -7,6 +7,7 @@ import { RARITY_LEVELS, TEAM_DEFAULT } from './../common/data/cards';
 import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
+import { NSFL_TEAMS } from './../common/data/teams';
 
 const LABELS = {
 	cardRarity: 'Card Rarity',
