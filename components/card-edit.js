@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from './layout';
 import { withRouter } from 'next/router';
 import Swal from 'sweetalert';
-import { RARITY_LEVELS } from './../common/data/cards';
+import { RARITY_LEVELS, TEAM_DEFAULT } from './../common/data/cards';
 import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';

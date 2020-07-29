@@ -8,3 +8,5 @@ export const RARITY_LEVELS = {
 	STARTER: 'Starter',
 	BACKUP: 'Backup',
 };
+
+export const TEAM_DEFAULT = 'Player Team';

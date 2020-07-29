@@ -14,10 +14,10 @@ import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 import { NSFL_TEAMS } from './../common/data/teams';
+import { RARITY_LEVELS, TEAM_DEFAULT } from './../common/data/cards';
 import Layout from './layout';
 
 const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
-const TEAM_DEFAULT = 'Player Team';
 const LABELS = {
 	cardRarity: 'Card Rarity',
 	playerName: 'Player Name',
