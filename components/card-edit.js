@@ -55,6 +55,7 @@ class CardEdit extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
+				console.log('response', response);
 				if (response.status === Status.OK) {
 					const card = response.data;
 
