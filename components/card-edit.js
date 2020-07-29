@@ -8,6 +8,14 @@ import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 
+const LABELS = {
+	cardRarity: 'Card Rarity',
+	playerName: 'Player Name',
+	playerTeam: 'Player Team',
+	nsflUsername: "Card Creator's NSFL Username",
+	cardImageUrl: 'Card Image URL',
+};
+
 class CardEdit extends React.Component {
 	constructor() {
 		super();
