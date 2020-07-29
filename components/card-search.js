@@ -97,6 +97,7 @@ export default class CardSearch extends React.Component {
 	}
 
 	async redirectToEditCard(cardId) {
+		console.log('Clicked on the card');
 		Router.push({
 			pathname: `/card-edit`,
 			query: { cardId: cardId },
@@ -130,7 +131,6 @@ export default class CardSearch extends React.Component {
 								nextArrow: <SampleNextArrow />,
 								prevArrow: <SamplePrevArrow />,
 								className: 'center',
-								infinite: false,
 								speed: 500,
 								responsive: [
 									{
