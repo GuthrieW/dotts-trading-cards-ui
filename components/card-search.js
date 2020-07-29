@@ -147,16 +147,7 @@ export default class CardSearch extends React.Component {
 								],
 							}}
 						>
-							<div style={{ maxWidth: '33%' }}>
-								<img
-									style={{
-										maxHeight: '504px',
-										margin: '2px',
-									}}
-									src='https://i.imgur.com/EDch8Gc.png'
-								/>
-							</div>
-							{/* {this.state['cards'].map((card, index) => {
+							{this.state['cards'].map((card, index) => {
 								<div style={{ maxWidth: '33%' }} key={index}>
 									<img
 										style={{
@@ -166,7 +157,7 @@ export default class CardSearch extends React.Component {
 										src={card.image_url}
 									/>
 								</div>;
-							})} */}
+							})}
 						</Slider>
 					</Col>
 				</Row>
