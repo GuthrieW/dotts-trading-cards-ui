@@ -18,7 +18,6 @@ import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 import { NSFL_TEAMS } from './../common/data/teams';
-import { isThisTypeNode } from 'typescript';
 
 const LABELS = {
 	cardRarity: 'Card Rarity',
@@ -219,6 +218,7 @@ class CardEdit extends React.Component {
 									type='switch'
 									name='approved'
 									value={this.state['approved']}
+									onChange={this.handleChange}
 								/>
 							</FormGroup>
 							<FormGroup>
@@ -226,20 +226,18 @@ class CardEdit extends React.Component {
 								<CustomInput
 									type='switch'
 									name='current-rotation'
+									value={this.state['current-rotation']}
+									onChange={this.handleChange}
 								/>
 							</FormGroup>
-							<Button
-								color='primary'
-								type='submit'
-								value={this.state['current-rotation']}
-							>
+							<Button color='primary' type='submit'>
 								Submit
 							</Button>
 						</Form>
 					</Col>
 					<Col>
 						<Container>
-							{this.state.displayImage && (
+							{this.state['card-image-url'] && (
 								<img
 									style={{
 										maxHeight: '504px',
