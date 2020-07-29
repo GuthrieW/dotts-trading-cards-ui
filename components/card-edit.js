@@ -18,6 +18,7 @@ import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 import { NSFL_TEAMS } from './../common/data/teams';
+import { isThisTypeNode } from 'typescript';
 
 const LABELS = {
 	cardRarity: 'Card Rarity',
@@ -33,6 +34,7 @@ class CardEdit extends React.Component {
 	constructor() {
 		super();
 		this.state = {
+			'_id': '',
 			'nsfl-username': '',
 			'player-name': '',
 			'player-team': TEAM_DEFAULT,
@@ -60,6 +62,7 @@ class CardEdit extends React.Component {
 					const card = response.data;
 
 					this.setState({
+						'_id': card._id,
 						'nsfl-username': card.submission_username,
 						'player-name': card.player_name,
 						'player-team': card.player_team,
@@ -88,10 +91,26 @@ class CardEdit extends React.Component {
 
 	async handleSubmit(event) {
 		event.preventDefault();
+		const url = `${API_URL}/card/update`;
+		const method = Method.POST;
+		const data = {
+			_id: this.state['_id'],
+			submission_username: this.state['nsfl-username'],
+			player_name: this.state['player-name'],
+			player_team: this.state['player-team'],
+			rarity: this.state['card-rarity'],
+			image_url: this.state['card-image-url'],
+			approved: this.state['approved'],
+			current_rotation: this.state['current-rotation'],
+		};
 
-		await callApi(url, method)
+		await callApi(url, method, data)
 			.then((response) => {
 				if (response.status === Status.OK) {
+					Swal({
+						title: 'Card Updated',
+						icon: 'success',
+					});
 				} else {
 					Swal({
 						title: 'Server Error',
@@ -121,6 +140,7 @@ class CardEdit extends React.Component {
 								<Input
 									type='text'
 									name='nsfl-username'
+									value={this.state['nsfl-username']}
 									placeholder={LABELS.nsflUsername}
 									onChange={this.handleChange}
 								/>
@@ -130,6 +150,7 @@ class CardEdit extends React.Component {
 								<Input
 									type='text'
 									name='player-name'
+									value={this.state['player-name']}
 									placeholder={LABELS.playerName}
 									onChange={this.handleChange}
 								/>
@@ -139,6 +160,7 @@ class CardEdit extends React.Component {
 								<Input
 									type='select'
 									name='player-team'
+									value={this.state['player-team']}
 									onChange={this.handleChange}
 								>
 									<option>{TEAM_DEFAULT}</option>
@@ -154,6 +176,7 @@ class CardEdit extends React.Component {
 								<Input
 									type='select'
 									name='card-rarity'
+									value={this.state['card-rarity']}
 									onChange={this.handleChange}
 								>
 									<option>{RARITY_LEVELS.DEFAULT}</option>
@@ -173,13 +196,18 @@ class CardEdit extends React.Component {
 								<Input
 									type='text'
 									name='card-image-url'
+									value={this.state['card-image-url']}
 									placeholder={LABELS.cardImageUrl}
 									onChange={this.handleChange}
 								/>
 							</FormGroup>
 							<FormGroup>
 								<Label>{LABELS.approved}</Label>
-								<CustomInput type='switch' name='approved' />
+								<CustomInput
+									type='switch'
+									name='approved'
+									value={this.state['approved']}
+								/>
 							</FormGroup>
 							<FormGroup>
 								<Label>{LABELS.currentRotation}</Label>
@@ -188,7 +216,11 @@ class CardEdit extends React.Component {
 									name='current-rotation'
 								/>
 							</FormGroup>
-							<Button color='primary' type='submit'>
+							<Button
+								color='primary'
+								type='submit'
+								value={this.state['current-rotation']}
+							>
 								Submit
 							</Button>
 						</Form>
