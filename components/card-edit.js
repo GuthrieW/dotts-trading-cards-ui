@@ -123,14 +123,7 @@ class CardEdit extends React.Component {
 									name='card-rarity'
 									onChange={this.handleChange}
 								>
-									{Object.keys(RARITY_LEVELS).forEach(
-										(rarityLevel, index) => (
-											<option key={index}>
-												{rarityLevel}
-											</option>
-										)
-									)}
-									{/* <option>{RARITY_LEVELS.DEFAULT}</option>
+									<option>{RARITY_LEVELS.DEFAULT}</option>
 									<option>
 										{RARITY_LEVELS.HALL_OF_FAME}
 									</option>
@@ -139,7 +132,7 @@ class CardEdit extends React.Component {
 									<option>{RARITY_LEVELS.ALL_PRO}</option>
 									<option>{RARITY_LEVELS.STAR}</option>
 									<option>{RARITY_LEVELS.STARTER}</option>
-									<option>{RARITY_LEVELS.BACKUP}</option> */}
+									<option>{RARITY_LEVELS.BACKUP}</option>
 								</Input>
 							</FormGroup>
 							<FormGroup>
