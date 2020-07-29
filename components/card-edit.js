@@ -46,8 +46,11 @@ class CardEdit extends React.Component {
 	}
 
 	async componentDidMount() {
+		console.log(this.props.router.query);
 		const cardId = this.props.router.query.cardId;
+		console.log(cardId);
 		const url = `${API_URL}/card/${cardId}`;
+		console.log(url);
 		const method = Method.GET;
 
 		await callApi(url, method)
@@ -85,27 +88,9 @@ class CardEdit extends React.Component {
 	async handleSubmit(event) {
 		event.preventDefault();
 
-		const cardId = this.props.router.query.cardId;
-		console.log('cardId:', cardId);
-		const url = `${API_URL}/card/${cardId}`;
-		console.log('url: ', url);
-		const method = Method.GET;
-
 		await callApi(url, method)
 			.then((response) => {
 				if (response.status === Status.OK) {
-					const card = response.data;
-					console.log('response', response);
-
-					this.setState({
-						'nsfl-username': card.submission_username,
-						'player-name': card.player_name,
-						'player-team': card.player_team,
-						'card-rarity': card.rarity,
-						'card-image-url': card.image_url,
-						'approved': card.approved,
-						'current-rotation': card.current_rotation,
-					});
 				} else {
 					Swal({
 						title: 'Server Error',
