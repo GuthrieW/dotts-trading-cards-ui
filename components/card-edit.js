@@ -45,6 +45,7 @@ class CardEdit extends React.Component {
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 	async componentDidMount() {
@@ -87,6 +88,17 @@ class CardEdit extends React.Component {
 					icon: 'error',
 				});
 			});
+	}
+
+	async handleChange(event) {
+		const name = event.target.name;
+		const value = event.target.value;
+
+		this.setState({
+			[name]: value,
+		});
+
+		return;
 	}
 
 	async handleSubmit(event) {
