@@ -1,32 +1,13 @@
 import React from 'react';
-import {
-	Container,
-	Row,
-	Col,
-	Form,
-	Label,
-	FormGroup,
-	Input,
-	Button,
-} from 'reactstrap';
+import Layout from './layout';
+import { withRouter } from 'next/router';
 import Swal from 'sweetalert';
+import { RARITY_LEVELS } from './../common/data/cards';
 import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
-import { NSFL_TEAMS } from './../common/data/teams';
-import Layout from './layout';
 
-const IMAGE_URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg)/g;
-const TEAM_DEFAULT = 'Player Team';
-const LABELS = {
-	cardRarity: 'Card Rarity',
-	playerName: 'Player Name',
-	playerTeam: 'Player Team',
-	nsflUsername: "Card Creator's NSFL Username",
-	cardImageUrl: 'Card Image URL',
-};
-
-class SubmitCard extends React.Component {
+class CardEdit extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -35,108 +16,29 @@ class SubmitCard extends React.Component {
 			'player-team': TEAM_DEFAULT,
 			'card-rarity': RARITY_LEVELS.DEFAULT,
 			'card-image-url': '',
-			'displayImage': false,
+			'approved': false,
+			'current-rotation': false,
 		};
-
-		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleChange(event) {
-		const name = event.target.name;
-		const value = event.target.value;
+	async componentDidMount() {
+		const cardId = this.props.router.query.cardId;
+		const url = `${API_URL}/card/${cardId}`;
+		const method = Method.GET;
 
-		if (name === 'card-image-url') {
-			this.setState({
-				'card-image-url': value,
-				'displayImage': this.isValidImageUrl(value),
-			});
-		} else {
-			this.setState({
-				[name]: value,
-			});
-		}
-
-		return;
-	}
-
-	async handleSubmit(event) {
-		event.preventDefault();
-
-		if (this.isEmptyString(this.state['nsfl-username'])) {
-			Swal({
-				title: 'Submission Rejected',
-				text: 'Please enter your NSFL username.',
-				icon: 'error',
-			});
-
-			return;
-		}
-
-		if (this.isEmptyString(this.state['player-name'])) {
-			Swal({
-				title: 'Submission Rejected',
-				text: "Please enter the player's name.",
-				icon: 'error',
-			});
-
-			return;
-		}
-
-		if (this.state['player-team'] === TEAM_DEFAULT) {
-			Swal({
-				title: 'Submission Rejected',
-				text: "Please select the card's team.",
-				icon: 'error',
-			});
-
-			return;
-		}
-
-		if (this.state['card-rarity'] === RARITY_LEVELS.DEFAULT) {
-			Swal({
-				title: 'Submission Rejected',
-				text: "Please select the card's rarity level",
-				icon: 'error',
-			});
-
-			return;
-		}
-
-		if (!this.state.displayImage) {
-			Swal({
-				title: 'Submission Rejected',
-				text: 'Please enter a valid image URL.',
-				icon: 'error',
-			});
-
-			return;
-		}
-
-		const url = `${API_URL}/card`;
-		const method = Method.POST;
-		const data = {
-			submission_username: this.state['nsfl-username'],
-			player_name: this.state['player-name'],
-			player_team: this.state['player-team'],
-			rarity: this.state['card-rarity'],
-			image_url: this.state['card-image-url'],
-			collection_ids: [],
-		};
-
-		await callApi(url, method, data)
+		await callApi(url, method)
 			.then((response) => {
 				if (response.status === Status.OK) {
-					Swal({
-						title: 'Card Submitted',
-						text: 'Thank you for your submission!',
-						icon: 'success',
-					});
-				} else if (response.status === Status.UNAUTHORIZED) {
-					Swal({
-						title: 'Unauthorized',
-						text: 'Only admins are authorized to submit cards',
-						icon: 'error',
+					const card = response.data;
+
+					this.setState({
+						'nsfl-username': card.submission_username,
+						'player-name': card.player_name,
+						'player-team': card.player_team,
+						'card-rarity': card.rarity,
+						'card-image-url': card.image_url,
+						'approved': card.approved,
+						'current-rotation': card.current_rotation,
 					});
 				} else {
 					Swal({
@@ -154,16 +56,6 @@ class SubmitCard extends React.Component {
 					icon: 'error',
 				});
 			});
-
-		return;
-	}
-
-	isValidImageUrl(imageUrl) {
-		return imageUrl.match(IMAGE_URL_REGEX) != null;
-	}
-
-	isEmptyString(string) {
-		return string === '';
 	}
 
 	render() {
@@ -263,4 +155,4 @@ class SubmitCard extends React.Component {
 	}
 }
 
-export default SubmitCard;
+export default withRouter(CardEdit);

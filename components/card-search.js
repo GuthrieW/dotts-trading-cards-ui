@@ -6,6 +6,7 @@ import { API_URL } from './../common/api/api-url';
 import { Status } from './../common/api/http-status';
 import { callApi, Method } from './../common/api/call-api';
 import Slider from 'react-slick';
+import Router from 'next/router';
 
 function SampleNextArrow(props) {
 	const { className, style, onClick } = props;
@@ -94,6 +95,13 @@ export default class CardSearch extends React.Component {
 			});
 	}
 
+	async redirectToEditCard(cardId) {
+		Router.push({
+			pathname: `/card-edit`,
+			query: { cardId: cardId },
+		});
+	}
+
 	render() {
 		return (
 			<Layout title='Card Search'>
@@ -121,7 +129,7 @@ export default class CardSearch extends React.Component {
 								nextArrow: <SampleNextArrow />,
 								prevArrow: <SamplePrevArrow />,
 								className: 'center',
-								infinite: this.state['cards'].length < 3,
+								infinite: false,
 								speed: 500,
 								responsive: [
 									{
@@ -147,6 +155,7 @@ export default class CardSearch extends React.Component {
 											margin: '2px',
 										}}
 										src={card.image_url}
+										onClick={this.}
 									/>
 								</div>
 							))}
