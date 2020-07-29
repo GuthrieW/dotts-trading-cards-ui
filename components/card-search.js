@@ -57,7 +57,6 @@ export default class CardSearch extends React.Component {
 
 	async handleSubmit(event) {
 		event.preventDefault();
-		console.log('player-name: ', this.state['player-name']);
 
 		if (this.state['player-name'] === '') {
 			Swal({
@@ -73,7 +72,6 @@ export default class CardSearch extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
-				console.log(response);
 				if (response.status === Status.OK) {
 					this.setState({
 						cards: response.data,
@@ -97,12 +95,6 @@ export default class CardSearch extends React.Component {
 	}
 
 	render() {
-		console.log('Cards', this.state['cards']);
-
-		this.state['cards'].map((card, index) => {
-			console.log(`${card.player_name} - ${card.image_url}`);
-		});
-
 		return (
 			<Layout title='Card Search'>
 				<Row>
@@ -147,7 +139,7 @@ export default class CardSearch extends React.Component {
 								],
 							}}
 						>
-							{this.state['cards'].map((card, index) => {
+							{this.state['cards'].map((card, index) => (
 								<div style={{ maxWidth: '33%' }} key={index}>
 									<img
 										style={{
@@ -156,8 +148,8 @@ export default class CardSearch extends React.Component {
 										}}
 										src={card.image_url}
 									/>
-								</div>;
-							})}
+								</div>
+							))}
 						</Slider>
 					</Col>
 				</Row>
