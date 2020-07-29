@@ -99,6 +99,10 @@ export default class CardSearch extends React.Component {
 	render() {
 		console.log('Cards', this.state['cards']);
 
+		this.state['cards'].map((card, index) => {
+			console.log(`${card.player_name} - ${card.image_url}`);
+		});
+
 		return (
 			<Layout title='Card Search'>
 				<Row>
