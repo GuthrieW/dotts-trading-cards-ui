@@ -46,10 +46,10 @@ class ProcessCards extends React.Component {
 	}
 
 	async getUnapprovedCard() {
-		const url = `${API_URL}/card/getUnapprovedCard`;
+		const url = `${API_URL}/card/unapproved`;
 		const method = Method.GET;
 
-		await callApi(url, method).then((response) => {
+		callApi(url, method).then((response) => {
 			if (response.data == null) {
 				console.log('response.data is null', response);
 
