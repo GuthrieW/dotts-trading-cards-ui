@@ -192,6 +192,9 @@ class CardEdit extends React.Component {
 								>
 									<option>{RARITY_LEVELS.DEFAULT}</option>
 									<option>
+										{RARITY_LEVELS.ULTIMUS_CHAMPIONS}
+									</option>
+									<option>
 										{RARITY_LEVELS.HALL_OF_FAME}
 									</option>
 									<option>{RARITY_LEVELS.AWARD}</option>
