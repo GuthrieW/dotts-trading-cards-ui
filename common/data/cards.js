@@ -1,6 +1,6 @@
 export const RARITY_LEVELS = {
 	DEFAULT: 'Card Rarity',
-	ULTIMUS_CHAMPIONS: 'Ultimus Champions',
+	ULTIMUS_CHAMPION: 'Ultimus Champion',
 	HALL_OF_FAME: 'Hall of Fame',
 	AWARD: 'Award',
 	LEGEND: 'Legend',

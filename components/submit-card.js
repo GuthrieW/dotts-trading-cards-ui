@@ -214,7 +214,7 @@ class SubmitCard extends React.Component {
 								>
 									<option>{RARITY_LEVELS.DEFAULT}</option>
 									<option>
-										{RARITY_LEVELS.ULTIMUS_CHAMPIONS}
+										{RARITY_LEVELS.ULTIMUS_CHAMPION}
 									</option>
 									<option>
 										{RARITY_LEVELS.HALL_OF_FAME}
