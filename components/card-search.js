@@ -155,11 +155,15 @@ export default class CardSearch extends React.Component {
 											maxHeight: '504px',
 											margin: '2px',
 										}}
+										src={card.image_url}
+									/>
+									<Button
 										onClick={this.redirectToEditCard(
 											card._id
 										)}
-										src={card.image_url}
-									/>
+									>
+										Edit Card
+									</Button>
 								</div>
 							))}
 						</Slider>

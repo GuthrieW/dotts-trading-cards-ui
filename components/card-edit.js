@@ -60,7 +60,7 @@ class CardEdit extends React.Component {
 		const cardUrl = `${API_URL}/card/${cardId}`;
 		const cardMethod = Method.GET;
 
-		await callApi(url, method)
+		await callApi(cardUrl, cardMethod)
 			.then((response) => {
 				console.log('response', response);
 				if (response.status === Status.OK) {
