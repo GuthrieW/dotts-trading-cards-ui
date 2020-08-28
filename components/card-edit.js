@@ -213,7 +213,7 @@ class CardEdit extends React.Component {
 							<FormGroup>
 								<Label>{LABELS.cardImageUrl}</Label>
 								<Input
-									type='select'
+									type='text'
 									name='card-image-url'
 									value={this.state['card-image-url']}
 									placeholder={LABELS.cardImageUrl}
@@ -235,7 +235,7 @@ class CardEdit extends React.Component {
 							<FormGroup>
 								<Label>{LABELS.currentRotation}</Label>
 								<Input
-									type='switch'
+									type='select'
 									name='current-rotation'
 									value={this.state['current-rotation']}
 									onChange={this.handleChange}
