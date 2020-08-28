@@ -126,51 +126,53 @@ export default class CardSearch extends React.Component {
 							</Button>
 						</Form>
 						{this.state['cards-loaded'] && (
-							<Label>Cards</Label>
-							<Slider
-								{...{
-									lazyLoad: 'ondemand',
-									slidesToShow: 3,
-									slidesToScroll: 1,
-									nextArrow: <SampleNextArrow />,
-									prevArrow: <SamplePrevArrow />,
-									className: 'center',
-									infinite: false,
-									speed: 500,
-									responsive: [
-										{
-											breakpoint: 1512,
-											settings: {
-												slidesToShow: 2,
+							<>
+								<Label>Cards</Label>
+								<Slider
+									{...{
+										lazyLoad: 'ondemand',
+										slidesToShow: 3,
+										slidesToScroll: 1,
+										nextArrow: <SampleNextArrow />,
+										prevArrow: <SamplePrevArrow />,
+										className: 'center',
+										infinite: false,
+										speed: 500,
+										responsive: [
+											{
+												breakpoint: 1512,
+												settings: {
+													slidesToShow: 2,
+												},
 											},
-										},
-										{
-											breakpoint: 1008,
-											settings: {
-												slidesToShow: 1,
+											{
+												breakpoint: 1008,
+												settings: {
+													slidesToShow: 1,
+												},
 											},
-										},
-									],
-								}}
-							>
-								{this.state['cards'].map((card, index) => (
-									<div
-										style={{ maxWidth: '33%' }}
-										key={index}
-									>
-										<img
-											style={{
-												maxHeight: '504px',
-												margin: '2px',
-											}}
-											onClick={redirectToEditCard(
-												card._id
-											)}
-											src={card.image_url}
-										/>
-									</div>
-								))}
-							</Slider>
+										],
+									}}
+								>
+									{this.state['cards'].map((card, index) => (
+										<div
+											style={{ maxWidth: '33%' }}
+											key={index}
+										>
+											<img
+												style={{
+													maxHeight: '504px',
+													margin: '2px',
+												}}
+												onClick={redirectToEditCard(
+													card._id
+												)}
+												src={card.image_url}
+											/>
+										</div>
+									))}
+								</Slider>
+							</>
 						)}
 					</Col>
 				</Row>
