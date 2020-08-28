@@ -158,9 +158,9 @@ export default class CardSearch extends React.Component {
 										src={card.image_url}
 									/>
 									<Button
-										onClick={this.redirectToEditCard(
-											card._id
-										)}
+										onClick={() => {
+											this.redirectToEditCard(card._id);
+										}}
 									>
 										Edit Card
 									</Button>
