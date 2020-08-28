@@ -38,6 +38,7 @@ export default class CardSearch extends React.Component {
 		this.state = {
 			'player-name': '',
 			'cards': [],
+			'cards-loaded': false,
 			'display-images': false,
 		};
 
@@ -76,7 +77,8 @@ export default class CardSearch extends React.Component {
 			.then((response) => {
 				if (response.status === Status.OK) {
 					this.setState({
-						cards: response.data,
+						'cards': response.data,
+						'cards-loaded': true,
 					});
 				} else {
 					Swal({
@@ -123,44 +125,53 @@ export default class CardSearch extends React.Component {
 								Search
 							</Button>
 						</Form>
-						<Label>Cards</Label>
-						<Slider
-							{...{
-								lazyLoad: 'ondemand',
-								slidesToShow: 3,
-								slidesToScroll: 1,
-								nextArrow: <SampleNextArrow />,
-								prevArrow: <SamplePrevArrow />,
-								className: 'center',
-								speed: 500,
-								responsive: [
-									{
-										breakpoint: 1512,
-										settings: {
-											slidesToShow: 2,
+						{this.state['cards-loaded'] && (
+							<Label>Cards</Label>
+							<Slider
+								{...{
+									lazyLoad: 'ondemand',
+									slidesToShow: 3,
+									slidesToScroll: 1,
+									nextArrow: <SampleNextArrow />,
+									prevArrow: <SamplePrevArrow />,
+									className: 'center',
+									infinite: false,
+									speed: 500,
+									responsive: [
+										{
+											breakpoint: 1512,
+											settings: {
+												slidesToShow: 2,
+											},
 										},
-									},
-									{
-										breakpoint: 1008,
-										settings: {
-											slidesToShow: 1,
+										{
+											breakpoint: 1008,
+											settings: {
+												slidesToShow: 1,
+											},
 										},
-									},
-								],
-							}}
-						>
-							{this.state['cards'].map((card, index) => (
-								<div style={{ maxWidth: '33%' }} key={index}>
-									<img
-										style={{
-											maxHeight: '504px',
-											margin: '2px',
-										}}
-										src={card.image_url}
-									/>
-								</div>
-							))}
-						</Slider>
+									],
+								}}
+							>
+								{this.state['cards'].map((card, index) => (
+									<div
+										style={{ maxWidth: '33%' }}
+										key={index}
+									>
+										<img
+											style={{
+												maxHeight: '504px',
+												margin: '2px',
+											}}
+											onClick={redirectToEditCard(
+												card._id
+											)}
+											src={card.image_url}
+										/>
+									</div>
+								))}
+							</Slider>
+						)}
 					</Col>
 				</Row>
 			</Layout>
