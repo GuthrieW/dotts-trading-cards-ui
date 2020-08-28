@@ -4,6 +4,7 @@ import Swal from 'sweetalert';
 import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
+import { Table } from 'reactstrap';
 import Layout from './layout';
 import _filter from 'lodash/filter';
 
@@ -60,19 +61,32 @@ export default class PlayerList extends React.Component {
 	render() {
 		return (
 			<Layout title='Player List'>
-				{this.state.userList.map((user, index) => (
-					<a
-						className='btn btn-primary'
-						key={index}
-						onClick={() => {
-							this.handleOnClicK(user._id);
-						}}
-					>
-						<span style={{ color: 'white' }}>
-							{user.nsfl_username}
-						</span>
-					</a>
-				))}
+				<Table>
+					<thead>
+						<tr>
+							<th>Username</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.state.userList.map((user, index) => (
+							<tr>
+								<td>
+									<a
+										className='btn btn-primary'
+										key={index}
+										onClick={() => {
+											this.handleOnClicK(user._id);
+										}}
+									>
+										<span style={{ color: 'white' }}>
+											{user.nsfl_username}
+										</span>
+									</a>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</Table>
 			</Layout>
 		);
 	}
