@@ -13,12 +13,13 @@ export const callApi = async (
 	data = {}
 ) => {
 	Axios.defaults.withCredentials = true;
+
 	return Axios({
 		method: method,
 		url: url,
 		data: data,
 		headers: {
-			Cookie: 'SameSite=None; Secure;',
+			Cookie: 'Secure;',
 		},
 	})
 		.then((response) => {
