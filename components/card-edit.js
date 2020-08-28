@@ -46,6 +46,9 @@ class CardEdit extends React.Component {
 			'card-image-url': '',
 			'approved': false,
 			'current-rotation': false,
+			'isAdmin': false,
+			'isProcessor': false,
+			'isSubmitter': false,
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -53,12 +56,9 @@ class CardEdit extends React.Component {
 	}
 
 	async componentDidMount() {
-		console.log(this.props.router.query);
 		const cardId = this.props.router.query.cardId;
-		console.log(cardId);
-		const url = `${API_URL}/card/${cardId}`;
-		console.log(url);
-		const method = Method.GET;
+		const cardUrl = `${API_URL}/card/${cardId}`;
+		const cardMethod = Method.GET;
 
 		await callApi(url, method)
 			.then((response) => {
@@ -81,6 +81,35 @@ class CardEdit extends React.Component {
 						title: 'Server Error',
 						text: 'The server encountered an error',
 						icon: 'error',
+					});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
+			});
+
+		const permissionsUrl = `${API_URL}/user/permissions`;
+		const permissionsMethod = Method.GET;
+
+		await callApi(permissionsUrl, permissionsMethod)
+			.then((response) => {
+				if (response.status !== Status.OK) {
+					Swal({
+						title: 'Server Error',
+						text: 'The server encountered an error',
+						icon: 'error',
+					});
+				} else {
+					this.setState({
+						isAdmin: response.data.is_admin,
+						isProcessor: response.data.is_processor,
+						isSubmitter: response.data.is_submitter,
+						isLoading: false,
 					});
 				}
 			})
@@ -156,6 +185,13 @@ class CardEdit extends React.Component {
 								<Label>{LABELS.nsflUsername}</Label>
 								<Input
 									type='text'
+									disabled={
+										!(
+											this.state.isAdmin ||
+											this.state.isProcessor ||
+											this.state.isSubmitter
+										)
+									}
 									name='nsfl-username'
 									value={this.state['nsfl-username']}
 									placeholder={LABELS.nsflUsername}
@@ -166,6 +202,13 @@ class CardEdit extends React.Component {
 								<Label>{LABELS.playerName}</Label>
 								<Input
 									type='text'
+									disabled={
+										!(
+											this.state.isAdmin ||
+											this.state.isProcessor ||
+											this.state.isSubmitter
+										)
+									}
 									name='player-name'
 									value={this.state['player-name']}
 									placeholder={LABELS.playerName}
@@ -176,6 +219,13 @@ class CardEdit extends React.Component {
 								<Label>{LABELS.playerTeam}</Label>
 								<Input
 									type='select'
+									disabled={
+										!(
+											this.state.isAdmin ||
+											this.state.isProcessor ||
+											this.state.isSubmitter
+										)
+									}
 									name='player-team'
 									value={this.state['player-team']}
 									onChange={this.handleChange}
@@ -192,6 +242,13 @@ class CardEdit extends React.Component {
 								<Label>{LABELS.cardRarity}</Label>
 								<Input
 									type='select'
+									disabled={
+										!(
+											this.state.isAdmin ||
+											this.state.isProcessor ||
+											this.state.isSubmitter
+										)
+									}
 									name='card-rarity'
 									value={this.state['card-rarity']}
 									onChange={this.handleChange}
@@ -215,6 +272,13 @@ class CardEdit extends React.Component {
 								<Label>{LABELS.cardImageUrl}</Label>
 								<Input
 									type='text'
+									disabled={
+										!(
+											this.state.isAdmin ||
+											this.state.isProcessor ||
+											this.state.isSubmitter
+										)
+									}
 									name='card-image-url'
 									value={this.state['card-image-url']}
 									placeholder={LABELS.cardImageUrl}
@@ -225,6 +289,13 @@ class CardEdit extends React.Component {
 								<Label>{LABELS.approved}</Label>
 								<Input
 									type='select'
+									disabled={
+										!(
+											this.state.isAdmin ||
+											this.state.isProcessor ||
+											this.state.isSubmitter
+										)
+									}
 									name='approved'
 									value={this.state['approved']}
 									onChange={this.handleChange}
@@ -237,6 +308,13 @@ class CardEdit extends React.Component {
 								<Label>{LABELS.currentRotation}</Label>
 								<Input
 									type='select'
+									disabled={
+										!(
+											this.state.isAdmin ||
+											this.state.isProcessor ||
+											this.state.isSubmitter
+										)
+									}
 									name='current-rotation'
 									value={this.state['current-rotation']}
 									onChange={this.handleChange}
