@@ -123,6 +123,7 @@ export default class CardSearch extends React.Component {
 								Search
 							</Button>
 						</Form>
+						<Label>Cards</Label>
 						<Slider
 							{...{
 								lazyLoad: 'ondemand',
@@ -131,6 +132,7 @@ export default class CardSearch extends React.Component {
 								nextArrow: <SampleNextArrow />,
 								prevArrow: <SamplePrevArrow />,
 								className: 'center',
+								infinite: team.length < 3,
 								speed: 500,
 								responsive: [
 									{
@@ -156,9 +158,6 @@ export default class CardSearch extends React.Component {
 											margin: '2px',
 										}}
 										src={card.image_url}
-										onClick={this.redirectToEditCard(
-											card._id
-										)}
 									/>
 								</div>
 							))}

@@ -106,6 +106,7 @@ class CardEdit extends React.Component {
 	}
 
 	async handleSubmit(event) {
+		console.log(this.state);
 		event.preventDefault();
 		const url = `${API_URL}/card/update`;
 		const method = Method.POST;
