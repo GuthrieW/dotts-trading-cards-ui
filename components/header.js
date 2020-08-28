@@ -73,6 +73,12 @@ export default class Header extends React.Component {
 		});
 	}
 
+	async handleSearchCards() {
+		Router.push({
+			pathname: '/card-search',
+		});
+	}
+
 	async handleResetCanPurchasePacks() {
 		const url = `${API_URL}/user/resetCanPurchasePack`;
 		const method = Method.PATCH;
@@ -174,14 +180,24 @@ export default class Header extends React.Component {
 							</NavItem>
 						)}
 						{(this.state.isAdmin || this.state.isSubmitter) && (
-							<NavItem>
-								<Button
-									className='ml-2'
-									onClick={this.handleSubmitCard}
-								>
-									Submit a Card
-								</Button>
-							</NavItem>
+							<>
+								<NavItem>
+									<Button
+										className='ml-2'
+										onClick={this.handleSubmitCard}
+									>
+										Submit a Card
+									</Button>
+								</NavItem>
+								<NavItem>
+									<Button
+										className='ml-2'
+										onClick={this.handleSearchCards}
+									>
+										Edit a Card
+									</Button>
+								</NavItem>
+							</>
 						)}
 						{this.state.isAdmin && (
 							<NavItem>

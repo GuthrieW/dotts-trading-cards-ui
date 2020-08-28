@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './../../components/card';
+import CardEdit from './../components/card-edit';
 
 export default class App extends React.Component {
 	constructor() {
@@ -7,6 +7,6 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		return <Card />;
+		return <CardEdit />;
 	}
 }
