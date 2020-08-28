@@ -17,6 +17,10 @@ export const callApi = async (
 		method: method,
 		url: url,
 		data: data,
+		headers: {
+			SameSite: 'none',
+			secure: true,
+		},
 	})
 		.then((response) => {
 			return response;
