@@ -38,7 +38,6 @@ export default class CardSearch extends React.Component {
 		this.state = {
 			'player-name': '',
 			'cards': [],
-			'cards-loaded': false,
 			'display-images': false,
 		};
 
@@ -77,8 +76,7 @@ export default class CardSearch extends React.Component {
 			.then((response) => {
 				if (response.status === Status.OK) {
 					this.setState({
-						'cards': response.data,
-						'cards-loaded': true,
+						cards: response.data,
 					});
 				} else {
 					Swal({
@@ -125,7 +123,7 @@ export default class CardSearch extends React.Component {
 								Search
 							</Button>
 						</Form>
-						{this.state['cards-loaded'] && (
+						{this.state.cards.length > 0 && (
 							<>
 								<Label>Cards</Label>
 								<Slider
