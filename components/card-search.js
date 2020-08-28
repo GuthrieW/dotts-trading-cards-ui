@@ -132,7 +132,6 @@ export default class CardSearch extends React.Component {
 								nextArrow: <SampleNextArrow />,
 								prevArrow: <SamplePrevArrow />,
 								className: 'center',
-								infinite: team.length < 3,
 								speed: 500,
 								responsive: [
 									{
