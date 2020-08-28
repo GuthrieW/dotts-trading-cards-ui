@@ -13,7 +13,12 @@ import {
 	CustomInput,
 } from 'reactstrap';
 import Swal from 'sweetalert';
-import { RARITY_LEVELS, TEAM_DEFAULT } from './../common/data/cards';
+import {
+	RARITY_LEVELS,
+	TEAM_DEFAULT,
+	CURRENT_ROTATION,
+	APPROVED,
+} from './../common/data/cards';
 import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
@@ -208,7 +213,7 @@ class CardEdit extends React.Component {
 							<FormGroup>
 								<Label>{LABELS.cardImageUrl}</Label>
 								<Input
-									type='text'
+									type='select'
 									name='card-image-url'
 									value={this.state['card-image-url']}
 									placeholder={LABELS.cardImageUrl}
@@ -217,21 +222,27 @@ class CardEdit extends React.Component {
 							</FormGroup>
 							<FormGroup>
 								<Label>{LABELS.approved}</Label>
-								<CustomInput
-									type='switch'
+								<Input
+									type='select'
 									name='approved'
 									value={this.state['approved']}
 									onChange={this.handleChange}
-								/>
+								>
+									<option>{APPROVED.TRUE}</option>
+									<option>{APPROVED.FALSE}</option>
+								</Input>
 							</FormGroup>
 							<FormGroup>
 								<Label>{LABELS.currentRotation}</Label>
-								<CustomInput
+								<Input
 									type='switch'
 									name='current-rotation'
 									value={this.state['current-rotation']}
 									onChange={this.handleChange}
-								/>
+								>
+									<option>{CURRENT_ROTATION.TRUE}</option>
+									<option>{CURRENT_ROTATION.FALSE}</option>
+								</Input>
 							</FormGroup>
 							<Button color='primary' type='submit'>
 								Submit

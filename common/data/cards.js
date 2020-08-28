@@ -11,3 +11,13 @@ export const RARITY_LEVELS = {
 };
 
 export const TEAM_DEFAULT = 'Player Team';
+
+export const CURRENT_ROTATION = {
+	TRUE: 'true',
+	FALSE: 'false',
+};
+
+export const APPROVED = {
+	TRUE: 'true',
+	FALSE: 'false',
+};
