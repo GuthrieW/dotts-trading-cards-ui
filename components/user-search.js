@@ -17,7 +17,7 @@ export default class CardSearch extends React.Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-		this.redirectToEditCard = this.redirectToEditCard.bind(this);
+		this.redirectToEditCard = this.redirectToEditUser.bind(this);
 	}
 
 	async handleChange(event) {
