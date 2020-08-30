@@ -10,7 +10,6 @@ import {
 	Label,
 	Input,
 	Button,
-	CustomInput,
 } from 'reactstrap';
 import Swal from 'sweetalert';
 import {
@@ -62,7 +61,6 @@ class CardEdit extends React.Component {
 
 		await callApi(cardUrl, cardMethod)
 			.then((response) => {
-				console.log('response', response);
 				if (response.status === Status.OK) {
 					const card = response.data;
 
@@ -77,11 +75,6 @@ class CardEdit extends React.Component {
 						'current-rotation': card.current_rotation,
 					});
 				} else {
-					Swal({
-						title: 'Server Error',
-						text: 'The server encountered an error',
-						icon: 'error',
-					});
 				}
 			})
 			.catch((error) => {
@@ -135,7 +128,6 @@ class CardEdit extends React.Component {
 	}
 
 	async handleSubmit(event) {
-		console.log(this.state);
 		event.preventDefault();
 		const url = `${API_URL}/card/update`;
 		const method = Method.POST;
@@ -324,7 +316,7 @@ class CardEdit extends React.Component {
 								</Input>
 							</FormGroup>
 							<Button color='primary' type='submit'>
-								Submit
+								Update
 							</Button>
 						</Form>
 					</Col>
