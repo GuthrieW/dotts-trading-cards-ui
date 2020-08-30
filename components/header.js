@@ -80,24 +80,16 @@ export default class Header extends React.Component {
 	}
 
 	async handleResetCanPurchasePacks() {
-		const url = `${API_URL}/user/resetCanPurchasePack`;
+		const url = `${API_URL}/user/migration`;
 		const method = Method.PATCH;
 
 		await callApi(url, method)
 			.then((response) => {
-				if (response.status === Status.OK) {
-					Swal({
-						title: 'Success',
-						text: 'Users may now purchase packs again',
-						icon: 'success',
-					});
-				} else {
-					Swal({
-						title: 'Server Error',
-						text: 'The server encountered an error',
-						icon: 'error',
-					});
-				}
+				Swal({
+					title: 'Finished',
+					text: `${response}`,
+					icon: 'success',
+				});
 			})
 			.catch((error) => {
 				console.error(error);
