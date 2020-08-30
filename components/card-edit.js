@@ -28,7 +28,7 @@ const LABELS = {
 	cardRarity: 'Card Rarity',
 	playerName: 'Player Name',
 	playerTeam: 'Player Team',
-	nsflUsername: "Card Creator's NSFL Username",
+	nsflUsername: "Card Creator's ISFL Username",
 	cardImageUrl: 'Card Image URL',
 	approved: 'Approved',
 	currentRotation: 'Current Rotation',

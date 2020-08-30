@@ -105,12 +105,12 @@ export default class Profile extends React.Component {
 			<Layout title='Profile'>
 				<Form onSubmit={this.handleSubmit}>
 					<FormGroup>
-						<Label>NSFL Username</Label>
+						<Label>ISFL Username</Label>
 						<Input
 							type='text'
 							value={this.state.username}
 							name='nsfl-username'
-							placeholder='NSFL Username'
+							placeholder='ISFL Username'
 							onChange={this.handleChange}
 						></Input>
 					</FormGroup>

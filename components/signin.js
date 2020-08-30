@@ -1,13 +1,5 @@
 import Head from 'next/head';
-import {
-	Navbar,
-	NavbarBrand,
-	Container,
-	Row,
-	Col,
-	Nav,
-	NavItem,
-} from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap';
 import { API_URL } from './../common/api/api-url';
 import SigninButton from './../public/google-signin-buttons/signin.png';
 
