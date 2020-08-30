@@ -81,7 +81,7 @@ export default class Header extends React.Component {
 
 	async handleResetCanPurchasePacks() {
 		const url = `${API_URL}/user/migration`;
-		const method = Method.PATCH;
+		const method = Method.GET;
 
 		await callApi(url, method)
 			.then((response) => {
