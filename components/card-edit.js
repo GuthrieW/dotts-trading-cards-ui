@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from './layout';
-import { withRouter, Router } from 'next/router';
+import { withRouter } from 'next/router';
 import {
 	Container,
 	Row,
