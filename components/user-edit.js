@@ -16,7 +16,7 @@ const LABELS = {
 	currentRotation: 'Current Rotation',
 };
 
-export default class UserEdit extends React.Component {
+class UserEdit extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -145,3 +145,5 @@ export default class UserEdit extends React.Component {
 		);
 	}
 }
+
+export default withRouter(UserEdit);
