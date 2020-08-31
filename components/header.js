@@ -195,14 +195,6 @@ export default class Header extends React.Component {
 							</>
 						)}
 
-						{(this.state.isAdmin ||
-							this.state.isSubmitter ||
-							this.state.isProcessor) && (
-							<>
-								<NavItem>|</NavItem>
-							</>
-						)}
-
 						<NavItem>
 							<Button
 								className='ml-2'
