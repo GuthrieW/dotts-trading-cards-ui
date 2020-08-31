@@ -51,7 +51,7 @@ export default class Home extends React.Component {
 	}
 
 	async componentDidMount() {
-		const url = `${API_URL}/cards`;
+		const url = `${API_URL}/card/cards`;
 		const method = Method.GET;
 
 		await callApi(url, method)
