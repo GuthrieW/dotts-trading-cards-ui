@@ -12,6 +12,7 @@ import Router from 'next/router';
 import Layout from './layout';
 import Slider from 'react-slick';
 import { API_URL } from './../common/api/api-url';
+import { callApi, Method } from './../common/api/call-api';
 
 function SampleNextArrow(props) {
 	const { className, style, onClick } = props;
