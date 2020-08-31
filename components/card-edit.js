@@ -76,6 +76,11 @@ class CardEdit extends React.Component {
 						'current-rotation': card.current_rotation,
 					});
 				} else {
+					Swal({
+						title: 'Server Error',
+						text: 'Card not found',
+						icon: 'error',
+					});
 				}
 			})
 			.catch((error) => {
@@ -128,9 +133,8 @@ class CardEdit extends React.Component {
 						title: 'Card Deleted',
 						icon: 'success',
 					});
-					Router.push({
-						pathname: `/card-search`,
-					});
+					window.location.href =
+						'https://dotts-trading-cards-ui.herokuapp.com/card-search';
 				} else if (response.status === Status.UNAUTHORIZED) {
 					Swal({
 						title: 'Unauthorized',
