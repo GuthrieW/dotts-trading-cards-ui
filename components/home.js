@@ -127,42 +127,29 @@ export default class Home extends React.Component {
 								nextArrow: <SampleNextArrow />,
 								prevArrow: <SamplePrevArrow />,
 								className: 'center',
-								infinite: false,
+								infinite: true,
 								speed: 500,
-								responsive: [
-									{
-										breakpoint: 1512,
-										settings: {
-											slidesToShow: 2,
-										},
-									},
-									{
-										breakpoint: 1008,
-										settings: {
-											slidesToShow: 1,
-										},
-									},
-								],
+								pauseOnHover: true,
+								autoplay: true,
+								autoplaySpeed: 2000,
 							}}
 						>
-							{this.state['cards'].map((card, index) => (
-								<div style={{ maxWidth: '33%' }} key={index}>
-									<img
-										style={{
-											maxHeight: '504px',
-											margin: '2px',
-										}}
-										src={card.image_url}
-									/>
-									<Button
-										onClick={() => {
-											this.redirectToEditCard(card._id);
-										}}
+							{this.state['cards-to-display'].map(
+								(card, index) => (
+									<div
+										style={{ maxWidth: '33%' }}
+										key={index}
 									>
-										Edit Card
-									</Button>
-								</div>
-							))}
+										<img
+											style={{
+												maxHeight: '504px',
+												margin: '2px',
+											}}
+											src={card.image_url}
+										/>
+									</div>
+								)
+							)}
 						</Slider>
 					</Row>
 				</Container>
