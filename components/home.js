@@ -58,6 +58,7 @@ export default class Home extends React.Component {
 			.then((response) => {
 				console.log(response);
 				if (response.status === Status.OK) {
+					console.log(response.data);
 					this.setState({
 						'cards-to-display': response.data,
 					});
@@ -122,40 +123,33 @@ export default class Home extends React.Component {
 							</Card>
 						</CardDeck>
 					</Row>
-					<Row>
-						<Slider
-							{...{
-								lazyLoad: 'ondemand',
-								slidesToShow: 3,
-								slidesToScroll: 1,
-								nextArrow: <SampleNextArrow />,
-								prevArrow: <SamplePrevArrow />,
-								className: 'center',
-								infinite: true,
-								speed: 500,
-								pauseOnHover: true,
-								autoplay: true,
-								autoplaySpeed: 2000,
-							}}
-						>
-							{this.state['cards-to-display'].map(
-								(card, index) => (
-									<div
-										style={{ maxWidth: '33%' }}
-										key={index}
-									>
-										<img
-											style={{
-												maxHeight: '504px',
-												margin: '2px',
-											}}
-											src={card.image_url}
-										/>
-									</div>
-								)
-							)}
-						</Slider>
-					</Row>
+					<Slider
+						{...{
+							lazyLoad: 'ondemand',
+							slidesToShow: 3,
+							slidesToScroll: 1,
+							nextArrow: <SampleNextArrow />,
+							prevArrow: <SamplePrevArrow />,
+							className: 'center',
+							infinite: true,
+							speed: 500,
+							pauseOnHover: true,
+							autoplay: true,
+							autoplaySpeed: 2000,
+						}}
+					>
+						{this.state['cards-to-display'].map((card, index) => (
+							<div style={{ maxWidth: '33%' }} key={index}>
+								<img
+									style={{
+										maxHeight: '504px',
+										margin: '2px',
+									}}
+									src={card.image_url}
+								/>
+							</div>
+						))}
+					</Slider>
 				</Container>
 			</Layout>
 		);
