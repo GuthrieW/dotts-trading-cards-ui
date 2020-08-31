@@ -5,6 +5,7 @@ import Swal from 'sweetalert';
 import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
+import { withRouter } from 'next/router';
 
 const LABELS = {
 	nsflUsername: 'ISFL Username',
