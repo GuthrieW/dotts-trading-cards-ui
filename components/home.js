@@ -12,6 +12,30 @@ import Router from 'next/router';
 import Layout from './layout';
 import Slider from 'react-slick';
 
+function SampleNextArrow(props) {
+	const { className, style, onClick } = props;
+	return (
+		<div className={className} style={{ ...style }} onClick={onClick}>
+			<img
+				style={{ width: 20, height: 20 }}
+				src='https://image.flaticon.com/icons/svg/271/271228.svg'
+			/>
+		</div>
+	);
+}
+
+function SamplePrevArrow(props) {
+	const { className, style, onClick } = props;
+	return (
+		<div className={className} style={{ ...style }} onClick={onClick}>
+			<img
+				style={{ width: 20, height: 20 }}
+				src='https://image.flaticon.com/icons/svg/271/271220.svg'
+			/>
+		</div>
+	);
+}
+
 export default class Home extends React.Component {
 	constructor() {
 		super();
