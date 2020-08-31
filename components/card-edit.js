@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from './layout';
-import { withRouter } from 'next/router';
+import { withRouter, Router } from 'next/router';
 import {
 	Container,
 	Row,
@@ -103,6 +103,44 @@ class CardEdit extends React.Component {
 						isProcessor: response.data.is_processor,
 						isSubmitter: response.data.is_submitter,
 						isLoading: false,
+					});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
+			});
+	}
+
+	async deleteCard() {
+		const url = `${API_URL}/card/${this.state['_id']}`;
+		const method = Method.DELETE;
+
+		await callApi(url, method)
+			.then((response) => {
+				if (response.status === Status.OK) {
+					Swal({
+						title: 'Card Deleted',
+						icon: 'success',
+					});
+					Router.push({
+						pathname: `/card-search`,
+					});
+				} else if (response.status === Status.UNAUTHORIZED) {
+					Swal({
+						title: 'Unauthorized',
+						text: 'Only admins are authorized to delete cards',
+						icon: 'error',
+					});
+				} else {
+					Swal({
+						title: 'Server Error',
+						text: 'The server encountered an error',
+						icon: 'error',
 					});
 				}
 			})
@@ -315,9 +353,23 @@ class CardEdit extends React.Component {
 									<option>{CURRENT_ROTATION.FALSE}</option>
 								</Input>
 							</FormGroup>
-							<Button color='primary' type='submit'>
+							<Button
+								color='primary'
+								type='submit'
+								className='btn m-2'
+							>
 								Update
 							</Button>
+							{this.state.isAdmin && (
+								<Button
+									color='danger'
+									type='button'
+									className='btn m-2'
+									onClick={this.deleteCard}
+								>
+									Delete Card
+								</Button>
+							)}
 						</Form>
 					</Col>
 					<Col>
