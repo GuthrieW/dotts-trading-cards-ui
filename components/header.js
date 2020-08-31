@@ -12,6 +12,8 @@ export default class Header extends React.Component {
 
 		this.state = {
 			isAdmin: false,
+			isProcessor: false,
+			isSubmitter: false,
 			isLoading: true,
 		};
 
