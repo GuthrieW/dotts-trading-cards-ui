@@ -17,7 +17,7 @@ export default class CardSearch extends React.Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-		this.redirectToEditCard = this.redirectToEditUser.bind(this);
+		this.redirectToEditUser = this.redirectToEditUser.bind(this);
 	}
 
 	async handleChange(event) {
@@ -50,11 +50,11 @@ export default class CardSearch extends React.Component {
 			.then((response) => {
 				console.log(response);
 				if (response.status === Status.OK) {
-					if (response.data != 'USER_NOT_FOUND') {
+					if (response.data.nsfl_username === this.state.username) {
 						this.setState({
 							user: response.data,
 						});
-						redirectToEditUser(response.data._id);
+						this.redirectToEditUser(response.data._id);
 					} else {
 						Swal({
 							title: 'User not found',
