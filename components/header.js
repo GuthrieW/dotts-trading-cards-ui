@@ -17,9 +17,6 @@ export default class Header extends React.Component {
 			isLoading: true,
 		};
 
-		// this.handleResetCanPurchasePacks = this.handleResetCanPurchasePacks.bind(
-		// 	this
-		// );
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleEditProfile = this.handleEditProfile.bind(this);
 		this.handleSubmitCard = this.handleSubmitCard.bind(this);
@@ -81,28 +78,6 @@ export default class Header extends React.Component {
 			pathname: '/card-search',
 		});
 	}
-
-	// async handleResetCanPurchasePacks() {
-	// 	const url = `${API_URL}/user/migration`;
-	// 	const method = Method.GET;
-
-	// 	await callApi(url, method)
-	// 		.then((response) => {
-	// 			Swal({
-	// 				title: 'Finished',
-	// 				text: `${response}`,
-	// 				icon: 'success',
-	// 			});
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error(error);
-	// 			Swal({
-	// 				title: 'Server Error',
-	// 				text: 'The server encountered an error',
-	// 				icon: 'error',
-	// 			});
-	// 		});
-	// }
 
 	async handleLogout() {
 		const url = `${API_URL}/auth/logout`;
@@ -192,14 +167,6 @@ export default class Header extends React.Component {
 										Edit a Card
 									</Button>
 								</NavItem>
-							</>
-						)}
-
-						{(this.state.isAdmin ||
-							this.state.isSubmitter ||
-							this.state.isProcessor) && (
-							<>
-								<NavItem>|</NavItem>
 							</>
 						)}
 
