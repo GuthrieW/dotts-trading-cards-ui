@@ -17,9 +17,9 @@ export default class Header extends React.Component {
 			isLoading: true,
 		};
 
-		this.handleResetCanPurchasePacks = this.handleResetCanPurchasePacks.bind(
-			this
-		);
+		// this.handleResetCanPurchasePacks = this.handleResetCanPurchasePacks.bind(
+		// 	this
+		// );
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleEditProfile = this.handleEditProfile.bind(this);
 		this.handleSubmitCard = this.handleSubmitCard.bind(this);
@@ -192,6 +192,14 @@ export default class Header extends React.Component {
 										Edit a Card
 									</Button>
 								</NavItem>
+							</>
+						)}
+
+						{(this.state.isAdmin ||
+							this.state.isSubmitter ||
+							this.state.isProcessor) && (
+							<>
+								<NavItem>|</NavItem>
 							</>
 						)}
 
