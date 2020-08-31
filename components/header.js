@@ -82,27 +82,27 @@ export default class Header extends React.Component {
 		});
 	}
 
-	async handleResetCanPurchasePacks() {
-		const url = `${API_URL}/user/migration`;
-		const method = Method.GET;
+	// async handleResetCanPurchasePacks() {
+	// 	const url = `${API_URL}/user/migration`;
+	// 	const method = Method.GET;
 
-		await callApi(url, method)
-			.then((response) => {
-				Swal({
-					title: 'Finished',
-					text: `${response}`,
-					icon: 'success',
-				});
-			})
-			.catch((error) => {
-				console.error(error);
-				Swal({
-					title: 'Server Error',
-					text: 'The server encountered an error',
-					icon: 'error',
-				});
-			});
-	}
+	// 	await callApi(url, method)
+	// 		.then((response) => {
+	// 			Swal({
+	// 				title: 'Finished',
+	// 				text: `${response}`,
+	// 				icon: 'success',
+	// 			});
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error(error);
+	// 			Swal({
+	// 				title: 'Server Error',
+	// 				text: 'The server encountered an error',
+	// 				icon: 'error',
+	// 			});
+	// 		});
+	// }
 
 	async handleLogout() {
 		const url = `${API_URL}/auth/logout`;
@@ -193,16 +193,6 @@ export default class Header extends React.Component {
 									</Button>
 								</NavItem>
 							</>
-						)}
-						{this.state.isAdmin && (
-							<NavItem>
-								<Button
-									className='ml-2'
-									onClick={this.handleResetCanPurchasePacks}
-								>
-									Reset Pack Purchasing
-								</Button>
-							</NavItem>
 						)}
 
 						<NavItem>
