@@ -35,7 +35,8 @@ class UserEdit extends React.Component {
 			.then((response) => {
 				if (response.status === Status.OK) {
 					this.setState({
-						user: response.data,
+						'username': response.data.nsfl_username,
+						'number-of-packs': response.data.number_of_packs,
 					});
 				} else {
 					Swal({
@@ -152,9 +153,9 @@ class UserEdit extends React.Component {
 									type='number'
 									disabled={
 										!(
-											this.state.isAdmin ||
-											this.state.isProcessor ||
-											this.state.isSubmitter
+											this.state['isAdmin'] ||
+											this.state['isProcessor'] ||
+											this.state['isSubmitter']
 										)
 									}
 									name='number-of-packs'
