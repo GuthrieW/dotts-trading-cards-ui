@@ -124,6 +124,7 @@ export default class Home extends React.Component {
 						</CardDeck>
 					</Row>
 					<Slider
+						className='mt-5'
 						{...{
 							slidesToShow: 3,
 							slidesToScroll: 1,
