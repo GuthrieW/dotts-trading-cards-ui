@@ -32,6 +32,7 @@ export default class Header extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
+				console.log(response);
 				if (response.status !== Status.OK) {
 					Swal({
 						title: 'Server Error',
