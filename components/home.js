@@ -125,7 +125,6 @@ export default class Home extends React.Component {
 					</Row>
 					<Slider
 						{...{
-							lazyLoad: 'ondemand',
 							slidesToShow: 3,
 							slidesToScroll: 1,
 							nextArrow: <SampleNextArrow />,
@@ -136,6 +135,20 @@ export default class Home extends React.Component {
 							pauseOnHover: true,
 							autoplay: true,
 							autoplaySpeed: 2000,
+							responsive: [
+								{
+									breakpoint: 1512,
+									settings: {
+										slidesToShow: 2,
+									},
+								},
+								{
+									breakpoint: 1008,
+									settings: {
+										slidesToShow: 1,
+									},
+								},
+							],
 						}}
 					>
 						{this.state['cards-to-display'].map((card, index) => (
