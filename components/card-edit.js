@@ -52,6 +52,7 @@ class CardEdit extends React.Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.deleteCard = this.deleteCard.bind(this);
 	}
 
 	async componentDidMount() {
