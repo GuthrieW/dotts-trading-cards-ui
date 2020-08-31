@@ -7,13 +7,7 @@ import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 
 const LABELS = {
-	cardRarity: 'Card Rarity',
-	playerName: 'Player Name',
-	playerTeam: 'Player Team',
-	nsflUsername: "Card Creator's ISFL Username",
-	cardImageUrl: 'Card Image URL',
-	approved: 'Approved',
-	currentRotation: 'Current Rotation',
+	nsflUsername: 'ISFL Username',
 };
 
 class UserEdit extends React.Component {
@@ -22,6 +16,9 @@ class UserEdit extends React.Component {
 		this.state = {
 			'username': '',
 			'number-of-packs': 0,
+			'isAdmin': false,
+			'isProcessor': false,
+			'isSubmitter': false,
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,10 +27,10 @@ class UserEdit extends React.Component {
 
 	async componentDidMount() {
 		const userId = this.props.router.query.userId;
-		const url = `${API_URL}/user/${userId}`;
-		const method = Method.GET;
+		const userUrl = `${API_URL}/user/${userId}`;
+		const userMethod = Method.GET;
 
-		await callApi(url, method)
+		await callApi(userUrl, userMethod)
 			.then((response) => {
 				if (response.status === Status.OK) {
 					this.setState({
@@ -44,6 +41,34 @@ class UserEdit extends React.Component {
 						title: 'Server Error',
 						text: 'The server encountered an error',
 						icon: 'error',
+					});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
+			});
+
+		const permissionsUrl = `${API_URL}/user/permissions`;
+		const permissionsMethod = Method.GET;
+
+		await callApi(permissionsUrl, permissionsMethod)
+			.then((response) => {
+				if (response.status !== Status.OK) {
+					Swal({
+						title: 'Server Error',
+						text: 'The server encountered an error',
+						icon: 'error',
+					});
+				} else {
+					this.setState({
+						isAdmin: response.data.is_admin,
+						isProcessor: response.data.is_processor,
+						isSubmitter: response.data.is_submitter,
 					});
 				}
 			})
@@ -114,6 +139,7 @@ class UserEdit extends React.Component {
 								<Input
 									type='text'
 									name='username'
+									disabled={true}
 									value={this.state['username']}
 									placeholder={LABELS.nsflUsername}
 									onChange={this.handleChange}
