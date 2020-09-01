@@ -51,7 +51,7 @@ export default class OpenPacks extends React.Component {
 
 		this.state = {
 			isLoading: true,
-			canPurchasePack: false,
+			numberOfPacks: 0,
 			pulledCards: [],
 		};
 
@@ -66,14 +66,14 @@ export default class OpenPacks extends React.Component {
 			icon: 'success',
 		});
 
-		const url = `${API_URL}/user/canPurchasePack`;
+		const url = `${API_URL}/user/currentUser`;
 		const method = Method.GET;
 
 		await callApi(url, method)
 			.then((response) => {
 				if (response.status === Status.OK) {
 					this.setState({
-						canPurchasePack: response.data,
+						numberOfPacks: response.data.number_of_packs,
 						isLoading: false,
 					});
 				} else {
@@ -101,9 +101,10 @@ export default class OpenPacks extends React.Component {
 		await callApi(url, method)
 			.then((response) => {
 				if (response.status === Status.OK) {
+					console.log(response);
 					this.setState({
-						pulledCards: response.data,
-						canPurchasePack: false,
+						pulledCards: response.data.pulledCards,
+						numberOfPacks: response.data.number_of_packs,
 					});
 				} else {
 					Swal({
@@ -131,6 +132,7 @@ export default class OpenPacks extends React.Component {
 		if (!this.state.pulledCards.length) {
 			return (
 				<Layout title='Open Packs'>
+					<h1>Packs Left: {this.state.numberOfPacks}</h1>
 					<div
 						style={{
 							display: 'grid',
@@ -159,8 +161,7 @@ export default class OpenPacks extends React.Component {
 										color='primary'
 										className='btn mt-2'
 										onClick={this.handleOnClick}
-										disabled={true}
-										// disabled={!this.state.canPurchasePack}
+										disabled={this.state.numberOfPacks <= 0}
 									>
 										Open Pack
 									</Button>
