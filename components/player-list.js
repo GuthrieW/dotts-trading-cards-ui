@@ -67,9 +67,7 @@ export default class PlayerList extends React.Component {
 						<tr>
 							<th>Username</th>
 							{NSFL_TEAMS.map((team, index) => (
-								<th
-									key={index}
-								>{`${team.CITY_NAME} ${team.TEAM_NAME}`}</th>
+								<th key={index}>{`${team.ABBREVIATION}`}</th>
 							))}
 						</tr>
 					</thead>
@@ -89,8 +87,10 @@ export default class PlayerList extends React.Component {
 										</span>
 									</a>
 								</td>
-								{user.cardAmounts.map((amount, index) => (
-									<td key={index}>{amount}</td>
+								{NSFL_TEAMS.map((team, index) => (
+									<td key={index}>
+										{user[`${team.ABBREVIATION}`]}
+									</td>
 								))}
 							</tr>
 						))}
