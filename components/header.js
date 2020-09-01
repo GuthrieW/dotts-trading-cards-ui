@@ -21,6 +21,7 @@ export default class Header extends React.Component {
 		this.handleEditProfile = this.handleEditProfile.bind(this);
 		this.handleSubmitCard = this.handleSubmitCard.bind(this);
 		this.handleProcessCards = this.handleProcessCards.bind(this);
+		this.handleSearchUsers = this.handleSearchUsers.bind(this);
 	}
 
 	async componentDidMount() {
@@ -76,6 +77,12 @@ export default class Header extends React.Component {
 	async handleSearchCards() {
 		Router.push({
 			pathname: '/card-search',
+		});
+	}
+
+	async handleSearchUsers() {
+		Router.push({
+			pathname: 'user-search',
 		});
 	}
 
@@ -139,18 +146,18 @@ export default class Header extends React.Component {
 						</NavItem>
 					</Nav>
 					<Nav>
-						{(this.state.isAdmin || this.state.isProcessor) && (
-							<NavItem>
-								<Button
-									className='ml-2'
-									onClick={this.handleProcessCards}
-								>
-									Process Cards
-								</Button>
-							</NavItem>
-						)}
-						{(this.state.isAdmin || this.state.isSubmitter) && (
+						{(this.state.isAdmin ||
+							this.state.isProcessor ||
+							this.state.isSubmitter) && (
 							<>
+								<NavItem>
+									<Button
+										className='ml-2'
+										onClick={this.handleProcessCards}
+									>
+										Process Cards
+									</Button>
+								</NavItem>
 								<NavItem>
 									<Button
 										className='ml-2'
@@ -165,6 +172,14 @@ export default class Header extends React.Component {
 										onClick={this.handleSearchCards}
 									>
 										Edit a Card
+									</Button>
+								</NavItem>
+								<NavItem>
+									<Button
+										className='ml-2'
+										onClick={this.handleSearchUsers}
+									>
+										Edit a User
 									</Button>
 								</NavItem>
 							</>

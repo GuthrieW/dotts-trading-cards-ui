@@ -5,6 +5,7 @@ import { Status } from './../common/api/http-status';
 import { API_URL } from './../common/api/api-url';
 import { callApi, Method } from './../common/api/call-api';
 import { Table } from 'reactstrap';
+import { NSFL_TEAMS } from './../common/data/teams';
 import Layout from './layout';
 import _filter from 'lodash/filter';
 
@@ -27,7 +28,7 @@ export default class PlayerList extends React.Component {
 	}
 
 	async componentDidMount() {
-		const url = `${API_URL}/user`;
+		const url = `${API_URL}/user/cardAmounts`;
 		const method = Method.GET;
 
 		await callApi(url, method)
@@ -65,6 +66,11 @@ export default class PlayerList extends React.Component {
 					<thead>
 						<tr>
 							<th>Username</th>
+							{NSFL_TEAMS.map((team, index) => (
+								<th
+									key={index}
+								>{`${team.CITY_NAME} ${team.TEAM_NAME}`}</th>
+							))}
 						</tr>
 					</thead>
 					<tbody>
@@ -83,6 +89,9 @@ export default class PlayerList extends React.Component {
 										</span>
 									</a>
 								</td>
+								{user.cardAmounts.map((amount, index) => (
+									<td key={index}>{amount}</td>
+								))}
 							</tr>
 						))}
 					</tbody>
