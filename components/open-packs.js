@@ -59,13 +59,6 @@ export default class OpenPacks extends React.Component {
 	}
 
 	async componentDidMount() {
-		Swal({
-			title: 'We are closed',
-			text:
-				'The DOTTS trading cards platform is currently closed. Wait for us to open before purchasing packs!',
-			icon: 'success',
-		});
-
 		const url = `${API_URL}/user/currentUser`;
 		const method = Method.GET;
 
