@@ -89,7 +89,11 @@ export default class PlayerList extends React.Component {
 								</td>
 								{NSFL_TEAMS.map((team, index) => (
 									<td key={index}>
-										{user[`${team.ABBREVIATION}`]}
+										{
+											user[
+												`${team.CITY_NAME} ${team.TEAM_NAME}`
+											]
+										}
 									</td>
 								))}
 							</tr>
