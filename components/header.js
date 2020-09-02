@@ -23,6 +23,7 @@ export default class Header extends React.Component {
 		this.handleSubmitCard = this.handleSubmitCard.bind(this);
 		this.handleProcessCards = this.handleProcessCards.bind(this);
 		this.handleSearchUsers = this.handleSearchUsers.bind(this);
+		this.handleReportABug = this.handleReportABug.bind(this);
 	}
 
 	async componentDidMount() {
@@ -85,6 +86,15 @@ export default class Header extends React.Component {
 	async handleSearchUsers() {
 		Router.push({
 			pathname: '/user-search',
+		});
+	}
+
+	async handleReportABug() {
+		Swal({
+			title: 'Report a Bug',
+			text:
+				'Please report all bugs to caltroit_red_flames#2462 or mithrandir#6504 through the ISFL discord via private message.',
+			icon: 'error',
 		});
 	}
 
@@ -201,7 +211,14 @@ export default class Header extends React.Component {
 								</NavItem>
 							</>
 						)}
-
+						<NavItem>
+							<Button
+								className='ml-2'
+								onClick={this.handleReportABug}
+							>
+								Report a Bug
+							</Button>
+						</NavItem>
 						<NavItem>
 							<Button
 								className='ml-2'
