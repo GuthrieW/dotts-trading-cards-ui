@@ -60,6 +60,7 @@ export default class Profile extends React.Component {
 
 	async handleSubmit(event) {
 		event.preventDefault();
+		let usernameTaken = false;
 
 		const checkUrl = `${API_URL}/user/search/${this.state.username}`;
 		const checkMethod = Method.GET;
@@ -69,12 +70,19 @@ export default class Profile extends React.Component {
 				if (response.data.nsfl_username) {
 					Swal({
 						title: 'Username Taken',
-						text: 'That username is already in use. If this is your username please contact caltroit_red_flames',
+						text:
+							'That username is already in use. If this is your username please contact caltroit_red_flames',
 						icon: 'error',
 					});
-
-					return;
+					usernameTaken = true;
 				}
+			}
+		});
+
+		if (usernameTaken) {
+			return;
+		}
+
 		const url = `${API_URL}/user/username`;
 		const method = Method.PATCH;
 		const data = {
@@ -104,9 +112,6 @@ export default class Profile extends React.Component {
 					icon: 'error',
 				});
 			});
-				}
-			}
-		});
 	}
 
 	render() {
