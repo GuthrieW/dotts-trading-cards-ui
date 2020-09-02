@@ -14,6 +14,7 @@ export default class Header extends React.Component {
 			isAdmin: false,
 			isProcessor: false,
 			isSubmitter: false,
+			isPackIssuer: false,
 			isLoading: true,
 		};
 
@@ -42,6 +43,7 @@ export default class Header extends React.Component {
 						isAdmin: response.data.is_admin,
 						isProcessor: response.data.is_processor,
 						isSubmitter: response.data.is_submitter,
+						isPackIssuer: response.data.is_pack_issuer,
 						isLoading: false,
 					});
 				}
@@ -146,9 +148,7 @@ export default class Header extends React.Component {
 						</NavItem>
 					</Nav>
 					<Nav>
-						{(this.state.isAdmin ||
-							this.state.isProcessor ||
-							this.state.isSubmitter) && (
+						{(this.state.isAdmin || this.state.isProcessor) && (
 							<>
 								<NavItem>
 									<Button
@@ -158,6 +158,11 @@ export default class Header extends React.Component {
 										Process Cards
 									</Button>
 								</NavItem>
+							</>
+						)}
+
+						{(this.state.isAdmin || this.state.isSubmitter) && (
+							<>
 								<NavItem>
 									<Button
 										className='ml-2'
@@ -166,20 +171,32 @@ export default class Header extends React.Component {
 										Submit a Card
 									</Button>
 								</NavItem>
-								<NavItem>
-									<Button
-										className='ml-2'
-										onClick={this.handleSearchCards}
-									>
-										Edit a Card
-									</Button>
-								</NavItem>
+							</>
+						)}
+
+						{(this.state.isAdmin || this.state.isPackIssuer) && (
+							<>
 								<NavItem>
 									<Button
 										className='ml-2'
 										onClick={this.handleSearchUsers}
 									>
 										Edit a User
+									</Button>
+								</NavItem>
+							</>
+						)}
+
+						{(this.state.isAdmin ||
+							this.state.isProcessor ||
+							this.state.isSubmitter) && (
+							<>
+								<NavItem>
+									<Button
+										className='ml-2'
+										onClick={this.handleSearchCards}
+									>
+										Edit a Card
 									</Button>
 								</NavItem>
 							</>
