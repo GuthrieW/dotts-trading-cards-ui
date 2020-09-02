@@ -72,36 +72,38 @@ export default class Profile extends React.Component {
 						text: 'That username is already in use. If this is your username please contact caltroit_red_flames',
 						icon: 'error',
 					});
-				} else if (response.data.error === 'USER_NOT_FOUND') {
-					const url = `${API_URL}/user/username`;
-					const method = Method.PATCH;
-					const data = {
-						nsfl_username: this.state.username,
-					};
-			
-					await callApi(url, method, data)
-						.then((response) => {
-							if (response.status === Status.OK) {
-								Swal({
-									title: 'Username Updated',
-									icon: 'success',
-								});
-							} else {
-								Swal({
-									title: 'Server Error',
-									text: 'The server encountered an error',
-									icon: 'error',
-								});
-							}
-						})
-						.catch((error) => {
-							console.error(error);
-							Swal({
-								title: 'Server Error',
-								text: 'The server encountered an error',
-								icon: 'error',
-							});
-						});
+
+					return;
+				}
+		const url = `${API_URL}/user/username`;
+		const method = Method.PATCH;
+		const data = {
+			nsfl_username: this.state.username,
+		};
+
+		await callApi(url, method, data)
+			.then((response) => {
+				if (response.status === Status.OK) {
+					Swal({
+						title: 'Username Updated',
+						icon: 'success',
+					});
+				} else {
+					Swal({
+						title: 'Server Error',
+						text: 'The server encountered an error',
+						icon: 'error',
+					});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
+			});
 				}
 			}
 		});
