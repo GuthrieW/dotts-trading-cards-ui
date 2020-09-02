@@ -60,6 +60,28 @@ export default class Profile extends React.Component {
 
 	async handleSubmit(event) {
 		event.preventDefault();
+		let usernameTaken = false;
+
+		const checkUrl = `${API_URL}/user/search/${this.state.username}`;
+		const checkMethod = Method.GET;
+
+		await callApi(checkUrl, checkMethod).then((response) => {
+			if (response.status === Status.OK) {
+				if (response.data.nsfl_username) {
+					Swal({
+						title: 'Username Taken',
+						text:
+							'That username is already in use. If this is your username please contact caltroit_red_flames',
+						icon: 'error',
+					});
+					usernameTaken = true;
+				}
+			}
+		});
+
+		if (usernameTaken) {
+			return;
+		}
 
 		const url = `${API_URL}/user/username`;
 		const method = Method.PATCH;
@@ -105,12 +127,12 @@ export default class Profile extends React.Component {
 			<Layout title='Profile'>
 				<Form onSubmit={this.handleSubmit}>
 					<FormGroup>
-						<Label>NSFL Username</Label>
+						<Label>ISFL Username</Label>
 						<Input
 							type='text'
 							value={this.state.username}
 							name='nsfl-username'
-							placeholder='NSFL Username'
+							placeholder='ISFL Username'
 							onChange={this.handleChange}
 						></Input>
 					</FormGroup>

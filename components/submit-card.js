@@ -22,7 +22,7 @@ const LABELS = {
 	cardRarity: 'Card Rarity',
 	playerName: 'Player Name',
 	playerTeam: 'Player Team',
-	nsflUsername: "Card Creator's NSFL Username",
+	nsflUsername: "Card Creator's ISFL Username",
 	cardImageUrl: 'Card Image URL',
 };
 
@@ -66,7 +66,7 @@ class SubmitCard extends React.Component {
 		if (this.isEmptyString(this.state['nsfl-username'])) {
 			Swal({
 				title: 'Submission Rejected',
-				text: 'Please enter your NSFL username.',
+				text: 'Please enter your ISFL username.',
 				icon: 'error',
 			});
 

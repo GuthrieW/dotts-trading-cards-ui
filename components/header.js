@@ -12,16 +12,16 @@ export default class Header extends React.Component {
 
 		this.state = {
 			isAdmin: false,
+			isProcessor: false,
+			isSubmitter: false,
 			isLoading: true,
 		};
 
-		this.handleResetCanPurchasePacks = this.handleResetCanPurchasePacks.bind(
-			this
-		);
 		this.handleLogout = this.handleLogout.bind(this);
 		this.handleEditProfile = this.handleEditProfile.bind(this);
 		this.handleSubmitCard = this.handleSubmitCard.bind(this);
 		this.handleProcessCards = this.handleProcessCards.bind(this);
+		this.handleSearchUsers = this.handleSearchUsers.bind(this);
 	}
 
 	async componentDidMount() {
@@ -30,6 +30,7 @@ export default class Header extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
+				console.log(response);
 				if (response.status !== Status.OK) {
 					Swal({
 						title: 'Server Error',
@@ -79,34 +80,10 @@ export default class Header extends React.Component {
 		});
 	}
 
-	async handleResetCanPurchasePacks() {
-		const url = `${API_URL}/user/resetCanPurchasePack`;
-		const method = Method.PATCH;
-
-		await callApi(url, method)
-			.then((response) => {
-				if (response.status === Status.OK) {
-					Swal({
-						title: 'Success',
-						text: 'Users may now purchase packs again',
-						icon: 'success',
-					});
-				} else {
-					Swal({
-						title: 'Server Error',
-						text: 'The server encountered an error',
-						icon: 'error',
-					});
-				}
-			})
-			.catch((error) => {
-				console.error(error);
-				Swal({
-					title: 'Server Error',
-					text: 'The server encountered an error',
-					icon: 'error',
-				});
-			});
+	async handleSearchUsers() {
+		Router.push({
+			pathname: '/user-search',
+		});
 	}
 
 	async handleLogout() {
@@ -169,18 +146,18 @@ export default class Header extends React.Component {
 						</NavItem>
 					</Nav>
 					<Nav>
-						{(this.state.isAdmin || this.state.isProcessor) && (
-							<NavItem>
-								<Button
-									className='ml-2'
-									onClick={this.handleProcessCards}
-								>
-									Process Cards
-								</Button>
-							</NavItem>
-						)}
-						{(this.state.isAdmin || this.state.isSubmitter) && (
+						{(this.state.isAdmin ||
+							this.state.isProcessor ||
+							this.state.isSubmitter) && (
 							<>
+								<NavItem>
+									<Button
+										className='ml-2'
+										onClick={this.handleProcessCards}
+									>
+										Process Cards
+									</Button>
+								</NavItem>
 								<NavItem>
 									<Button
 										className='ml-2'
@@ -197,17 +174,15 @@ export default class Header extends React.Component {
 										Edit a Card
 									</Button>
 								</NavItem>
+								<NavItem>
+									<Button
+										className='ml-2'
+										onClick={this.handleSearchUsers}
+									>
+										Edit a User
+									</Button>
+								</NavItem>
 							</>
-						)}
-						{this.state.isAdmin && (
-							<NavItem>
-								<Button
-									className='ml-2'
-									onClick={this.handleResetCanPurchasePacks}
-								>
-									Reset Pack Purchasing
-								</Button>
-							</NavItem>
 						)}
 
 						<NavItem>

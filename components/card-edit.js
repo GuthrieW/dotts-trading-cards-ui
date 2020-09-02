@@ -10,7 +10,6 @@ import {
 	Label,
 	Input,
 	Button,
-	CustomInput,
 } from 'reactstrap';
 import Swal from 'sweetalert';
 import {
@@ -28,7 +27,7 @@ const LABELS = {
 	cardRarity: 'Card Rarity',
 	playerName: 'Player Name',
 	playerTeam: 'Player Team',
-	nsflUsername: "Card Creator's NSFL Username",
+	nsflUsername: "Card Creator's ISFL Username",
 	cardImageUrl: 'Card Image URL',
 	approved: 'Approved',
 	currentRotation: 'Current Rotation',
@@ -53,6 +52,7 @@ class CardEdit extends React.Component {
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.deleteCard = this.deleteCard.bind(this);
 	}
 
 	async componentDidMount() {
@@ -62,7 +62,6 @@ class CardEdit extends React.Component {
 
 		await callApi(cardUrl, cardMethod)
 			.then((response) => {
-				console.log('response', response);
 				if (response.status === Status.OK) {
 					const card = response.data;
 
@@ -79,7 +78,7 @@ class CardEdit extends React.Component {
 				} else {
 					Swal({
 						title: 'Server Error',
-						text: 'The server encountered an error',
+						text: 'Card not found',
 						icon: 'error',
 					});
 				}
@@ -123,6 +122,43 @@ class CardEdit extends React.Component {
 			});
 	}
 
+	async deleteCard() {
+		const url = `${API_URL}/card/${this.state['_id']}`;
+		const method = Method.DELETE;
+
+		await callApi(url, method)
+			.then((response) => {
+				if (response.status === Status.OK) {
+					Swal({
+						title: 'Card Deleted',
+						icon: 'success',
+					});
+					window.location.href =
+						'https://dotts-trading-cards-ui.herokuapp.com/card-search';
+				} else if (response.status === Status.UNAUTHORIZED) {
+					Swal({
+						title: 'Unauthorized',
+						text: 'Only admins are authorized to delete cards',
+						icon: 'error',
+					});
+				} else {
+					Swal({
+						title: 'Server Error',
+						text: 'The server encountered an error',
+						icon: 'error',
+					});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
+			});
+	}
+
 	async handleChange(event) {
 		const name = event.target.name;
 		const value = event.target.value;
@@ -135,7 +171,6 @@ class CardEdit extends React.Component {
 	}
 
 	async handleSubmit(event) {
-		console.log(this.state);
 		event.preventDefault();
 		const url = `${API_URL}/card/update`;
 		const method = Method.POST;
@@ -323,9 +358,23 @@ class CardEdit extends React.Component {
 									<option>{CURRENT_ROTATION.FALSE}</option>
 								</Input>
 							</FormGroup>
-							<Button color='primary' type='submit'>
-								Submit
+							<Button
+								color='primary'
+								type='submit'
+								className='btn m-2'
+							>
+								Update
 							</Button>
+							{this.state.isAdmin && (
+								<Button
+									color='danger'
+									type='button'
+									className='btn m-2'
+									onClick={this.deleteCard}
+								>
+									Delete Card
+								</Button>
+							)}
 						</Form>
 					</Col>
 					<Col>

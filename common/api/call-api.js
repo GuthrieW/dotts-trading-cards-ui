@@ -18,9 +18,6 @@ export const callApi = async (
 		method: method,
 		url: url,
 		data: data,
-		headers: {
-			Cookie: 'Secure;',
-		},
 	})
 		.then((response) => {
 			return response;

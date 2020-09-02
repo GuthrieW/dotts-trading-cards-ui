@@ -19,7 +19,7 @@ const LABELS = {
 	cardRarity: 'Card Rarity',
 	playerName: 'Player Name',
 	playerTeam: 'Player Team',
-	nsflUsername: 'NSFL Username',
+	nsflUsername: 'ISFL Username',
 	cardImageUrl: 'Card Image URL',
 };
 
