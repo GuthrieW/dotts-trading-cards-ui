@@ -135,7 +135,7 @@ class UserEdit extends React.Component {
 			<Layout title='Edit a User'>
 				<Row>
 					<Col>
-						<Form>
+						<Form onSubmit={this.handleSubmit}>
 							<FormGroup>
 								<Label>{LABELS.nsflUsername}</Label>
 								<Input

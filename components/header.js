@@ -82,7 +82,7 @@ export default class Header extends React.Component {
 
 	async handleSearchUsers() {
 		Router.push({
-			pathname: 'user-search',
+			pathname: '/user-search',
 		});
 	}
 
