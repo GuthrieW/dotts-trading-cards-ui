@@ -181,7 +181,7 @@ export default class Header extends React.Component {
 										className='ml-2'
 										onClick={this.handleSearchUsers}
 									>
-										Edit a User
+										Issue Packs
 									</Button>
 								</NavItem>
 							</>
