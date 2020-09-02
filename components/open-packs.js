@@ -97,7 +97,7 @@ export default class OpenPacks extends React.Component {
 					console.log(response);
 					this.setState({
 						pulledCards: response.data.pulledCards,
-						numberOfPacks: response.data.number_of_packs,
+						numberOfPacks: response.data.numberOfPacks,
 					});
 				} else {
 					Swal({
