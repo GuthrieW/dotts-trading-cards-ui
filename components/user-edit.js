@@ -101,7 +101,7 @@ class UserEdit extends React.Component {
 		const url = `${API_URL}/user/updateNumberOfPacks`;
 		const method = Method.POST;
 		const data = {
-			_id: this.state['username'],
+			nsfl_username: this.state['username'],
 			numberOfPacks: this.state['number-of-packs'],
 		};
 
