@@ -20,6 +20,7 @@ class UserEdit extends React.Component {
 			'isAdmin': false,
 			'isProcessor': false,
 			'isSubmitter': false,
+			'isPackIssuer': false,
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -71,6 +72,7 @@ class UserEdit extends React.Component {
 						isAdmin: response.data.is_admin,
 						isProcessor: response.data.is_processor,
 						isSubmitter: response.data.is_submitter,
+						isPackIssuer: response.data.is_pack_issuer,
 					});
 				}
 			})
@@ -154,8 +156,7 @@ class UserEdit extends React.Component {
 									disabled={
 										!(
 											this.state['isAdmin'] ||
-											this.state['isProcessor'] ||
-											this.state['isSubmitter']
+											this.state['isPackIssuer']
 										)
 									}
 									name='number-of-packs'
