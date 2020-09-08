@@ -28,7 +28,7 @@ export default class PlayerList extends React.Component {
 	}
 
 	async componentDidMount() {
-		const url = `${API_URL}/user/cardAmounts`;
+		const url = `${API_URL}/user/`;
 		const method = Method.GET;
 
 		await callApi(url, method)
@@ -66,9 +66,6 @@ export default class PlayerList extends React.Component {
 					<thead>
 						<tr>
 							<th>Username</th>
-							{NSFL_TEAMS.map((team, index) => (
-								<th key={index}>{`${team.ABBREVIATION}`}</th>
-							))}
 						</tr>
 					</thead>
 					<tbody>
@@ -87,15 +84,6 @@ export default class PlayerList extends React.Component {
 										</span>
 									</a>
 								</td>
-								{NSFL_TEAMS.map((team, index) => (
-									<td key={index}>
-										{
-											user[
-												`${team.CITY_NAME} ${team.TEAM_NAME}`
-											]
-										}
-									</td>
-								))}
 							</tr>
 						))}
 					</tbody>
@@ -104,3 +92,99 @@ export default class PlayerList extends React.Component {
 		);
 	}
 }
+
+// export default class PlayerList extends React.Component {
+// 	constructor() {
+// 		super();
+
+// 		this.state = {
+// 			userList: [],
+// 		};
+
+// 		this.handleOnClicK = this.handleOnClicK.bind(this);
+// 	}
+
+// 	handleOnClicK(userId) {
+// 		Router.push({
+// 			pathname: `/collection/collection`,
+// 			query: { userId: userId },
+// 		});
+// 	}
+
+// 	async componentDidMount() {
+// 		const url = `${API_URL}/user/cardAmounts`;
+// 		const method = Method.GET;
+
+// 		await callApi(url, method)
+// 			.then((response) => {
+// 				if (response.status === Status.OK) {
+// 					const filteredUsers = _filter(response.data, (user) => {
+// 						return user.nsfl_username !== '';
+// 					});
+
+// 					this.setState({
+// 						userList: filteredUsers,
+// 					});
+// 				} else {
+// 					Swal({
+// 						title: 'Server Error',
+// 						text: 'The server encountered an error',
+// 						icon: 'error',
+// 					});
+// 				}
+// 			})
+// 			.catch((error) => {
+// 				console.error(error);
+// 				Swal({
+// 					title: 'Server Error',
+// 					text: 'The server encountered an error',
+// 					icon: 'error',
+// 				});
+// 			});
+// 	}
+
+// 	render() {
+// 		return (
+// 			<Layout title='Player List'>
+// 				<Table>
+// 					<thead>
+// 						<tr>
+// 							<th>Username</th>
+// 							{NSFL_TEAMS.map((team, index) => (
+// 								<th key={index}>{`${team.ABBREVIATION}`}</th>
+// 							))}
+// 						</tr>
+// 					</thead>
+// 					<tbody>
+// 						{this.state.userList.map((user, index) => (
+// 							<tr>
+// 								<td>
+// 									<a
+// 										className='btn btn-primary'
+// 										key={index}
+// 										onClick={() => {
+// 											this.handleOnClicK(user._id);
+// 										}}
+// 									>
+// 										<span style={{ color: 'white' }}>
+// 											{user.nsfl_username}
+// 										</span>
+// 									</a>
+// 								</td>
+// 								{NSFL_TEAMS.map((team, index) => (
+// 									<td key={index}>
+// 										{
+// 											user[
+// 												`${team.CITY_NAME} ${team.TEAM_NAME}`
+// 											]
+// 										}
+// 									</td>
+// 								))}
+// 							</tr>
+// 						))}
+// 					</tbody>
+// 				</Table>
+// 			</Layout>
+// 		);
+// 	}
+// }
