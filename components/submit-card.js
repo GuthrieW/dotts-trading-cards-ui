@@ -36,7 +36,6 @@ class SubmitCard extends React.Component {
 			'card-rarity': RARITY_LEVELS.DEFAULT,
 			'card-image-url': '',
 			'displayImage': false,
-			'is-loading': false,
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -66,6 +65,8 @@ class SubmitCard extends React.Component {
 	}
 
 	async handleSubmit(event) {
+		event.preventDefault();
+
 		if (this.isEmptyString(this.state['nsfl-username'])) {
 			Swal({
 				title: 'Submission Rejected',
@@ -248,11 +249,7 @@ class SubmitCard extends React.Component {
 									onChange={this.handleChange}
 								/>
 							</FormGroup>
-							<Button
-								color='primary'
-								type='submit'
-								disabled={this.state['is-loading']}
-							>
+							<Button color='primary' type='submit'>
 								Submit
 							</Button>
 						</Form>
