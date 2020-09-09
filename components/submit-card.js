@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
 	Container,
 	Row,
@@ -50,6 +50,10 @@ class SubmitCard extends React.Component {
 			this.setState({
 				'card-image-url': value,
 				'displayImage': this.isValidImageUrl(value),
+			});
+		} else if (name === 'player-name') {
+			this.setState({
+				'player-name': value.trim(),
 			});
 		} else {
 			this.setState({
@@ -123,6 +127,15 @@ class SubmitCard extends React.Component {
 			image_url: this.state['card-image-url'],
 			collection_ids: [],
 		};
+
+		this.setState({
+			submission_username: '',
+			player_name: '',
+			player_team: '',
+			rarity: '',
+			image_url: '',
+			displayImage: false,
+		});
 
 		await callApi(url, method, data)
 			.then((response) => {
@@ -236,7 +249,7 @@ class SubmitCard extends React.Component {
 									onChange={this.handleChange}
 								/>
 							</FormGroup>
-							<Button color='primary' type='submit'>
+							<Button color='primary' type='submit' disabled={}>
 								Submit
 							</Button>
 						</Form>
