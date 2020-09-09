@@ -249,7 +249,7 @@ class SubmitCard extends React.Component {
 									onChange={this.handleChange}
 								/>
 							</FormGroup>
-							<Button color='primary' type='submit' disabled={}>
+							<Button color='primary' type='submit'>
 								Submit
 							</Button>
 						</Form>
