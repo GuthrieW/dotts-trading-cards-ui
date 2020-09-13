@@ -17,6 +17,7 @@ class UserEdit extends React.Component {
 		this.state = {
 			'username': '',
 			'number-of-packs': 0,
+			'number-of-ultimus-packs': 0,
 			'isAdmin': false,
 			'isProcessor': false,
 			'isSubmitter': false,
@@ -38,6 +39,8 @@ class UserEdit extends React.Component {
 					this.setState({
 						'username': response.data.nsfl_username,
 						'number-of-packs': response.data.number_of_packs,
+						'number-of-ultimus-packs':
+							response.number_of_ultimus_packs,
 					});
 				} else {
 					Swal({
@@ -105,6 +108,7 @@ class UserEdit extends React.Component {
 		const data = {
 			nsfl_username: this.state['username'],
 			numberOfPacks: this.state['number-of-packs'],
+			numberOfUltimusPacks: this.state['number-of-ultimus-packs'],
 		};
 
 		await callApi(url, method, data)
@@ -150,7 +154,7 @@ class UserEdit extends React.Component {
 								/>
 							</FormGroup>
 							<FormGroup>
-								<Label>Number of Packs Available</Label>
+								<Label>Number of Regular Packs Available</Label>
 								<Input
 									type='number'
 									disabled={
@@ -161,6 +165,23 @@ class UserEdit extends React.Component {
 									}
 									name='number-of-packs'
 									value={this.state['number-of-packs']}
+									onChange={this.handleChange}
+								/>
+							</FormGroup>
+							<FormGroup>
+								<Label>Number of Ultimus Packs Available</Label>
+								<Input
+									type='number'
+									disabled={
+										!(
+											this.state['isAdmin'] ||
+											this.state['isPackIssuer']
+										)
+									}
+									name='number-of-ultimus-packs'
+									value={
+										this.state['number-of-ultimus-packs']
+									}
 									onChange={this.handleChange}
 								/>
 							</FormGroup>

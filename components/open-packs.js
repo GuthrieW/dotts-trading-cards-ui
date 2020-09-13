@@ -52,10 +52,16 @@ export default class OpenPacks extends React.Component {
 		this.state = {
 			isLoading: true,
 			numberOfPacks: 0,
+			numberOfUltimusPacks: 0,
 			pulledCards: [],
 		};
 
-		this.handleOnClick = this.handleOnClick.bind(this);
+		this.handlePurchaseUltimusPack = this.handlePurchaseUltimusPack.bind(
+			this
+		);
+		this.handlePurchaseRegularPack = this.handlePurchaseRegularPack.bind(
+			this
+		);
 	}
 
 	async componentDidMount() {
@@ -67,6 +73,8 @@ export default class OpenPacks extends React.Component {
 				if (response.status === Status.OK) {
 					this.setState({
 						numberOfPacks: response.data.number_of_packs,
+						numberOfUltimusPacks:
+							response.data.number_of_ultimus_packs,
 						isLoading: false,
 					});
 				} else {
@@ -87,7 +95,38 @@ export default class OpenPacks extends React.Component {
 			});
 	}
 
-	async handleOnClick() {
+	async handlePurchaseUltimusPack() {
+		const url = `${API_URL}/card/purchaseUltimusPack`;
+		const method = Method.GET;
+
+		await callApi(url, method)
+			.then((response) => {
+				if (response.status === Status.OK) {
+					console.log(response);
+					this.setState({
+						pulledCards: response.data.pulledCards,
+						numberOfUltimusPacks:
+							response.data.numberOfUltimusPacks,
+					});
+				} else {
+					Swal({
+						title: 'Server Error',
+						text: 'The server encountered an error',
+						icon: 'error',
+					});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				Swal({
+					title: 'Server Error',
+					text: 'The server encountered an error',
+					icon: 'error',
+				});
+			});
+	}
+
+	async handlePurchaseRegularPack() {
 		const url = `${API_URL}/card/purchasePack`;
 		const method = Method.GET;
 
@@ -140,6 +179,12 @@ export default class OpenPacks extends React.Component {
 									src='https://cdn.discordapp.com/attachments/719408889141133352/723585746107236402/Pack_w_swap.png'
 								/>
 							</Col>
+							<Col>
+								<img
+									style={{ maxHeight: '504px' }}
+									src='https://cdn.discordapp.com/attachments/719408889141133352/754537226150477886/pack.png'
+								/>
+							</Col>
 						</Row>
 						<Row>
 							<Col>
@@ -153,10 +198,30 @@ export default class OpenPacks extends React.Component {
 									<Button
 										color='primary'
 										className='btn mt-2'
-										onClick={this.handleOnClick}
+										onClick={this.handlePurchaseRegularPack}
 										disabled={this.state.numberOfPacks <= 0}
 									>
-										Open Pack
+										Open Regular Pack
+									</Button>
+								</div>
+							</Col>
+							<Col>
+								<div
+									style={{
+										display: 'grid',
+										justifyContent: 'center',
+										alignItems: 'center',
+									}}
+								>
+									<Button
+										color='primary'
+										className='btn mt-2'
+										onClick={this.handlePurchaseUltimusPack}
+										disabled={
+											this.state.numberOfUltimusPacks <= 0
+										}
+									>
+										Open Ultimus Pack
 									</Button>
 								</div>
 							</Col>
