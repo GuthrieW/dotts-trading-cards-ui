@@ -237,7 +237,10 @@ export default class OpenPacks extends React.Component {
 		if (this.state.pulledCards !== 0) {
 			return (
 				<Layout title='Open Packs'>
-					<h1>Packs Left: {this.state.numberOfPacks}</h1>
+					<h2>Regular Packs Left: {this.state.numberOfPacks}</h2>
+					<h2>
+						Ultimus Packs Left: {this.state.numberOfUltimusPacks}
+					</h2>
 					<Slider {...slickSettings}>
 						{this.state.pulledCards.map((card, index) => (
 							<div key={index}>
