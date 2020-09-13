@@ -35,6 +35,7 @@ class UserEdit extends React.Component {
 
 		await callApi(userUrl, userMethod)
 			.then((response) => {
+				console.log(response);
 				if (response.status === Status.OK) {
 					this.setState({
 						'username': response.data.nsfl_username,

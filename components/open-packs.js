@@ -70,6 +70,7 @@ export default class OpenPacks extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
+				console.log(response);
 				if (response.status === Status.OK) {
 					this.setState({
 						numberOfPacks: response.data.number_of_packs,
