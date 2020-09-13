@@ -164,7 +164,10 @@ export default class OpenPacks extends React.Component {
 		if (!this.state.pulledCards.length) {
 			return (
 				<Layout title='Open Packs'>
-					<h1>Packs Left: {this.state.numberOfPacks}</h1>
+					<h2>Regular Packs Left: {this.state.numberOfPacks}</h2>
+					<h2>
+						Ultimus Packs Left: {this.state.numberOfUltimusPacks}
+					</h2>
 					<div
 						style={{
 							display: 'grid',
