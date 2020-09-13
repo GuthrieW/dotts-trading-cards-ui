@@ -70,7 +70,6 @@ export default class OpenPacks extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
-				console.log(response);
 				if (response.status === Status.OK) {
 					this.setState({
 						numberOfPacks: response.data.number_of_packs,
@@ -103,7 +102,6 @@ export default class OpenPacks extends React.Component {
 		await callApi(url, method)
 			.then((response) => {
 				if (response.status === Status.OK) {
-					console.log(response);
 					this.setState({
 						pulledCards: response.data.pulledCards,
 						numberOfUltimusPacks:
@@ -134,7 +132,6 @@ export default class OpenPacks extends React.Component {
 		await callApi(url, method)
 			.then((response) => {
 				if (response.status === Status.OK) {
-					console.log(response);
 					this.setState({
 						pulledCards: response.data.pulledCards,
 						numberOfPacks: response.data.numberOfPacks,

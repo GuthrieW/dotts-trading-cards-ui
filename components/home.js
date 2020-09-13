@@ -56,9 +56,7 @@ export default class Home extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
-				console.log(response);
 				if (response.status === Status.OK) {
-					console.log(response.data);
 					this.setState({
 						'cards-to-display': response.data,
 					});

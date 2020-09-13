@@ -48,7 +48,6 @@ export default class CardSearch extends React.Component {
 
 		await callApi(url, method)
 			.then((response) => {
-				console.log(response);
 				if (response.status === Status.OK) {
 					if (response.data.nsfl_username === this.state.username) {
 						this.setState({

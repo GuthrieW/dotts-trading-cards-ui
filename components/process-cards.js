@@ -51,8 +51,6 @@ class ProcessCards extends React.Component {
 
 		callApi(url, method).then((response) => {
 			if (response.data == null) {
-				console.log('response.data is null', response);
-
 				Swal({
 					title: 'No cards',
 					text: 'All cards have been processed, thank you!',
@@ -73,8 +71,6 @@ class ProcessCards extends React.Component {
 			}
 
 			if (response.status === Status.OK) {
-				console.log('status is ok', response);
-
 				this.setState({
 					'_id': response.data._id,
 					'nsfl-username': response.data.submission_username,
@@ -85,8 +81,6 @@ class ProcessCards extends React.Component {
 					'can-process-card': true,
 				});
 			} else {
-				console.log('status is something else', response);
-
 				Swal({
 					title: 'Server Error',
 					text: 'The server encountered an error',
