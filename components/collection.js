@@ -70,6 +70,7 @@ class Collection extends React.Component {
 
 			await callApi(nsflTeamUrl, nsflTeamMethod, nsflTeamData)
 				.then((response) => {
+					console.log(response);
 					this.setState({
 						[`${team.CITY_NAME}-${team.TEAM_NAME}-isLoading`]: false,
 					});
