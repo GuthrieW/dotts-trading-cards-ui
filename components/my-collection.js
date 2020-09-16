@@ -60,6 +60,7 @@ export default class MyCollection extends React.Component {
 
 			await callApi(url, method, data)
 				.then((response) => {
+					console.log(team, response);
 					if (response.status === Status.OK) {
 						this.setState({
 							[`${team.CITY_NAME}-${team.TEAM_NAME}-cards`]: response.data,
