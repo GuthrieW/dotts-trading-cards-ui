@@ -89,7 +89,7 @@ export default class Home extends React.Component {
 									onClick={() => {
 										this.handleOnClick(`/open-packs`);
 									}}
-									src='https://i.imgur.com/rCe0RYr.png'
+									src='https://cdn.discordapp.com/attachments/719410556578299954/754141278429511780/PIC_1v2.png'
 								/>
 								<CardBody>
 									<CardTitle>Open Packs</CardTitle>
@@ -102,7 +102,7 @@ export default class Home extends React.Component {
 											`/collection/my-collection`
 										);
 									}}
-									src='https://i.imgur.com/SNBNA1c.png'
+									src='https://cdn.discordapp.com/attachments/719410556578299954/754141278735695983/PIC_4v2.png'
 								/>
 								<CardBody>
 									<CardTitle>My Collection</CardTitle>
@@ -113,7 +113,7 @@ export default class Home extends React.Component {
 									onClick={() => {
 										this.handleOnClick(`/player-list`);
 									}}
-									src='https://i.imgur.com/rNE5Sgv.png'
+									src='https://cdn.discordapp.com/attachments/719410556578299954/754141279042142249/PIC_3v2.png'
 								/>
 								<CardBody>
 									<CardTitle>Other Collections</CardTitle>
