@@ -3,6 +3,8 @@ export const RARITY_LEVELS = {
 	ULTIMUS_CHAMPION: 'Ultimus Champion',
 	HALL_OF_FAME: 'Hall of Fame',
 	AWARD: 'Award',
+	AUTOGRAPH_ROOKI: 'Autograph Rookie',
+	HOLOGRAPH_EXPANSION: 'Holograph Expansion',
 	LEGEND: 'Legend',
 	ALL_PRO: 'All-Pro',
 	STAR: 'Star',

@@ -233,6 +233,12 @@ class SubmitCard extends React.Component {
 										{RARITY_LEVELS.HALL_OF_FAME}
 									</option>
 									<option>{RARITY_LEVELS.AWARD}</option>
+									<option>
+										{RARITY_LEVELS.AUTOGRAPH_ROOKI}
+									</option>
+									<option>
+										{RARITY_LEVELS.HOLOGRAPH_EXPANSION}
+									</option>
 									<option>{RARITY_LEVELS.LEGEND}</option>
 									<option>{RARITY_LEVELS.ALL_PRO}</option>
 									<option>{RARITY_LEVELS.STAR}</option>
