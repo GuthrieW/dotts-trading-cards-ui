@@ -234,10 +234,13 @@ class SubmitCard extends React.Component {
 									</option>
 									<option>{RARITY_LEVELS.AWARD}</option>
 									<option>
-										{RARITY_LEVELS.AUTOGRAPH_ROOKI}
+										{RARITY_LEVELS.AUTOGRAPH_ROOKIE}
 									</option>
 									<option>
 										{RARITY_LEVELS.HOLOGRAPH_EXPANSION}
+									</option>
+									<option>
+										{RARITY_LEVELS.CAPTAIN}
 									</option>
 									<option>{RARITY_LEVELS.LEGEND}</option>
 									<option>{RARITY_LEVELS.ALL_PRO}</option>
