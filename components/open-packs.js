@@ -185,7 +185,8 @@ export default class OpenPacks extends React.Component {
 							<Col>
 								<img
 									style={{ maxHeight: '504px' }}
-									src='https://cdn.discordapp.com/attachments/719408889141133352/754537226150477886/pack.png'
+									src='https://cdn.discordapp.com/attachments/719410556578299954/776782018352119818/uw_pack.png'
+									// src='https://cdn.discordapp.com/attachments/719408889141133352/754537226150477886/pack.png' original ultimus pack cover
 								/>
 							</Col>
 						</Row>

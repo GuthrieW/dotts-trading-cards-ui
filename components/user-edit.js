@@ -157,12 +157,7 @@ class UserEdit extends React.Component {
 								<Label>Number of Regular Packs Available</Label>
 								<Input
 									type='number'
-									disabled={
-										!(
-											this.state['isAdmin'] ||
-											this.state['isPackIssuer']
-										)
-									}
+									disabled={true}
 									name='number-of-packs'
 									value={this.state['number-of-packs']}
 									onChange={this.handleChange}
@@ -172,7 +167,12 @@ class UserEdit extends React.Component {
 								<Label>Number of Ultimus Packs Available</Label>
 								<Input
 									type='number'
-									disabled={true}
+									disabled={
+										!(
+											this.state['isAdmin'] ||
+											this.state['isPackIssuer']
+										)
+									}
 									name='number-of-ultimus-packs'
 									value={
 										this.state['number-of-ultimus-packs']
