@@ -93,13 +93,13 @@ export default class Profile extends React.Component {
 			.then((response) => {
 				if (response.status === Status.OK) {
 					Swal({
-						title: 'Username Updated',
+						title: 'Account Migrated. https://dottstradingcards.com/',
 						icon: 'success',
 					});
 				} else {
 					Swal({
 						title: 'Server Error',
-						text: 'The server encountered an error',
+						text: response.data.error,
 						icon: 'error',
 					});
 				}
@@ -108,7 +108,7 @@ export default class Profile extends React.Component {
 				console.error(error);
 				Swal({
 					title: 'Server Error',
-					text: 'The server encountered an error',
+					text: response.data.error,
 					icon: 'error',
 				});
 			});
