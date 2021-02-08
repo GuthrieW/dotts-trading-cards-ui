@@ -57,7 +57,7 @@ export default class Profile extends React.Component {
 	
 		this.setState({
 			email: value
-		})
+		});
 	}
 
 	handleChangeUsername(event) {
@@ -73,7 +73,7 @@ export default class Profile extends React.Component {
 
 		this.setState({
 			password: value,
-		})
+		});
 	}
 
 	async handleSubmit(event) {
