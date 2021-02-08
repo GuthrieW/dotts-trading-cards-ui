@@ -218,14 +218,14 @@ export default class Header extends React.Component {
 								Report a Bug
 							</Button>
 						</NavItem>
-						{/* <NavItem>
+						<NavItem>
 							<Button
 								className='ml-2'
 								onClick={this.handleEditProfile}
 							>
 								Migrate to V2
 							</Button>
-						</NavItem> */}
+						</NavItem>
 						<NavItem>
 							<Button
 								className='ml-2'
