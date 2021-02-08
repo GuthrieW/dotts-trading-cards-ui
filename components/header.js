@@ -223,7 +223,7 @@ export default class Header extends React.Component {
 								className='ml-2'
 								onClick={this.handleEditProfile}
 							>
-								Edit Profile
+								Migrate to V2
 							</Button>
 						</NavItem>
 						<NavItem>
