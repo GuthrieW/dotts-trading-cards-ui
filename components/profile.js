@@ -20,7 +20,9 @@ export default class Profile extends React.Component {
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChange = this.handleChange.bind(this);
+		this.handleChangeEmail = this.handleChangeEmail.bind(this);
+		this.handleChangePassword = this.handleChangePassword.bind(this);
+		this.handleChangeUsername = this.handleChangeUsername.bind(this);
 	}
 
 	async componentDidMount() {
