@@ -19,7 +19,7 @@
 		"bootstrap": "^4.5.0",
 		"dotenv": "^8.2.0",
 		"jquery": "^3.5.1",
-		"lodash": "^4.17.19",
+		"lodash": "^4.17.21",
 		"next": "9.3.5",
 		"next-images": "^1.4.0",
 		"popper.js": "^1.16.1",
